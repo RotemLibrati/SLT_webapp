@@ -2,4 +2,4 @@
 <p>You are in the top ten</p><br>
 {% endif %}
 <p>Welcome to your profile</p>
-<a href="{% url 'registration: details' user.id %}">{{user.user_name}}</a>
+<a href="{% url 'registration:details' user.id %}">Go to {{user.user_name}} page.</a>
