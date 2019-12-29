@@ -17,3 +17,4 @@ def profile(request, user_id):
 class DetailView(generic.DetailView):
     model = User
     template_name = 'registration/details.html'
+
