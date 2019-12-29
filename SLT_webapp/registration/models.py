@@ -17,6 +17,6 @@ class User(models.Model):
         return self.user_name
 
 
-class Friend(models.Model):
+"""class Friend(models.Model):
     user_other = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_friend = models.ManyToManyField(User)
+    user_friend = models.ManyToManyField(User)"""

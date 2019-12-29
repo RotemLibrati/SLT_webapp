@@ -1,3 +1,5 @@
+{% load inbox %}
+{% inbox_count %}
 {% if user.id <= 10 %}
 <p>You are in the top ten</p><br>
 {% endif %}
