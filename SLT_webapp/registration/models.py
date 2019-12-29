@@ -52,4 +52,3 @@ class Winning(models.Model):
 
 class Card(models.Model):
     word = models.CharField(max_length=100)
-    picture = models.
