@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 
 
+
 class User(models.Model):
     user_name = models.CharField(max_length=20)
     first_name = models.CharField(max_length=20)
@@ -46,5 +47,19 @@ class Prize(models.Model):
 
 class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,default=1)
     win_date = models.DateTimeField(auto_now_add=True)
+
+
+class Card(models.Model):
+    word = models.CharField(max_length=100)
+#class Friend(models.Model):
+    #user_other = models.ForeignKey(User, on_delete=models.CASCADE)
+    #user_friend = models.ManyToManyField(User)
+
+class GameSession(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    number_of_mistakes = models.IntegerField()
+    duration = models.IntegerField()
+    difficulty = models.IntegerField()
+    time_signature = models.DateTimeField(auto_now_add=True)
