@@ -1,4 +1,5 @@
 from django.db import models
+
 import datetime
 
 
@@ -17,6 +18,13 @@ class User(models.Model):
         return self.user_name
 
 
-class Friend(models.Model):
-    user_other = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_friend = models.ManyToManyField(User)
+#class Friend(models.Model):
+    #user_other = models.ForeignKey(User, on_delete=models.CASCADE)
+    #user_friend = models.ManyToManyField(User)
+
+class GameSession(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    number_of_mistakes = models.IntegerField()
+    duration = models.IntegerField()
+    difficulty = models.IntegerField()
+    time_signature = models.DateTimeField(auto_now_add=True)
