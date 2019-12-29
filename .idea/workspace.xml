@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="" />
+    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +112,19 @@
       <option name="presentableId" value="LOCAL‎00008" />
       <updated>1577627942335</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎00009" summary="123444">
+      <created>1577628010956</created>
+      <option name="number" value="LOCAL‎00009" />
+      <option name="presentableId" value="LOCAL‎00009" />
+      <updated>1577628010956</updated>
+    </task>
+    <task id="LOCAL‎00010" summary="555">
+      <created>1577628054239</created>
+      <option name="number" value="LOCAL‎00010" />
+      <option name="presentableId" value="LOCAL‎00010" />
+      <updated>1577628054239</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -118,13 +132,16 @@
     <MESSAGE value="י" />
     <MESSAGE value="1" />
     <MESSAGE value="123" />
-    <option name="LAST_COMMIT_MESSAGE" value="123" />
+    <MESSAGE value="123444" />
+    <MESSAGE value="1234445" />
+    <MESSAGE value="555" />
+    <option name="LAST_COMMIT_MESSAGE" value="555" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1577628032175">
+    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1577628092662">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1577628032175" />
+    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1577628092662" />
     <state x="471" y="85" key="RollbackChangesDialog" timestamp="1577574941173">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -137,10 +154,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="470" y="79" key="VCS.ChangeListViewerDialog/0.0.1366.728@0.0.1366.728" timestamp="1577135254934" />
-    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577624660620">
+    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577628145262">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1577624660620" />
+    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1577628145262" />
     <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog" timestamp="1577613535716">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
