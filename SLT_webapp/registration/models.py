@@ -1,4 +1,6 @@
 from django.db import models
+import datetime
+
 
 
 class User(models.Model):
@@ -8,9 +10,13 @@ class User(models.Model):
     address = models.CharField(max_length=100)
     age = models.IntegerField()
 
+    def was_born_recently(self):
+        return self.age < 18
+
     def __str__(self):
         return self.user_name
 
 
 class Friend(models.Model):
-    user_friend = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_other = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_friend = models.ManyToManyField(User)
