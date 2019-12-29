@@ -46,5 +46,10 @@ class Prize(models.Model):
 
 class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,default=1)
     win_date = models.DateTimeField(auto_now_add=True)
+
+
+class Card(models.Model):
+    word = models.CharField(max_length=100)
+    picture = models.
