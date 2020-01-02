@@ -9,6 +9,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=20)
     address = models.CharField(max_length=100)
     age = models.IntegerField()
+    points= models.IntegerField(default=0)
 
     def was_born_recently(self):
         return self.age < 18
@@ -53,9 +54,10 @@ class Winning(models.Model):
 
 class Card(models.Model):
     word = models.CharField(max_length=100)
-#class Friend(models.Model):
-    #user_other = models.ForeignKey(User, on_delete=models.CASCADE)
-    #user_friend = models.ManyToManyField(User)
+    image = models.ImageField(upload_to='uploads/',null=True)
+    authorized = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+
 
 class GameSession(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -63,3 +65,4 @@ class GameSession(models.Model):
     duration = models.IntegerField()
     difficulty = models.IntegerField()
     time_signature = models.DateTimeField(auto_now_add=True)
+
