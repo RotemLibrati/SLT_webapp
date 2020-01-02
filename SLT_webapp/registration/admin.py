@@ -1,5 +1,8 @@
 from django.contrib import admin
 from .models import User, Friend, Prize, Winning
+from .models import Card
+from .models import GameSession
+
 
 
 class FriendInline(admin.StackedInline):
@@ -15,3 +18,5 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Friend)
 admin.site.register(Prize)
 admin.site.register(Winning)
+admin.site.register(Card)
+admin.site.register(GameSession)
