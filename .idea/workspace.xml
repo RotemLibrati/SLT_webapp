@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/css/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/img/geometry2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/img/snippet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/make-new-card.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/success.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SLT_webapp/uploads/bird.jfif" afterDir="false" />
@@ -10,6 +16,11 @@
       <change afterPath="$PROJECT_DIR$/SLT_webapp/uploads/bird_aQtXFpZ.jfif" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SLT_webapp/uploads/bird_e1quh3t.jfif" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SLT_webapp/uploads/bird_uLzIVYg.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/uploads/bird_zyDm4bT.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/uploads/download.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/uploads/download_znhJJKp.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/New folder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/New folder.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
@@ -69,7 +80,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
