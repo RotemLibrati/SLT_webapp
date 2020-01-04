@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django_messages',
 ]
 
+LOGIN_REDIRECT_URL = '/registration/'
+
 SITE_ID = 1
 
 MIDDLEWARE = [

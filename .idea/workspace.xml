@@ -1,93 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="game addition">
-      <change beforePath="$PROJECT_DIR$/.idea/New folder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/New folder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_auto_20200104_1649.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200104_2024.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_auto_20200104_2115.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_userprofile_is_admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/uploads/הורדה.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/PIL/_imaging.cp38-win32.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/context_processors.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/fields.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/ar/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/ar/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/cs/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/cs/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/da/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/da/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/de/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/de/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/el/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/el/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/es/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/es/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/es_AR/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/es_AR/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/eu/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/eu/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/fa/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/fa/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/fr/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/fr/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/id/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/id/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/it/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/it/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/ko/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/ko/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/lt/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/lt/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/nl/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/nl/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/pl/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/pl/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/pt_BR/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/pt_BR/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/ro/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/ro/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/ru/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/ru/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/zh_CN/LC_MESSAGES/django.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/locale/zh_CN/LC_MESSAGES/django.po" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/management.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/migrations/0002_auto_20160607_0852.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/migrations/0003_auto_20190617_1316.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/signals.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/django_messages/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/django_messages/compose.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/django_messages/inbox.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/django_messages/new_message.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/django_messages/outbox.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/django_messages/trash.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/django_messages/view.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_deleted/full.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_deleted/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_received/full.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_received/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_received/short.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_recovered/full.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_recovered/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_replied/full.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_replied/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_reply_received/full.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_reply_received/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_reply_received/short.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_sent/full.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templates/notification/messages_sent/notice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/templatetags/inbox.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_messages/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/make-new-card.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/make-new-card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -217,7 +154,13 @@
       <option name="project" value="LOCAL" />
       <updated>1578014054231</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="fixed django messages localy by adding django.contrib.sites into installed apps and site_id=1 below it">
+      <created>1578141645215</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1578141645215</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,7 +185,8 @@
     <MESSAGE value="1234445" />
     <MESSAGE value="555" />
     <MESSAGE value="game addition" />
-    <option name="LAST_COMMIT_MESSAGE" value="game addition" />
+    <MESSAGE value="fixed django messages localy by adding django.contrib.sites into installed apps and site_id=1 below it" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed django messages localy by adding django.contrib.sites into installed apps and site_id=1 below it" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

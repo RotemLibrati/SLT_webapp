@@ -1,19 +1,53 @@
+from django.contrib.auth import authenticate, login
+from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm
 from django.urls import reverse
+from django.contrib.auth.models import AnonymousUser
 
 
 def index(request):
-    return HttpResponse("Hello world")
-
-
-def profile(request, username):
-    u1 = get_object_or_404(User, username=username)
-    context = {'user': u1}
+    context = {}
+    if request.user is not None:
+        context['user'] = request.user
+    if request.user.is_authenticated:
+        context['profile'] = UserProfile.objects.get(user=request.user)
     return render(request, 'registration/index.html', context)
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['user_name'], password=form.cleaned_data['password'])
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('registration:profile'))
+    else:
+        form = LoginForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'registration/login.html', context)
+
+
+def logout(request):
+    request.session.flush()
+
+    if hasattr(request, 'user'):
+        request.user = AnonymousUser()
+    return HttpResponseRedirect(reverse('registration:index'))
+
+
+def profile(request):
+    if request.user is None:
+        return HttpResponse("Not logged in")
+    u1 = request.user
+    up1 = get_object_or_404(UserProfile, user=u1)
+    return render(request, 'registration/details.html', {'user': u1, 'profile': up1})
 
 
 def new_user(request):
@@ -28,7 +62,7 @@ def new_user(request):
             user_form.save()
             user = get_object_or_404(User, username=user_form.cleaned_data['username'])
             # profile_form.save()
-            return HttpResponseRedirect(reverse('registration:new-profile', args=(user.username,)))
+            return HttpResponseRedirect(reverse('registration:new-profile', args=[str(user.username)]))
     else:
         # user_form = UserForm()
         # profile_form = ProfileForm()
@@ -40,30 +74,44 @@ def new_user(request):
 
 
 def new_profile(request, username):
+    # if request.user is None:
+    #     return HttpResponse("Not logged in")
+
+    def attach_user(sender, **kwargs):
+        userprofile = kwargs['instance']
+        userprofile.user = user
+        post_save.disconnect(attach_user, sender=UserProfile)
+        userprofile.save()
     if request.method == 'POST':
-        user = get_object_or_404(User, username=username)
+        user = User.objects.get(username=username)
         form = ProfileForm(request.POST)
         if form.is_valid():
+            post_save.connect(attach_user, sender=UserProfile)
             form.save()
-            return HttpResponseRedirect(reverse('registration:profile', args=(user.username,)))
+            return HttpResponseRedirect(reverse('registration:index'))
     else:
-        user = get_object_or_404(User, username=username)
+        user = User.objects.get(username=username)
         form = ProfileForm()
     return render(request, 'registration/new-profile.html', {'user': user, 'form': form})
 
 
-class DetailView(generic.DetailView):
-    model = UserProfile
-    template_name = 'registration/details.html'
+# class DetailView(generic.DetailView):
+#     model = UserProfile
+#     template_name = 'registration/details.html'
 
 
-def make_new_card(request, user_id):
-    u1 = get_object_or_404(UserProfile, pk=user_id)
-    context = {'user': u1, 'form': CardForm()}
+def make_new_card(request):
+    if request.user is None:
+        return HttpResponse("Not logged in")
+    u1 = request.user
+    up1 = get_object_or_404(UserProfile, user=u1)
+    context = {'user': u1, 'profile': up1, 'form': CardForm()}
     return render(request, 'registration/make-new-card.html', context)
 
 
-def card_check(request, user_id):
+def card_check(request):
+    if request.user is None:
+        return HttpResponse("Not logged in")
     if request.method == 'POST':
         form = CardForm(request.POST, request.FILES)
         if form.is_valid():
@@ -77,15 +125,21 @@ def card_check(request, user_id):
             if not exist:
                 obj = Card.objects.create(word=word, image=image)
                 obj.save()
-                return HttpResponseRedirect(reverse('registration:success', args=(user_id,)))
+                return HttpResponseRedirect(reverse('registration:success'))
     else:
         form = CardForm()
     return render(request, 'registration/make-new-card.html', {'form': form})
 
 
-def success(request, user_id):
-    return render(request, 'registration/success.html', {'user_id': user_id})
+def success(request):
+    if request.user is None:
+        return HttpResponse("Not logged in")
+    user = request.user
+    return render(request, 'registration/success.html', {'user': user})
 
 
-def game(request, user_id):
-    return render(request, 'registration/game.html', {'user_id': user_id})
+def game(request):
+    if request.user is None:
+        return HttpResponse("Not logged in")
+    user = request.user
+    return render(request, 'registration/game.html', {'user': user})
