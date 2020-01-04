@@ -1,25 +1,32 @@
 from django.db import models
-import datetime
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 
-class User(models.Model):
-    user_name = models.CharField(max_length=20)
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    address = models.CharField(max_length=100)
-    age = models.IntegerField()
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
+    address = models.CharField(max_length=100, default='')
+    age = models.IntegerField(blank=True, default=0)
     points = models.IntegerField(default=0)
 
     def was_born_recently(self):
         return self.age < 18
 
     def __str__(self):
-        return self.user_name
+        return self.user.username
+
+
+# def create_profile(sender, **kwargs):
+#     if kwargs['created']:
+#         user_profile = UserProfile.objects.create(user=kwargs['instance'])
+#
+#
+# post_save.connect(create_profile, sender=User)
 
 
 class Friend(models.Model):
-    users = models.ManyToManyField(User)
-    current_user = models.ForeignKey(User, related_name="owner", null=True, on_delete=models.CASCADE)
+    users = models.ManyToManyField(UserProfile)
+    current_user = models.ForeignKey(UserProfile, related_name="owner", null=True, on_delete=models.CASCADE)
 
     @classmethod
     def make_friend(cls, current_user, new_friend):
@@ -47,7 +54,7 @@ class Prize(models.Model):
 
 class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default=1)
+    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, default=1)
     win_date = models.DateTimeField(auto_now_add=True)
 
 
@@ -55,14 +62,14 @@ class Card(models.Model):
     word = models.CharField(max_length=100)
     image = models.ImageField(upload_to='uploads/', null=True)
     authorized = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.word
 
 
 class GameSession(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     number_of_mistakes = models.IntegerField()
     duration = models.IntegerField()
     difficulty = models.IntegerField()
