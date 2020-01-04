@@ -1,2 +1,5 @@
-<p>success</p>
-<a href="{% url 'registration:profile' user_id %}">Go back to main</a>
+{% extends 'registration/index.html' %}
+{% block content %}
+<h2>success!</h2>
+<a href="{% url 'registration:index' %}">Go back to main</a>
+{% endblock %}

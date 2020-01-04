@@ -1,6 +1,9 @@
-<form action="{% url 'registration:new-user' %}" method="POST">
-  {% csrf_token %}
-  {{ user_form.as_p }}
-  {{ profile_form.as_p }}
-  <button type="submit">Register</button>
-</form>
+{% extends 'registration/index.html' %}
+{% block content %}
+    <h2>User creation menu</h2>
+    <form action="{% url 'registration:new-user' %}" method="POST">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit">To registration page 2</button>
+    </form>
+{% endblock %}

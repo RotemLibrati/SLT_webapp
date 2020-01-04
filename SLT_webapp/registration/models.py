@@ -4,16 +4,19 @@ from django.db.models.signals import post_save
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
+    TYPES = (('parent', 'parent'), ('student', 'student'))
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     address = models.CharField(max_length=100, default='')
-    age = models.IntegerField(blank=True, default=0)
+    age = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
+    type = models.CharField(max_length=10, choices=TYPES, default='student')
+    is_admin = models.BooleanField(default=False)
 
     def was_born_recently(self):
         return self.age < 18
 
     def __str__(self):
-        return self.user.username
+        return str(self.user)
 
 
 # def create_profile(sender, **kwargs):
