@@ -13,4 +13,5 @@ urlpatterns = [
     path('make-new-card/', views.make_new_card, name='make-new-card'),
     path('card-check/', views.card_check, name='card-check'),
     path('success/', views.success, name='success'),
+    path('info/', views.info, name='info'),
 ]

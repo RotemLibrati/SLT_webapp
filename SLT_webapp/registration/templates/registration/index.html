@@ -16,9 +16,10 @@
         <a href="{% url 'registration:game' %}">Play the game</a><br>
         <a href="{% url 'registration:profile' %}">Profile menu</a><br>
         <a href="{% url 'registration:index' %}">Back to main menu</a><br>
-        {% if profile.is_admin %}
-             <a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
+        {% if user.type == 'student' %}
+            <a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
         {% endif %}
+        <a href="{% url 'registration:info' %}">Game instructions</a><br>
         <a href="{% url 'registration:logout' %}">Logout</a><br>
     {% endif %}
 {% endblock %}
