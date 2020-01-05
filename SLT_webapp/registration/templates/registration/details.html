@@ -5,5 +5,14 @@
     <ul>
         <li>Username: {{user.username}}</li>
         <li>Age: {{profile.age}}</li>
+        <li>Points: {{profile.points}}</li>
+    </ul>
+    <p><strong>Friends:</strong></p>
+    <ul>
+        {% for f in friends %}
+        <li>{{f}}</li>
+        {% empty %}
+        <p>No friends</p>
+        {% endfor %}
     </ul>
 {% endblock %}

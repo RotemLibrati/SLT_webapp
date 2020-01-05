@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import User, UserProfile
+from .models import UserProfile
 from datetime import datetime
 
 
