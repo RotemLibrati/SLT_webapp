@@ -73,7 +73,10 @@ def add_friend(request):
         if form.is_valid():
             try:
                 new_friend = User.objects.get(username=form.cleaned_data['new_friend'])
-                Friend.make_friend(request.user, new_friend)
+                if form.cleaned_data['action'] == 'Add':
+                    Friend.make_friend(request.user, new_friend)
+                else:
+                    Friend.remove_friend(request.user, new_friend)
                 return HttpResponseRedirect(reverse('registration:index'))
             except User.DoesNotExist:
                 form = FriendForm()
