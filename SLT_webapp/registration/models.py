@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from datetime import datetime
 
-
 class UserProfile(models.Model):
     TYPES = (('parent', 'parent'), ('student', 'student'))
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)

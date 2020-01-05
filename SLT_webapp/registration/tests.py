@@ -31,3 +31,8 @@ class IndexViewTests(TestCase):
         response = self.client.get(reverse('registration:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sign Language Teacher")
+
+    def test_menu(self):
+        response = self.client.get(reverse('registration:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Main menu")
