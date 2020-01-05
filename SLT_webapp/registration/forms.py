@@ -61,4 +61,6 @@ class CompleteUserForm(UserCreationForm):
 
 
 class FriendForm(forms.Form):
+    ACTIONS = (('Add', 'Add'), ('Remove', 'Remove'))
     new_friend = forms.CharField(max_length=25)
+    action = forms.CharField(max_length=25, widget=forms.Select(choices=ACTIONS))
