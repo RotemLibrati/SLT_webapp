@@ -9,6 +9,15 @@ from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 
 
+def info(request):
+    context = {}
+    if request.user is not None:
+        context['user'] = request.user
+    if request.user.is_authenticated:
+        context['profile'] = UserProfile.objects.get(user=request.user)
+    return render(request, 'registration/info.html', context)
+
+
 def index(request):
     context = {}
     if request.user is not None:
@@ -124,6 +133,7 @@ def card_check(request):
                     exist = True
             if not exist:
                 obj = Card.objects.create(word=word, image=image)
+                obj.user = request.user
                 obj.save()
                 return HttpResponseRedirect(reverse('registration:success'))
     else:
