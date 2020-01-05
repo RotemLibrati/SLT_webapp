@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     points = models.IntegerField(default=0)
     type = models.CharField(max_length=10, choices=TYPES, default='student')
     is_admin = models.BooleanField(default=False)
+    suspention_time = models.DateTimeField(default=0)
 
     def was_born_recently(self):
         return self.age < 18

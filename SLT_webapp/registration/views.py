@@ -7,7 +7,7 @@ from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
-
+from datetime import datetime
 
 def info(request):
     context = {}
@@ -151,5 +151,16 @@ def success(request):
 def game(request):
     if request.user is None:
         return HttpResponse("Not logged in")
-    user = request.user
-    return render(request, 'registration/game.html', {'user': user})
+    context = {}
+    if request.user is not None:
+        context['user'] = request.user
+    if request.user.is_authenticated:
+        context['profile'] = UserProfile.objects.get(user=request.user)
+    suspended = datetime.now() < context['profile'].suspention_time
+    timeleft = context['profile'].suspention_time - datetime.now()
+    context['suspended'] = suspended
+    context['timeleft'] = timeleft
+    if not suspended:
+        return render(request, 'registration/game.html', context)
+    else:
+        return render(request, 'registration/suspended.html', context)
