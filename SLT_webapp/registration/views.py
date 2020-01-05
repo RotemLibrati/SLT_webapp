@@ -61,24 +61,15 @@ def profile(request):
 
 def new_user(request):
     if request.method == 'POST':
-        # request.user.userprofile.points = request.POST.get('points', 0)
-        # request.user.userprofile.age = request.POST.get('age', 0)
-        # request.user.userprofile.address = request.POST.get('address', '')
-
         user_form = CompleteUserForm(request.POST)
-        # profile_form = ProfileForm(request.POST)  # , instance=request.POST.get('profile_form'))
-        if user_form.is_valid():  # and profile_form.is_valid():
+        if user_form.is_valid():
             user_form.save()
             user = get_object_or_404(User, username=user_form.cleaned_data['username'])
-            # profile_form.save()
             return HttpResponseRedirect(reverse('registration:new-profile', args=[str(user.username)]))
     else:
-        # user_form = UserForm()
-        # profile_form = ProfileForm()
         user_form = CompleteUserForm()
     return render(request, 'registration/new-user.html', {
         'user_form': user_form,
-        # 'profile_form': profile_form
     })
 
 
