@@ -1,0 +1,26 @@
+{% block content %}
+
+<form action="{% url 'registration:add-friend' %}" method="POST">
+    {% csrf_token %}
+    <h2>Friend addition menu</h2>
+    <h3>Users:</h3><br>
+    <ul>
+    {% for user in users %}
+        <li>{{user}}</li>
+    {% endfor %}
+    </ul>
+    {% for field in form %}
+        <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        </p>
+    {% endfor %}
+    <button type="submit">Add friend</button>
+</form>
+{% endblock %}

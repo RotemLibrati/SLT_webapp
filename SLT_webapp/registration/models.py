@@ -40,8 +40,8 @@ class UserProfile(models.Model):
 
 
 class Friend(models.Model):
-    users = models.ManyToManyField(UserProfile)
-    current_user = models.ForeignKey(UserProfile, related_name="owner", null=True, on_delete=models.CASCADE)
+    users = models.ManyToManyField(User, related_name='friends')
+    current_user = models.ForeignKey(User, related_name="owner", null=True, on_delete=models.CASCADE)
 
     @classmethod
     def make_friend(cls, current_user, new_friend):
@@ -56,6 +56,13 @@ class Friend(models.Model):
             current_user=current_user
         )
         friend.users.remove(new_friend)
+
+    @classmethod
+    def is_friend_of(cls, current_user, other_user):
+        if Friend.objects.filter(current_user=current_user):
+            if Friend.objects.filter(current_user=current_user)[0].users.filter(username=other_user.username):
+                return True
+        return False
 
     def __str__(self):
         return str(self.current_user)
