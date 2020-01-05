@@ -16,6 +16,8 @@ class UserProfile(models.Model):
     suspention_time = models.DateTimeField(default=datetime.now())
 
     def was_born_recently(self):
+        if self.age <= 0:
+            return False
         return self.age < 18
 
     def __str__(self):
