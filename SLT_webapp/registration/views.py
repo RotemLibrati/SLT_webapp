@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime
@@ -97,12 +97,29 @@ def new_profile(request, username):
         if form.is_valid():
             post_save.connect(attach_user, sender=UserProfile)
             form.save()
+            if form.cleaned_data['type'] == 'parent':
+                return HttpResponseRedirect(reverse('registration:new-profile-parent', args=[str(user.username)]))
             return HttpResponseRedirect(reverse('registration:index'))
     else:
         user = User.objects.get(username=username)
         form = ProfileForm()
     return render(request, 'registration/new-profile.html', {'user': user, 'form': form})
 
+
+def new_profile_parent(request, username):
+    if request.method == 'POST':
+        form = ParentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = get_object_or_404(User, username=username)
+            userprofile = get_object_or_404(UserProfile, user=user)
+            son_user = get_object_or_404(User, username=form.cleaned_data['chosen_son'])
+            userprofile.son = son_user
+            userprofile.save()
+            return HttpResponseRedirect(reverse('registration:index'))
+    else:
+        form = ParentForm()
+    return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
 
 # class DetailView(generic.DetailView):
 #     model = UserProfile
