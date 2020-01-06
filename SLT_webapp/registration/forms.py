@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, UserProfile
+from .models import User, UserProfile, Friend
 
 
 class LoginForm(forms.Form):
@@ -58,3 +58,9 @@ class CompleteUserForm(UserCreationForm):
             user.save()
 
         return user
+
+
+class FriendForm(forms.Form):
+    ACTIONS = (('Add', 'Add'), ('Remove', 'Remove'))
+    new_friend = forms.CharField(max_length=25)
+    action = forms.CharField(max_length=25, widget=forms.Select(choices=ACTIONS))

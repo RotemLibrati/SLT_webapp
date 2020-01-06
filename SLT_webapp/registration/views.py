@@ -2,12 +2,13 @@ from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User
+from .models import UserProfile, Card, User, Friend
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime
+
 
 def info(request):
     context = {}
@@ -52,11 +53,39 @@ def logout(request):
 
 
 def profile(request):
-    if request.user is None:
+    if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     u1 = request.user
+    try:
+        friend = Friend.objects.get(current_user=u1)
+        friends = list(map(lambda x: x.username, friend.users.all()))
+    except Friend.DoesNotExist:
+        friends = []
     up1 = get_object_or_404(UserProfile, user=u1)
-    return render(request, 'registration/details.html', {'user': u1, 'profile': up1})
+    return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
+
+
+def add_friend(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    if request.method == 'POST':
+        form = FriendForm(request.POST)
+        if form.is_valid():
+            try:
+                new_friend = User.objects.get(username=form.cleaned_data['new_friend'])
+                if form.cleaned_data['action'] == 'Add':
+                    Friend.make_friend(request.user, new_friend)
+                else:
+                    Friend.remove_friend(request.user, new_friend)
+                return HttpResponseRedirect(reverse('registration:index'))
+            except User.DoesNotExist:
+                form = FriendForm()
+    else:
+        form = FriendForm()
+        user_list = User.objects.all()
+    return render(request, 'registration/add-friend.html', {
+        'form': form, 'users': user_list
+    })
 
 
 def new_user(request):
@@ -118,7 +147,7 @@ def new_profile_parent(request, username):
 
 
 def make_new_card(request):
-    if request.user is None:
+    if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     u1 = request.user
     up1 = get_object_or_404(UserProfile, user=u1)
@@ -127,7 +156,7 @@ def make_new_card(request):
 
 
 def card_check(request):
-    if request.user is None:
+    if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     if request.method == 'POST':
         form = CardForm(request.POST, request.FILES)
@@ -150,14 +179,14 @@ def card_check(request):
 
 
 def success(request):
-    if request.user is None:
+    if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     user = request.user
     return render(request, 'registration/success.html', {'user': user})
 
 
 def game(request):
-    if request.user is None:
+    if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     context = {}
     if request.user is not None:
