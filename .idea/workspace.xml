@@ -2,25 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_auto_20200106_2118.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_auto_20200106_2130.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0006_auto_20200107_0901.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/failure.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/inbox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/message.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-message.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/add-friend.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/add-friend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,15 +46,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -240,19 +227,29 @@
     <option name="LAST_COMMIT_MESSAGE" value="removing friends available too" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="192" y="0" key="CommitChangelistDialog2" />
-    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" />
-    <state x="471" y="85" key="RollbackChangesDialog" />
-    <state x="471" y="85" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" />
-    <state x="184" y="6" key="SettingsEditor" />
-    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" />
-    <state x="470" y="79" key="VCS.ChangeListViewerDialog" />
-    <state x="470" y="79" key="VCS.ChangeListViewerDialog/0.0.1366.728@0.0.1366.728" />
-    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
-    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" />
-    <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog" />
-    <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" />
-    <state x="346" y="49" key="search.everywhere.popup" />
-    <state x="346" y="49" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" />
+    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1578398400171" />
+    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578398400171" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1578400379889">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1578400379889" />
+    <state x="471" y="85" key="RollbackChangesDialog" timestamp="1578398400171" />
+    <state x="471" y="85" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1578398400171" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1578398400171" />
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1578398400171" />
+    <state x="92" y="92" width="1182" height="544" key="ShowDiffWithBranchDialog" timestamp="1578400379889">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="ShowDiffWithBranchDialog/0.0.1366.728@0.0.1366.728" timestamp="1578400379889" />
+    <state x="470" y="79" key="VCS.ChangeListViewerDialog" timestamp="1578398400171" />
+    <state x="470" y="79" key="VCS.ChangeListViewerDialog/0.0.1366.728@0.0.1366.728" timestamp="1578398400171" />
+    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578400363411">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1578400363411" />
+    <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog" timestamp="1578398400171" />
+    <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1578398400171" />
+    <state x="346" y="49" key="search.everywhere.popup" timestamp="1578398400171" />
+    <state x="346" y="49" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1578398400171" />
   </component>
 </project>
