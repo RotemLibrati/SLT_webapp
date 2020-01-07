@@ -50,9 +50,6 @@ class CompleteUserForm(UserCreationForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
-        # user.userprofile.address = self.cleaned_data['address']
-        # user.userprofile.age = self.cleaned_data['age']
-        # user.userprofile.points = self.cleaned_data['points']
 
         if commit:
             user.save()
@@ -64,3 +61,9 @@ class FriendForm(forms.Form):
     ACTIONS = (('Add', 'Add'), ('Remove', 'Remove'))
     new_friend = forms.CharField(max_length=25)
     action = forms.CharField(max_length=25, widget=forms.Select(choices=ACTIONS))
+
+
+class MessageForm(forms.Form):
+    receiver = forms.CharField(max_length=50, initial='user name')
+    subject = forms.CharField(max_length=50, initial='message subject')
+    body = forms.CharField(max_length=250)

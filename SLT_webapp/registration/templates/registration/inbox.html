@@ -1,0 +1,26 @@
+{% extends 'registration/index.html' %}
+<h2>Inbox</h2>
+{% block content %}
+    <h3>Messages received</h3>
+    <ol>
+        {% for message in messages_received %}
+            <li>
+                From: {{message.sender}}. Subject: {{message.subject}}. Sent at: {{message.sent_date}}.
+                <a href="{% url 'registration:view-message' message.id %}"> Open</a>
+                <a href="/sign-language-teacher/inbox/delete/{{ message.id }}"> Delete</a>
+            </li>
+        {% endfor %}
+    </ol>
+    <h3>Messages sent</h3>
+    <ol>
+        {% for message in messages_sent %}
+            <li>
+                To: {{message.receiver}}. Subject: {{message.subject}}. Sent at: {{message.sent_date}}
+                <a href="/sign-language-teacher/inbox/{{ message.id }}"> Open</a>
+                <a href="/sign-language-teacher/inbox/delete/{{ message.id }}"> Delete</a>
+            </li>
+        {% endfor %}
+    </ol>
+    <br>
+    <a href="{% url 'registration:new-message' %}">Send new message</a><br>
+{% endblock %}
