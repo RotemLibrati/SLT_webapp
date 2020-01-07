@@ -1,3 +1,18 @@
-<p>{{user.user_name}}</p>
-<p>{{user.first_name}}</p>
-<p>{{user.last_name}}</p>
+{% extends 'registration/index.html' %}
+{% block content %}
+    <h2>Profile menu</h2>
+    <h3>Hello {{ user.get_full_name }}</h3>
+    <ul>
+        <li>Username: {{user.username}}</li>
+        <li>Age: {{profile.age}}</li>
+        <li>Points: {{profile.points}}</li>
+    </ul>
+    <p><strong>Friends:</strong></p>
+    <ul>
+        {% for f in friends %}
+        <li>{{f}}</li>
+        {% empty %}
+        <p>No friends</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

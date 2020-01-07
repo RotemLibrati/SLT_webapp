@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_messages'
+    'django.contrib.sites',
+    # 'django_messages',
 ]
+
+LOGIN_REDIRECT_URL = '/registration/'
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
