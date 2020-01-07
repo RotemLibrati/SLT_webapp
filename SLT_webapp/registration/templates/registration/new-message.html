@@ -1,0 +1,16 @@
+{% extends 'registration/index.html' %}
+{% block content %}
+
+<form action="{% url 'registration:new-message' %}" method="POST">
+    {% csrf_token %}
+    <h2>New message</h2>
+    <h3>Users:</h3><br>
+    <ul>
+    {% for user in users %}
+        <li>{{user}}</li>
+    {% endfor %}
+    </ul>
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
