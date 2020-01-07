@@ -16,4 +16,8 @@ urlpatterns = [
     path('success/', views.success, name='success'),
     path('info/', views.info, name='info'),
     path('add-friend/', views.add_friend, name='add-friend'),
+    path('inbox/', views.inbox, name='inbox'),
+    path('inbox/<int:message_id>/', views.view_message, name='view-message'),
+    path('inbox/delete/<int:message_id>/', views.delete_message, name='delete-message'),
+    path('inbox/new-message/', views.new_message, name='new-message'),
 ]

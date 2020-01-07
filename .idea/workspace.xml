@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_auto_20200106_2118.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_auto_20200106_2130.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0006_auto_20200107_0901.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/failure.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/inbox.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/message.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-message.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/info.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/add-friend.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/add-friend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +41,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1VOZGhBQ3WvvTNjxjKtKC7Yzvw3" />
