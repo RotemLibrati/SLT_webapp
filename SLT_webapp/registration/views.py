@@ -35,6 +35,10 @@ def login_view(request):
             user = authenticate(username=form.cleaned_data['user_name'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
+                user = request.user
+                userprofile = UserProfile.objects.get(user = user)
+                userprofile.last_login = datetime.now()
+                userprofile.save()
                 return HttpResponseRedirect(reverse('registration:profile'))
     else:
         form = LoginForm()
@@ -45,6 +49,10 @@ def login_view(request):
 
 
 def logout(request):
+    userprofile = UserProfile.objects.get(user = request.user)
+    td = datetime.now()-userprofile.last_login
+    userprofile.total_Minutes_time += (td.microseconds/6000)
+    userprofile.save()
     request.session.flush()
 
     if hasattr(request, 'user'):
@@ -286,3 +294,4 @@ def exit(request):
         i.time_stop = datetime.now()
         i.save()
     return HttpResponseRedirect(reverse('registration:index'))
+
