@@ -2,16 +2,12 @@ from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend, Message, GameSession,UserReoprt
+from .models import UserProfile, Card, User, Friend, Message, GameSession
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
-from datetime import datetime
-from django.contrib.sessions.models import Session
-from django.utils import timezone
-
+from datetime import datetime, timedelta
 
 
 def info(request):
@@ -55,7 +51,7 @@ def login_view(request):
 def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
     td = datetime.now() - userprofile.last_login
-    userprofile.total_minutes += (td.total_seconds()/60)
+    userprofile.total_minutes += (td.microseconds/60000)
     userprofile.save()
     request.session.flush()
 
@@ -286,45 +282,11 @@ def game(request):
         return render(request, 'registration/suspended.html', context)
 
 
-# def active_games(request):
-#     games = GameSession.objects.filter(time_stop__isnull=True)
-#     game_list = list(games)
-#     return render(request, 'registration/active-games.html', {'games': game_list})
 def active_games(request):
-    user = request.user
-    up1 = get_object_or_404(UserProfile, user=user)
     games = GameSession.objects.filter(time_stop__isnull=True)
     game_list = list(games)
-    return render(request, 'registration/active-games.html', {'games': game_list, 'up': up1})
+    return render(request, 'registration/active-games.html', {'games': game_list})
 
-def reports_menu(request):
-    user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
-    return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list' : user_list})
-
-def reports_menu_users(request):
-    user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
-    return render(request, 'registration/reports-menu-users.html', {'user': user_profile, 'user_list' : user_list})
-
-def reports_users(request):
-    user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
-    return render(request, 'registration/details-of-users.html', {'user': user_profile, 'user_list': user_list})
-
-def avg_points(request):
-    user = request.user
-    up1 = get_object_or_404(UserProfile, user=user)
-    user_profile = UserProfile.objects.all()
-    user_list= list(user_profile)
-    sum=0
-    for p in user_list:
-        sum+=p.points
-    avg=sum/len(user_list)
-    return render(request, 'registration/avg-points.html', {'user': user_profile, 'user_list' : user_list, 'u1': user, 'up':up1,'avg':avg})
 
 def exit_game(request):
     user = request.user
@@ -334,89 +296,3 @@ def exit_game(request):
         i.time_stop = datetime.now()
         i.save()
     return HttpResponseRedirect(reverse('registration:index'))
-
-def total_time_son(request):
-    current_user_profile = UserProfile.objects.get(user=request.user)
-    son_user = User.objects.get(username=current_user_profile.son.username)
-    son_profile = UserProfile.objects.get(user=son_user)
-    if son_profile:
-        context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile}
-        return render(request, 'registration/total-time-son.html', context)
-    return HttpResponseRedirect(reverse('registration:index'))
-
-def rank_game(request):
-    if request.method == 'POST':
-        form = RankGameForm(request.POST)
-        if form.is_valid():
-            rank_val = form.cleaned_data['rank']
-            user = request.user
-            up1 = get_object_or_404(UserProfile, user=user)
-            up1.rank = rank_val
-            up1.save()
-        return HttpResponseRedirect(reverse('registration:rank-success'))
-    else :
-        form = RankGameForm()
-
-    return render(request, 'registration/rank-game.html', {'form': form})
-
-def rank_success(request):
-    return render(request, 'registration/rank-success.html')
-
-def rank_for_admin(request):
-    user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
-    sum = 0
-    for p in user_list:
-        sum += p.rank
-    avg = sum / len(user_list)
-    return render(request, 'registration/rank-for-admin.html', {'user': user_profile, 'user_list': user_list, 'avg' : avg})
-
-def active_users():
-    active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
-    user_id_list = []
-    for session in active_sessions:
-        data = session.get_decoded()
-        user_id_list.append(data.get('_auth_user_id', None))
-    return User.objects.filter(id__in=user_id_list)
-
-
-def active_users_page(request):
-    user = request.user
-    up1 = get_object_or_404(UserProfile, user=user)
-    users = active_users()
-    users = list(users)
-    if request.user is None or not request.user.is_authenticated:
-        return HttpResponse("Not logged in")
-    user = request.user
-    return render(request, 'registration/active-users.html', {'current_user': user, 'users': users, 'up' : up1})
-
-def report_user(request):
-    if request.user is None or not request.user.is_authenticated:
-        return HttpResponse("Not logged in")
-    if request.method == 'POST':
-        form = ReportUserForm(request.POST)
-        if form.is_valid():
-            reporter = request.user
-            reported_s = form.cleaned_data.get('user_name')
-            reported = User.objects.get(username=reported_s)
-            reason = form.cleaned_data.get('reason')
-            user_report = UserReoprt(reporter=reporter,reported=reported, reason=reason)
-            user_report.save()
-            return HttpResponseRedirect(reverse('registration:index'))
-    else:
-        users = list(User.objects.all())
-        form = ReportUserForm()
-    return render(request, 'registration/report-user.html', {'form': form, 'users': users})
-
-
-        # def logout(request):
-        #     userprofile = UserProfile.objects.get(user=request.user)
-        #     td = datetime.now() - userprofile.last_login
-        #     userprofile.total_minutes += (td.total_seconds() / 60)
-        #     userprofile.save()
-        #     request.session.flush()
-        #
-        #     if hasattr(request, 'user'):
-        #         request.user = AnonymousUser()
-        #     return HttpResponseRedirect(reverse('registration:index'))

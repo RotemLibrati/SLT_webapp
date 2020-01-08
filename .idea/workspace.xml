@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications">
+    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_auto_20200108_1404.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200108_2202.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_chat_users.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_userprofile_rank.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_alerts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_userreoprt.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0006_auto_20200112_1354.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Niro" />
+        <entry key="$PROJECT_DIR$" value="Eilon-local" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,20 +46,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/SLT_webapp/registration/static/registration/chatjs" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\chatjs" />
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\css" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates" />
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates\registration\django_private_chat" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -210,44 +193,8 @@
       <option name="project" value="LOCAL" />
       <updated>1578248282928</updated>
     </task>
-    <task id="LOCAL-00020" summary="login process">
-      <created>1578483586431</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1578483586432</updated>
-    </task>
-    <task id="LOCAL-00021" summary="report for parent">
-      <created>1578510913302</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1578510913302</updated>
-    </task>
-    <task id="LOCAL-00022" summary="report for parent finish">
-      <created>1578513085031</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1578513085032</updated>
-    </task>
-    <task id="LOCAL‎00023" summary="after new chat">
-      <created>1578765598237</created>
-      <option name="number" value="LOCAL‎00023" />
-      <option name="presentableId" value="LOCAL‎00023" />
-      <updated>1578765598237</updated>
-    </task>
-    <task id="LOCAL‎00024" summary="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications">
-      <created>1578834555791</created>
-      <option name="number" value="LOCAL‎00024" />
-      <option name="presentableId" value="LOCAL‎00024" />
-      <updated>1578834555791</updated>
-    </task>
-    <option name="localTasksCounter" value="25" />
+    <option name="localTasksCounter" value="20" />
     <servers />
-  </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -279,12 +226,7 @@
     <MESSAGE value="new tests 2" />
     <MESSAGE value="added Friends system" />
     <MESSAGE value="removing friends available too" />
-    <MESSAGE value="login process" />
-    <MESSAGE value="report for parent" />
-    <MESSAGE value="report for parent finish" />
-    <MESSAGE value="after new chat" />
-    <MESSAGE value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="removing friends available too" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

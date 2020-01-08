@@ -3,24 +3,10 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from datetime import timedelta, datetime
 
-class Notifications(models.Model):
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    message = models.CharField(max_length=256)
-    seen = models.BooleanField(default=False)
-
-class Users(models.Model):
-    user_id = models.CharField(max_length=256)
-    last_visit = models.DateTimeField()
-
-class Chat(models.Model):
-    sender = models.CharField(max_length=256)
-    receiver = models.CharField(max_length=256)
-    msg = models.TextField()
-    time = models.DateTimeField()
 
 class UserProfile(models.Model):
     TYPES = (('parent', 'parent'), ('student', 'student'))
-    user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     son = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='son')
     address = models.CharField(max_length=100, default='')
     age = models.IntegerField(default=0)
@@ -28,9 +14,8 @@ class UserProfile(models.Model):
     type = models.CharField(max_length=10, choices=TYPES, default='student')
     is_admin = models.BooleanField(default=False)
     suspention_time = models.DateTimeField(auto_now_add=True)
-    total_minutes = models.FloatField(default=0)
+    total_minutes = models.IntegerField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
-    rank = models.IntegerField(default=0)
 
     def was_born_recently(self):
         if self.age <= 0:
@@ -111,8 +96,3 @@ class GameSession(models.Model):
     time_start = models.DateTimeField(auto_now_add=True)
     time_stop = models.DateTimeField(null=True, blank=True)
     difficulty = models.IntegerField(default=0)
-
-class UserReoprt(models.Model):
-    reporter = models.ForeignKey(User, related_name='reporter', on_delete=models.SET_NULL, null=True)
-    reported = models.ForeignKey(User, related_name='reported', on_delete=models.SET_NULL, null=True)
-    reason = models.CharField(max_length=100)
