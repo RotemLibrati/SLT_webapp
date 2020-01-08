@@ -1,11 +1,11 @@
 {% extends 'registration/index.html' %}
-<h2>Active Games</h2>
+<h2>Active Users</h2>
 {% block content %}
-    <h3>Active games now</h3>
+    <h3>Active users now</h3>
     <ol>
-        {% for game in games %}
+        {% for user in users %}
             <li>
-                {{game.user}}
+                {{user.username}}
             </li>
         {% endfor %}
     </ol>

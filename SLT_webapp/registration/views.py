@@ -8,6 +8,9 @@ from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm,
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime
+from django.contrib.sessions.models import Session
+from django.utils import timezone
+
 
 
 def info(request):
@@ -56,7 +59,8 @@ def inbox(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     current_user = request.user
-    messages_received = list(Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
+    messages_received = list(
+        Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
     messages_sent = list(Message.objects.filter(sender=current_user, deleted_by_sender=False).order_by('-sent_date'))
     return render(request, 'registration/inbox.html', {'user': current_user,
                                                        'messages_received': messages_received,
@@ -180,6 +184,7 @@ def new_profile(request, username):
         userprofile.user = user
         post_save.disconnect(attach_user, sender=UserProfile)
         userprofile.save()
+
     if request.method == 'POST':
         user = User.objects.get(username=username)
         form = ProfileForm(request.POST)
@@ -209,6 +214,7 @@ def new_profile_parent(request, username):
     else:
         form = ParentForm()
     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
+
 
 # class DetailView(generic.DetailView):
 #     model = UserProfile
@@ -278,6 +284,8 @@ def active_games(request):
     games = GameSession.objects.filter(time_stop__isnull=True)
     game_list = list(games)
     return render(request, 'registration/active-games.html', {'games': game_list})
+
+
 def exit(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
@@ -286,3 +294,21 @@ def exit(request):
         i.time_stop = datetime.now()
         i.save()
     return HttpResponseRedirect(reverse('registration:index'))
+
+
+def active_users():
+    active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
+    user_id_list = []
+    for session in active_sessions:
+        data = session.get_decoded()
+        user_id_list.append(data.get('_auth_user_id', None))
+    return User.objects.filter(id__in=user_id_list)
+
+
+def active_users_page(request):
+    users = active_users()
+    users = list(users)
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    user = request.user
+    return render(request, 'registration/active-users.html', {'current_user': user, 'users': users})

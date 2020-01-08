@@ -23,4 +23,5 @@ urlpatterns = [
     path('inbox/new-message/', views.new_message, name='new-message'),
     path('active-games/', views.active_games, name='active-games'),
     path('exit/', views.exit, name='exit'),
+    path('active-users/', views.active_users_page, name='active-users'),
 ]
