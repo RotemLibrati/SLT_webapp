@@ -5,5 +5,6 @@
         <p><strong>Sender:</strong> {{message.sender}}. <strong>Receiver:</strong> {{message.receiver}}</p>
         <p><strong>Content:</strong></p>
         <p>{{message.body}}</p>
+        <a href="{% url 'registration:new-message' message.sender %}">Reply</a><br>
     {% endif %}
 {% endblock %}

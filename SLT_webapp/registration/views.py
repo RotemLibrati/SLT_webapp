@@ -3,11 +3,10 @@ from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession
-from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
+from .forms import CardForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 def info(request):
@@ -78,8 +77,11 @@ def view_message(request, message_id):
     try:
         message = Message.objects.get(id=message_id)
     except (TypeError, Message.DoesNotExist):
-        message = None
-    return render(request, 'registration/message.html', {'user': request.user, 'message': message})
+        error = "Message getting failed."
+        return render(request, 'registration/failure.html', {'error': error})
+    return render(request, 'registration/message.html', {'user': request.user,
+                                                         'message': message,
+                                                         })
 
 
 def delete_message(request, message_id):
@@ -102,12 +104,13 @@ def delete_message(request, message_id):
     return HttpResponseRedirect(reverse('registration:inbox'))
 
 
-def new_message(request):
+def new_message(request, **kwargs):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     user_list = User.objects.all()
     if request.method == 'POST':
         form = MessageForm(request.POST)
+        request.user.reply = None
         if form.is_valid():
             sender = request.user
             receiver_name = form.cleaned_data['receiver']
@@ -121,9 +124,11 @@ def new_message(request):
             sent_date = datetime.now()
             message = Message(sender=sender, receiver=receiver, subject=subject, body=body, sent_date=sent_date)
             message.save()
-            HttpResponseRedirect(reverse('registration:inbox'))
+            return HttpResponseRedirect(reverse('registration:inbox'))
     else:
         form = MessageForm()
+        if kwargs['reply']:
+            form = MessageForm({'receiver': kwargs['reply']})
     return render(request, 'registration/new-message.html', {
         'form': form, 'users': user_list, 'user': request.user
     })
@@ -180,9 +185,6 @@ def new_user(request):
 
 
 def new_profile(request, username):
-    # if request.user is None:
-    #     return HttpResponse("Not logged in")
-
     def attach_user(sender, **kwargs):
         userprofile = kwargs['instance']
         userprofile.user = user

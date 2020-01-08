@@ -21,6 +21,7 @@ urlpatterns = [
     path('inbox/<int:message_id>/', views.view_message, name='view-message'),
     path('inbox/delete/<int:message_id>/', views.delete_message, name='delete-message'),
     path('inbox/new-message/', views.new_message, name='new-message'),
+    path('inbox/new-message/<str:reply>', views.new_message, name='new-message'),
     path('active-games/', views.active_games, name='active-games'),
     path('exit/', views.exit_game, name='exit'),
 ]
