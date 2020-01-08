@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     type = models.CharField(max_length=10, choices=TYPES, default='student')
     is_admin = models.BooleanField(default=False)
     suspention_time = models.DateTimeField(auto_now_add=True)
-    total_minutes = models.IntegerField(default=0)
+    total_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
 
     def was_born_recently(self):

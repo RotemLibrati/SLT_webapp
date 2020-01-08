@@ -51,7 +51,7 @@ def login_view(request):
 def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
     td = datetime.now() - userprofile.last_login
-    userprofile.total_minutes += (td.microseconds/60000)
+    userprofile.total_minutes += td.total_seconds()/60
     userprofile.save()
     request.session.flush()
 
