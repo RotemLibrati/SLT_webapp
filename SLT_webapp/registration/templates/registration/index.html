@@ -18,7 +18,7 @@
         <a href="{% url 'registration:index' %}">Back to main menu</a><br>
         <a href="{% url 'registration:add-friend' %}">Manage friends</a><br>
         <a href="{% url 'registration:inbox' %}">Mail</a><br>
-        {% if user.type == 'student' %}
+        {% if profile.type == 'student' %}
             <a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
         {% endif %}
         <a href="{% url 'registration:info' %}">Game instructions</a><br>
