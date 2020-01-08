@@ -2,9 +2,9 @@ from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend
+from .models import UserProfile, Card, User, Friend, Message
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime
@@ -52,6 +52,75 @@ def logout(request):
     return HttpResponseRedirect(reverse('registration:index'))
 
 
+def inbox(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    current_user = request.user
+    messages_received = list(Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
+    messages_sent = list(Message.objects.filter(sender=current_user, deleted_by_sender=False).order_by('-sent_date'))
+    return render(request, 'registration/inbox.html', {'user': current_user,
+                                                       'messages_received': messages_received,
+                                                       'messages_sent': messages_sent
+                                                       })
+
+
+def view_message(request, message_id):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    try:
+        message = Message.objects.get(id=message_id)
+    except (TypeError, Message.DoesNotExist):
+        message = None
+    return render(request, 'registration/message.html', {'user': request.user, 'message': message})
+
+
+def delete_message(request, message_id):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    try:
+        message = Message.objects.get(id=message_id)
+        if request.user == message.receiver:
+            message.deleted_by_receiver = True
+        if request.user == message.sender:
+            message.deleted_by_sender = True
+
+        message.save()
+
+        if message.deleted_by_sender and message.deleted_by_receiver:
+            message.delete()
+    except (TypeError, Message.DoesNotExist):
+        error = "Message deletion failed."
+        render(request, 'registration/failure.html', {'error': error})
+    return HttpResponseRedirect(reverse('registration:inbox'))
+
+
+def new_message(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    user_list = User.objects.all()
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            sender = request.user
+            receiver_name = form.cleaned_data['receiver']
+            try:
+                receiver = User.objects.get(username=receiver_name)
+            except (TypeError, User.DoesNotExist):
+                error = "Could not find user."
+                render(request, 'registration/failure.html', {'error': error})
+            subject = form.cleaned_data['subject']
+            body = form.cleaned_data['body']
+            sent_date = datetime.now()
+            message = Message(sender=sender, receiver=receiver, subject=subject, body=body, sent_date=sent_date)
+            message.save()
+            HttpResponseRedirect(reverse('registration:inbox'))
+    else:
+        form = MessageForm()
+    return render(request, 'registration/new-message.html', {
+        'form': form, 'users': user_list, 'user': request.user
+    })
+
+
 def profile(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
@@ -59,7 +128,7 @@ def profile(request):
     try:
         friend = Friend.objects.get(current_user=u1)
         friends = list(map(lambda x: x.username, friend.users.all()))
-    except Friend.DoesNotExist:
+    except (TypeError, Friend.DoesNotExist):
         friends = []
     up1 = get_object_or_404(UserProfile, user=u1)
     return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
@@ -78,7 +147,7 @@ def add_friend(request):
                 else:
                     Friend.remove_friend(request.user, new_friend)
                 return HttpResponseRedirect(reverse('registration:index'))
-            except User.DoesNotExist:
+            except (TypeError, User.DoesNotExist):
                 form = FriendForm()
     else:
         form = FriendForm()
