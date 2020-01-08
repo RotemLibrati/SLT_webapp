@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'registration.apps.RegistrationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,9 +44,9 @@ INSTALLED_APPS = [
 
 ]
 
-LOGIN_REDIRECT_URL = '/registration/'
+# LOGIN_REDIRECT_URL = '/registration/'
 
-SITE_ID = 1
+# SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'SLT_webapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,7 +75,7 @@ TEMPLATES = [
         },
     },
 ]
-
+ASGI_APPLICATION = 'SLT_webapp.routing.application'
 WSGI_APPLICATION = 'SLT_webapp.wsgi.application'
 
 
