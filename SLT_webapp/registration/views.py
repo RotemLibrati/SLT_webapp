@@ -298,19 +298,12 @@ def exit_game(request):
     return HttpResponseRedirect(reverse('registration:index'))
 
 def total_time_son(request):
-    user = request.user
-    son = UserProfile.son
-    if son is not None:
-        context = {}
-        up1 = get_object_or_404(UserProfile, user=user)
-        #up2 = UserProfile.son.total_minutes
-        total = list(UserProfile.objects.all())
-        context['profile'] = up1
-        context['user']=user
-        #context['son'] = UserProfile.objects.get(son)
-        context['total'] = total
+    current_user_profile = UserProfile.objects.get(user=request.user)
+    son_user = User.objects.get(username=current_user_profile.son.username)
+    son_profile = UserProfile.objects.get(user=son_user)
+    if son_profile:
+        context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile}
         return render(request, 'registration/total-time-son.html', context)
-    #return render(request, 'registration/total-time-son.html', {'user': user, })
     return HttpResponseRedirect(reverse('registration:index'))
 
 
