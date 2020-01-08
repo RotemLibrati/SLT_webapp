@@ -8,7 +8,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('new-user/', views.new_user, name='new-user'),
     path('<str:username>/new-profile/', views.new_profile, name='new-profile'),
-    path('<str:username>/new-profile-parent/', views.new_profile, name='new-profile-parent'),
+    path('<str:username>/new-profile-parent/', views.new_profile_parent, name='new-profile-parent'),
     path('profile/', views.profile, name='profile'),
     path('logout/', views.logout, name='logout'),
     path('game/', views.game, name='game'),
@@ -22,5 +22,5 @@ urlpatterns = [
     path('inbox/delete/<int:message_id>/', views.delete_message, name='delete-message'),
     path('inbox/new-message/', views.new_message, name='new-message'),
     path('active-games/', views.active_games, name='active-games'),
-    path('exit/', views.exit, name='exit'),
+    path('exit/', views.exit_game, name='exit'),
 ]

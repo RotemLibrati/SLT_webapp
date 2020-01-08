@@ -7,7 +7,7 @@ from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def info(request):
@@ -35,6 +35,10 @@ def login_view(request):
             user = authenticate(username=form.cleaned_data['user_name'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
+                user = request.user
+                userprofile = UserProfile.objects.get(user=user)
+                userprofile.last_login = datetime.now()
+                userprofile.save()
                 return HttpResponseRedirect(reverse('registration:profile'))
     else:
         form = LoginForm()
@@ -45,6 +49,10 @@ def login_view(request):
 
 
 def logout(request):
+    userprofile = UserProfile.objects.get(user=request.user)
+    td = datetime.now() - userprofile.last_login
+    userprofile.total_minutes += (td.microseconds/60000)
+    userprofile.save()
     request.session.flush()
 
     if hasattr(request, 'user'):
@@ -278,7 +286,9 @@ def active_games(request):
     games = GameSession.objects.filter(time_stop__isnull=True)
     game_list = list(games)
     return render(request, 'registration/active-games.html', {'games': game_list})
-def exit(request):
+
+
+def exit_game(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
     session = GameSession.objects.filter(user=user_profile, time_stop__isnull=True)
