@@ -22,5 +22,6 @@ urlpatterns = [
     path('inbox/delete/<int:message_id>/', views.delete_message, name='delete-message'),
     path('inbox/new-message/', views.new_message, name='new-message'),
     path('active-games/', views.active_games, name='active-games'),
-    path('exit/', views.exit, name='exit'),
+    path('exit/', views.exit_game, name='exit'),
+    path('total-time-son/', views.total_time_son, name='total-time-son'),
 ]

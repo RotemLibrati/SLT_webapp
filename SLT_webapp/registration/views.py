@@ -7,7 +7,7 @@ from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def info(request):
@@ -36,7 +36,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 user = request.user
-                userprofile = UserProfile.objects.get(user = user)
+                userprofile = UserProfile.objects.get(user=user)
                 userprofile.last_login = datetime.now()
                 userprofile.save()
                 return HttpResponseRedirect(reverse('registration:profile'))
@@ -49,9 +49,9 @@ def login_view(request):
 
 
 def logout(request):
-    userprofile = UserProfile.objects.get(user = request.user)
-    td = datetime.now()-userprofile.last_login
-    userprofile.total_Minutes_time += (td.microseconds/6000)
+    userprofile = UserProfile.objects.get(user=request.user)
+    td = datetime.now() - userprofile.last_login
+    userprofile.total_minutes += (td.total_seconds()/60)
     userprofile.save()
     request.session.flush()
 
@@ -286,7 +286,9 @@ def active_games(request):
     games = GameSession.objects.filter(time_stop__isnull=True)
     game_list = list(games)
     return render(request, 'registration/active-games.html', {'games': game_list})
-def exit(request):
+
+
+def exit_game(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
     session = GameSession.objects.filter(user=user_profile, time_stop__isnull=True)
@@ -295,3 +297,35 @@ def exit(request):
         i.save()
     return HttpResponseRedirect(reverse('registration:index'))
 
+def total_time_son(request):
+    user = request.user
+    son = UserProfile.son
+    if son is not None:
+        context = {}
+        up1 = get_object_or_404(UserProfile, user=user)
+        #up2 = UserProfile.son.total_minutes
+        total = list(UserProfile.objects.all())
+        context['profile'] = up1
+        context['user']=user
+        #context['son'] = UserProfile.objects.get(son)
+        context['total'] = total
+        return render(request, 'registration/total-time-son.html', context)
+    #return render(request, 'registration/total-time-son.html', {'user': user, })
+    return HttpResponseRedirect(reverse('registration:index'))
+
+
+
+
+
+
+
+        # def logout(request):
+        #     userprofile = UserProfile.objects.get(user=request.user)
+        #     td = datetime.now() - userprofile.last_login
+        #     userprofile.total_minutes += (td.total_seconds() / 60)
+        #     userprofile.save()
+        #     request.session.flush()
+        #
+        #     if hasattr(request, 'user'):
+        #         request.user = AnonymousUser()
+        #     return HttpResponseRedirect(reverse('registration:index'))
