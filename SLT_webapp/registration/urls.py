@@ -24,4 +24,5 @@ urlpatterns = [
     path('active-games/', views.active_games, name='active-games'),
     path('exit/', views.exit, name='exit'),
     path('active-users/', views.active_users_page, name='active-users'),
+    path('report-user/', views.report_user, name='report-user'),
 ]

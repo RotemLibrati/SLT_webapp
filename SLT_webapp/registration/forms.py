@@ -67,3 +67,8 @@ class MessageForm(forms.Form):
     receiver = forms.CharField(max_length=50, initial='user name')
     subject = forms.CharField(max_length=50, initial='message subject')
     body = forms.CharField(max_length=250)
+
+
+class ReportUserForm(forms.Form):
+    user_name = forms.CharField(max_length=50)
+    reason = forms.CharField(max_length=100, widget=forms.Textarea)

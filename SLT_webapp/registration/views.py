@@ -2,9 +2,9 @@ from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend, Message, GameSession
+from .models import UserProfile, Card, User, Friend, Message, GameSession,UserReoprt
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, ReportUserForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime
@@ -312,3 +312,21 @@ def active_users_page(request):
         return HttpResponse("Not logged in")
     user = request.user
     return render(request, 'registration/active-users.html', {'current_user': user, 'users': users})
+
+def report_user(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    if request.method == 'POST':
+        form = ReportUserForm(request.POST)
+        if form.is_valid():
+            reporter = request.user
+            reported_s = form.cleaned_data.get('user_name')
+            reported = User.objects.get(username=reported_s)
+            reason = form.cleaned_data.get('reason')
+            user_report = UserReoprt(reporter=reporter,reported=reported, reason=reason)
+            user_report.save()
+            return HttpResponseRedirect(reverse('registration:index'))
+    else:
+        users = list(User.objects.all())
+        form = ReportUserForm()
+    return render(request, 'registration/report-user.html', {'form': form, 'users': users})

@@ -1,0 +1,18 @@
+{% extends 'registration/index.html' %}
+<h2>Report User</h2>
+{% block content %}
+ <form action="{% url 'registration:report-user'%}" method="post">
+     {% csrf_token %}
+    <h3> Users </h3>
+    <ol>
+        {% for user in users %}
+            <li>
+                {{user.username}}
+            </li>
+        {% endfor %}
+    </ol>
+    {{form.as_p}}
+     <input type="submit" value="Report">
+
+    </form>
+{% endblock %}
