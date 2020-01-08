@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    # 'django_messages',
 ]
 
 LOGIN_REDIRECT_URL = '/registration/'
