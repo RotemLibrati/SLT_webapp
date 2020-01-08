@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend, Message
+from .models import UserProfile, Card, User, Friend, Message, GameSession
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
 from django.urls import reverse
@@ -267,6 +267,22 @@ def game(request):
     context['suspended'] = suspended
     context['timeleft'] = timeleft
     if not suspended:
+        session = GameSession(user=context['profile'])
+        session.save()
         return render(request, 'registration/game.html', context)
     else:
         return render(request, 'registration/suspended.html', context)
+
+
+def active_games(request):
+    games = GameSession.objects.filter(time_stop__isnull=True)
+    game_list = list(games)
+    return render(request, 'registration/active-games.html', {'games': game_list})
+def exit(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+    session = GameSession.objects.filter(user=user_profile, time_stop__isnull=True)
+    for i in session:
+        i.time_stop = datetime.now()
+        i.save()
+    return HttpResponseRedirect(reverse('registration:index'))
