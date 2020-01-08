@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-from datetime import datetime, timedelta
+from datetime import timedelta, datetime
+
 
 class UserProfile(models.Model):
     TYPES = (('parent', 'parent'), ('student', 'student'))
@@ -13,7 +14,7 @@ class UserProfile(models.Model):
     type = models.CharField(max_length=10, choices=TYPES, default='student')
     is_admin = models.BooleanField(default=False)
     suspention_time = models.DateTimeField(auto_now_add=True)
-    total_Minutes_time = models.IntegerField(default=0)
+    total_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
 
 
