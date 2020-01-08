@@ -89,7 +89,7 @@ class Card(models.Model):
 
 class GameSession(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
-    number_of_mistakes = models.IntegerField()
-    duration = models.IntegerField()
-    difficulty = models.IntegerField()
-    time_signature = models.DateTimeField(auto_now_add=True)
+    number_of_mistakes = models.IntegerField(default=0)
+    time_start = models.DateTimeField(auto_now_add=True)
+    time_stop = models.DateTimeField(null=True, blank=True)
+    difficulty = models.IntegerField(default=0)

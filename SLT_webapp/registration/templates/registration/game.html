@@ -36,52 +36,52 @@
 
         <ul class="deck" id="card-deck">
             <li class="card" type="diamond">
-                <i class="fa fa-diamond"></i>
+                <i class="fa fa-hand-scissors-o"></i>
             </li>
             <li class="card" type="plane">
-                <i class="fa fa-paper-plane-o"></i>
+                <i class="fa fa-hand-spock-o"></i>
             </li>
             <li class="card match" type="anchor">
-                <i class="fa fa-anchor"></i>
+                <i class="fa fa-hand-peace-o"></i>
             </li>
             <li class="card" type="bolt" >
-                <i class="fa fa-bolt"></i>
+                <i class="fa fa-hand-lizard-o"></i>
             </li>
             <li class="card" type="cube">
-                <i class="fa fa-cube"></i>
+                <i class="fa fa-hand-rock-o"></i>
             </li>
             <li class="card match" type="anchor">
-                <i class="fa fa-anchor"></i>
+                peace
             </li>
             <li class="card" type="leaf">
-                <i class="fa fa-leaf"></i>
+                <i class="fa fa-hand-paper-o"></i>
             </li>
             <li class="card" type="bicycle">
-                <i class="fa fa-bicycle"></i>
+                <i class="fa fa-sign-language"></i>
             </li>
             <li class="card" type="diamond">
-                <i class="fa fa-diamond"></i>
+                scissors
             </li>
             <li class="card" type="bomb">
-                <i class="fa fa-bomb"></i>
+                <i class="fa fa-american-sign-language-interpreting"></i>
             </li>
             <li class="card" type="leaf">
-                <i class="fa fa-leaf"></i>
+                hello
             </li>
             <li class="card" type="bomb">
-                <i class="fa fa-bomb"></i>
+                friendship
             </li>
             <li class="card open show" type="bolt">
-                <i class="fa fa-bolt"></i>
+                lizard
             </li>
             <li class="card" type="bicycle">
-                <i class="fa fa-bicycle"></i>
+                stop
             </li>
             <li class="card" type="plane">
-                <i class="fa fa-paper-plane-o"></i>
+                split
             </li>
             <li class="card" type="cube">
-                <i class="fa fa-cube"></i>
+                close
             </li>
         </ul>
 
@@ -111,8 +111,7 @@
 {% endif %}
 {% if user.is_authenticated %}
     <a href="{% url 'registration:game' %}">Restart the game</a><br>
-    <a href="{% url 'registration:index' %}">Back to main menu</a><br>
-    <a href="{% url 'registration:logout' %}">Logout</a><br>
+    <a href="{% url 'registration:exit' %}">Exit game</a><br>
 {% endif %}
 </body>
 </html>
