@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from datetime import timedelta, datetime
+from datetime import datetime
 
 
 class UserProfile(models.Model):
@@ -73,11 +72,17 @@ class Prize(models.Model):
     condition = models.CharField(max_length=200)
     points = models.IntegerField()
 
+    def __str__(self):
+        return str(self.name) + ' points: ' + str(self.points)
+
 
 class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, default=1)
     win_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user.user.username) + ' won: ' + str(self.prize.name)
 
 
 class Card(models.Model):
@@ -96,3 +101,6 @@ class GameSession(models.Model):
     time_start = models.DateTimeField(auto_now_add=True)
     time_stop = models.DateTimeField(null=True, blank=True)
     difficulty = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.user.user.username) + ' at: ' + str(self.time_start)
