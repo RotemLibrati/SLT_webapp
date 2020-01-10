@@ -7,3 +7,6 @@
   <button type="submit">Login</button>
 </form>
 {% endblock %}
+{% block links %}
+  <a href="{% url 'registration:new-user' %}">Make a new user</a><br>
+{% endblock %}
