@@ -282,10 +282,22 @@ def game(request):
         return render(request, 'registration/suspended.html', context)
 
 
+# def active_games(request):
+#     games = GameSession.objects.filter(time_stop__isnull=True)
+#     game_list = list(games)
+#     return render(request, 'registration/active-games.html', {'games': game_list})
 def active_games(request):
     games = GameSession.objects.filter(time_stop__isnull=True)
     game_list = list(games)
     return render(request, 'registration/active-games.html', {'games': game_list})
+
+def reports_menu(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list' : user_list})
+
+
 
 
 def exit_game(request):
