@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from datetime import timedelta, datetime
 
+class Users(models.Model):
+    user_id = models.CharField(max_length=256)
+    last_visit = models.DateTimeField()
+
+class Chat(models.Model):
+    sender = models.CharField(max_length=256)
+    receiver = models.CharField(max_length=256)
+    msg = models.TextField()
+    time = models.DateTimeField()
 
 class UserProfile(models.Model):
     TYPES = (('parent', 'parent'), ('student', 'student'))
