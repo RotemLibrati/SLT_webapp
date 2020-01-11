@@ -1,7 +1,32 @@
-{% load inbox %}
-{% inbox_count %}
-{% if user.id <= 10 %}
-<p>You are in the top ten</p><br>
-{% endif %}
-<p>Welcome to your profile</p>
-<a href="{% url 'registration:details' user.id %}">Go to {{user.user_name}} page.</a>
+{% block title %}
+    <h1>Sign Language Teacher</h1>
+{% endblock %}
+{% block content %}
+    <h2>Main menu</h2>
+    {% if user.is_authenticated %}
+        <p><strong>Logged in as {{user.username}}</strong></p>
+    {% endif %}
+{% endblock %}
+{% block links %}
+    {% if not user.is_authenticated %}
+        <a href="{% url 'registration:login' %}">Login with existing user</a><br>
+        <a href="{% url 'registration:new-user' %}">Make a new user</a><br>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'registration:game' %}">Play the game</a><br>
+        <a href="{% url 'registration:profile' %}">Profile menu</a><br>
+        <a href="{% url 'registration:index' %}">Back to main menu</a><br>
+        <a href="{% url 'registration:add-friend' %}">Manage friends</a><br>
+        <a href="{% url 'registration:inbox' %}">Mail</a><br>
+        <a href="{% url 'registration:user_list' %}">Chat</a><br>
+        {% if profile.type == 'student' %}
+            <a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
+        {% endif %}
+        {% if profile.type == 'parent' %}
+            <a href="{% url 'registration:total-time-son' %}">Report total time of son</a><br>
+        {% endif %}
+        <a href="{% url 'registration:info' %}">Game instructions</a><br>
+        <a href="{% url 'registration:active-games' %}">Active games</a><br>
+        <a href="{% url 'registration:logout' %}">Logout</a><br>
+    {% endif %}
+{% endblock %}
