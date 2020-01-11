@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_chat_users.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/js/jquery-3.3.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +208,13 @@
       <option name="project" value="LOCAL" />
       <updated>1578513085032</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL‎00023" summary="trying chat (regular)">
+      <created>1578754436719</created>
+      <option name="number" value="LOCAL‎00023" />
+      <option name="presentableId" value="LOCAL‎00023" />
+      <updated>1578754436719</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,7 +250,8 @@
     <MESSAGE value="login process" />
     <MESSAGE value="report for parent" />
     <MESSAGE value="report for parent finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="report for parent finish" />
+    <MESSAGE value="trying chat (regular)" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying chat (regular)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />
