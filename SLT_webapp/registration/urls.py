@@ -1,5 +1,7 @@
+from __future__ import absolute_import, unicode_literals
 from django.urls import path, include
 from . import views as views
+from django.conf.urls import url
 
 app_name = 'registration'
 
@@ -24,4 +26,9 @@ urlpatterns = [
     path('active-games/', views.active_games, name='active-games'),
     path('exit/', views.exit_game, name='exit'),
     path('total-time-son/', views.total_time_son, name='total-time-son'),
+    url(
+        regex=r'^chat$',
+        view=views.UserListView.as_view(),
+        name='user_list'
+    ),
 ]

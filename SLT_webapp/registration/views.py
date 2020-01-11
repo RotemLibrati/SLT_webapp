@@ -8,6 +8,19 @@ from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm,
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
+from braces.views import LoginRequiredMixin
+from django.views import generic
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+
+
+class UserListView(LoginRequiredMixin, generic.ListView):
+    model = get_user_model()
+    # These next two lines tell the view to index lookups by username
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    template_name = 'registration/chat.html'
+    login_url = 'login/'
 
 
 def info(request):
@@ -270,8 +283,8 @@ def game(request):
         context['user'] = request.user
     if request.user.is_authenticated:
         context['profile'] = UserProfile.objects.get(user=request.user)
-    suspended = datetime.now() < context['profile'].suspention_time
-    timeleft = context['profile'].suspention_time - datetime.now()
+    suspended = timezone.now() < context['profile'].suspention_time
+    timeleft = context['profile'].suspention_time - timezone.now()
     context['suspended'] = suspended
     context['timeleft'] = timeleft
     if not suspended:
