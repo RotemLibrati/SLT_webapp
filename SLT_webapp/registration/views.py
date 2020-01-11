@@ -8,6 +8,69 @@ from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm,
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import UsersSerializer, ChatSerializer
+from .models import Users, Chat
+import datetime
+from django.utils import timezone
+from django.db.models import Q
+
+def chat(request):
+    return render(request, 'registration/chat.html')
+
+@api_view(['POST'])
+def view_users(request):
+    if request.method == 'POST':
+        user, created = Users.objects.update_or_create(
+            user_id=request.data['sender'],
+            defaults={
+                'last_visit':datetime.datetime.now(tz=timezone.utc)
+            })
+
+        time=datetime.datetime.now(tz=timezone.utc)- datetime.timedelta(seconds=15)
+        data={
+            'status': 'true',
+            'data': UsersSerializer(Users.objects.filter(last_visit__gte=time), many=True).data
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def save_msg(request):
+    if request.method == 'POST':
+        time=datetime.datetime.now(tz=timezone.utc)
+        chat = Chat(
+            sender=request.data['sender'],
+            receiver=request.data['receiver'],
+            msg=request.data['msg'],
+            time=time
+            )
+        chat.save();
+        data={
+            'status': 'true'
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def get_chat(request):
+    if request.method == 'POST':
+        time=datetime.datetime.now(tz=timezone.utc)- datetime.timedelta(seconds=150)
+        data={
+            'status': 'true',
+            'data': ChatSerializer(Chat.objects.filter(time__gte=time,receiver=request.data['sender']), many=True).data
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def view_msg(request):
+    if request.method == 'POST':
+        data={
+            'status': 'true',
+            'data': ChatSerializer(Chat.objects.filter(Q(receiver=request.data['sender'],sender=request.data['receiver']) | Q(receiver=request.data['receiver'],sender=request.data['sender'])), many=True).data
+        }
+        return Response(data, status=status.HTTP_200_OK)
 
 
 def info(request):
@@ -37,7 +100,7 @@ def login_view(request):
                 login(request, user)
                 user = request.user
                 userprofile = UserProfile.objects.get(user=user)
-                userprofile.last_login = datetime.now()
+                userprofile.last_login = timezone.now()
                 userprofile.save()
                 return HttpResponseRedirect(reverse('registration:profile'))
     else:
@@ -50,7 +113,7 @@ def login_view(request):
 
 def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
-    td = datetime.now() - userprofile.last_login
+    td = timezone.now() - userprofile.last_login
     userprofile.total_minutes += (td.total_seconds()/60)
     userprofile.save()
     request.session.flush()
@@ -118,10 +181,10 @@ def new_message(request):
                 render(request, 'registration/failure.html', {'error': error})
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
-            sent_date = datetime.now()
+            sent_date = timezone.now()
             message = Message(sender=sender, receiver=receiver, subject=subject, body=body, sent_date=sent_date)
             message.save()
-            HttpResponseRedirect(reverse('registration:inbox'))
+            return HttpResponseRedirect(reverse('registration:inbox'))
     else:
         form = MessageForm()
     return render(request, 'registration/new-message.html', {
@@ -270,8 +333,8 @@ def game(request):
         context['user'] = request.user
     if request.user.is_authenticated:
         context['profile'] = UserProfile.objects.get(user=request.user)
-    suspended = datetime.now() < context['profile'].suspention_time
-    timeleft = context['profile'].suspention_time - datetime.now()
+    suspended = timezone.now() < context['profile'].suspention_time
+    timeleft = context['profile'].suspention_time - timezone.now()
     context['suspended'] = suspended
     context['timeleft'] = timeleft
     if not suspended:
@@ -293,7 +356,7 @@ def exit_game(request):
     user_profile = UserProfile.objects.get(user=user)
     session = GameSession.objects.filter(user=user_profile, time_stop__isnull=True)
     for i in session:
-        i.time_stop = datetime.now()
+        i.time_stop = timezone.now()
         i.save()
     return HttpResponseRedirect(reverse('registration:index'))
 

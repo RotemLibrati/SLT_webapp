@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views as views
+from django.conf.urls import url
 
 app_name = 'registration'
 
@@ -24,4 +25,9 @@ urlpatterns = [
     path('active-games/', views.active_games, name='active-games'),
     path('exit/', views.exit_game, name='exit'),
     path('total-time-son/', views.total_time_son, name='total-time-son'),
+    url(r'^view_users/$', views.view_users),
+    url(r'^save_msg/$', views.save_msg),
+    url(r'^get_chat/$', views.get_chat),
+    url(r'^view_msg/$', views.view_msg),
+    url(r'^chat', views.chat, name='chat'),
 ]
