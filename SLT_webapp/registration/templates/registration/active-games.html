@@ -1,6 +1,4 @@
-{% extends 'registration/index.html' %}
 <h2>Active Games</h2>
-{% block content %}
     <h3>Active now</h3>
     <ol>
         {% for game in games %}
@@ -9,4 +7,5 @@
             </li>
         {% endfor %}
     </ol>
-{% endblock %}
+
+<a href="{% url 'registration:index' %}">Return to main menu</a><br>

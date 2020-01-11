@@ -1,7 +1,5 @@
-from __future__ import absolute_import, unicode_literals
 from django.urls import path, include
 from . import views as views
-from django.conf.urls import url
 
 app_name = 'registration'
 
@@ -12,8 +10,6 @@ urlpatterns = [
     path('<str:username>/new-profile/', views.new_profile, name='new-profile'),
     path('<str:username>/new-profile-parent/', views.new_profile_parent, name='new-profile-parent'),
     path('profile/', views.profile, name='profile'),
-    path('notifications/', views.notifications, name='notifications'),
-    path('notifications/delete/<int:notification_id>/', views.delete_notification, name='delete-notification'),
     path('logout/', views.logout, name='logout'),
     path('game/', views.game, name='game'),
     path('make-new-card/', views.make_new_card, name='make-new-card'),
@@ -28,9 +24,5 @@ urlpatterns = [
     path('active-games/', views.active_games, name='active-games'),
     path('exit/', views.exit_game, name='exit'),
     path('total-time-son/', views.total_time_son, name='total-time-son'),
-    url(
-        regex=r'^chat$',
-        view=views.UserListView.as_view(),
-        name='user_list'
-    ),
+    path('report-menu/', views.reports_menu, name='reports-menu'),
 ]

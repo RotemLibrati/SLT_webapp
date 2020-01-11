@@ -1,0 +1,9 @@
+<h style="font-size:20px;"; >All users details  </h><br>
+<br>
+{% for f in user_list %}
+<li>Username: {{f.user}}</li>
+<li>Age: {{f.age}}</li>
+<li>Address: {{f.address}}</li><br>
+{% endfor %}
+<a href="{% url 'registration:index' %}">Return to main menu</a><br>
+
