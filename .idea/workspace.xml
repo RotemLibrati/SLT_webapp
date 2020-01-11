@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="" />
+    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/SLT_webapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/static/chat_app/jquery-3.3.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/templates/chat_app/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/chatapp/views.py" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +228,13 @@
       <option name="presentableId" value="LOCAL‎00023" />
       <updated>1578754436719</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL‎00024" summary="trying chat (regular)">
+      <created>1578754790117</created>
+      <option name="number" value="LOCAL‎00024" />
+      <option name="presentableId" value="LOCAL‎00024" />
+      <updated>1578754790117</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
