@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CHAT_WS_SERVER_HOST = 'localhost'
+CHAT_WS_SERVER_PORT = 8003
+CHAT_WS_SERVER_PROTOCOL = 'ws'
 
 # Application definition
 
@@ -39,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'rest_framework',
+    'debug_toolbar',
+    'django_private_chat',
 ]
 
 LOGIN_REDIRECT_URL = '/registration/'
@@ -47,6 +51,7 @@ LOGIN_REDIRECT_URL = '/registration/'
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,8 +125,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATETIME_FORMAT = "d.m.Y H:i:s"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+INTERNAL_IPS = ['127.0.0.1', 'localhost']
+SESSION_COOKIE_AGE = 12096000
