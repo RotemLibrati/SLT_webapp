@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -221,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578492313011</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="added sending data from js frontend to django backend">
+      <created>1578819593467</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1578819593467</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,7 +261,8 @@
     <MESSAGE value="finished login time" />
     <MESSAGE value="syntax cleanup" />
     <MESSAGE value="added reply option to mail" />
-    <option name="LAST_COMMIT_MESSAGE" value="added reply option to mail" />
+    <MESSAGE value="added sending data from js frontend to django backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sending data from js frontend to django backend" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />
