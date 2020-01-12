@@ -366,7 +366,11 @@ def rank_for_admin(request):
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
-    return render(request, 'registration/rank-for-admin.html', {'user': user_profile, 'user_list': user_list})
+    sum = 0
+    for p in user_list:
+        sum += p.rank
+    avg = sum / len(user_list)
+    return render(request, 'registration/rank-for-admin.html', {'user': user_profile, 'user_list': user_list, 'avg' : avg})
 
 def active_users():
     active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
