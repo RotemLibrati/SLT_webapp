@@ -4,7 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
+    RankGameForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
@@ -344,8 +345,16 @@ def reports_menu(request):
     user_list = list(user_profile)
     return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list' : user_list})
 
-
-
+def avg_points(request):
+    user = request.user
+    up1 = get_object_or_404(UserProfile, user=user)
+    user_profile = UserProfile.objects.all()
+    user_list= list(user_profile)
+    sum=0
+    for p in user_list:
+        sum+=p.points
+    avg=sum/len(user_list)
+    return render(request, 'registration/avg-points.html', {'user': user_profile, 'user_list' : user_list, 'u1': user, 'up':up1,'avg':avg})
 
 def exit_game(request):
     user = request.user
@@ -364,6 +373,27 @@ def total_time_son(request):
         context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile}
         return render(request, 'registration/total-time-son.html', context)
     return HttpResponseRedirect(reverse('registration:index'))
+
+def rank_game(request):
+    if request.method == 'POST':
+        form = RankGameForm(request.POST)
+        if form.is_valid():
+            rank_val = form.cleaned_data['rank']
+            user = request.user
+            up1 = get_object_or_404(UserProfile, user=user)
+            up1.rank = rank_val
+            up1.save()
+        return HttpResponseRedirect(reverse('registration:rank-success'))
+    else :
+        form = RankGameForm()
+
+    return render(request, 'registration/rank-game.html', {'form': form})
+
+def rank_success(request):
+    return render(request, 'registration/rank-success.html')
+
+
+
 
 
 

@@ -38,13 +38,16 @@
         <a href="{% url 'registration:notifications' %}">Notiifications</a><br>
         {% if profile.type == 'student' %}
             <a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
+            <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
         {% endif %}
         {% if profile.type == 'parent' %}
             <a href="{% url 'registration:total-time-son' %}">Report total time of son</a><br>
+            <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
         {% endif %}
         {% if profile.is_admin %}
             <a href="{% url 'registration:reports-menu' %}">Reports menu</a><br>
         {% endif %}
+        <a href="{% url 'registration:avg-points' %}">Average points </a><br>
         <a href="{% url 'registration:info' %}">Game instructions</a><br>
         <a href="{% url 'registration:active-games' %}">Active games</a><br>
         <a href="{% url 'registration:logout' %}">Logout</a><br>
