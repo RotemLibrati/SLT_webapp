@@ -67,3 +67,8 @@ class MessageForm(forms.Form):
     receiver = forms.CharField(max_length=50, initial='user name')
     subject = forms.CharField(max_length=50, initial='message subject')
     body = forms.CharField(max_length=250)
+
+
+class GameForm(forms.Form):
+    moves = forms.IntegerField()
+    mistakes = forms.IntegerField()

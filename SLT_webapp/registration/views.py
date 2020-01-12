@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
@@ -127,8 +129,9 @@ def new_message(request, **kwargs):
             return HttpResponseRedirect(reverse('registration:inbox'))
     else:
         form = MessageForm()
-        if kwargs['reply']:
-            form = MessageForm({'receiver': kwargs['reply']})
+        if kwargs:
+            if kwargs['reply']:
+                form = MessageForm({'receiver': kwargs['reply']})
     return render(request, 'registration/new-message.html', {
         'form': form, 'users': user_list, 'user': request.user
     })
@@ -298,3 +301,12 @@ def exit_game(request):
         i.time_stop = datetime.now()
         i.save()
     return HttpResponseRedirect(reverse('registration:index'))
+
+
+def send_game(request):
+    data = request.body.decode('utf-8')
+    received_json_data = json.loads(data)
+    moves = received_json_data['moves']
+    mistakes = received_json_data['mistakes']
+    print(f'moves={moves}. mistakes={mistakes}')
+    return HttpResponse("hello")
