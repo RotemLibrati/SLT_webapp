@@ -1,0 +1,5 @@
+TODO: make "report_student" view , add allert to "report_student" view.
+TODO: make "winnings_view" view, add allerts to "winnings_view".
+TODO: add allerts to admin when user add a card.
+TODO: add allert to student when parent register them.
+TODO: make "time_limitation_view" for parent and add alerts to child.

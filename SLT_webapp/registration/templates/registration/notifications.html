@@ -1,0 +1,12 @@
+{% extends 'registration/index.html' %}
+{% block content %}
+<h2>Notifications</h2>
+<ul>
+    {% for f in notifications %}
+    <li>{{f.message}} <a href="/sign-language-teacher/notifications/delete/{{ f.id }}"> Delete</a></li>
+
+    {% empty %}
+    <p>No Notifications</p>
+    {% endfor %}
+</ul>
+{% endblock %}
