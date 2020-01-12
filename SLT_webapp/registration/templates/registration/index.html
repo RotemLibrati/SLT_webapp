@@ -19,6 +19,7 @@
         <a href="{% url 'registration:add-friend' %}">Manage friends</a><br>
         <a href="{% url 'registration:inbox' %}">Mail</a><br>
         <a href="{% url 'registration:user_list' %}">Chat</a><br>
+        <a href="{% url 'registration:notifications' %}">Notiifications</a><br>
         {% if profile.type == 'student' %}
             <a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
         {% endif %}

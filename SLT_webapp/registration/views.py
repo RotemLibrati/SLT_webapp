@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend, Message, GameSession
+from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
 from django.urls import reverse
@@ -12,6 +12,28 @@ from braces.views import LoginRequiredMixin
 from django.views import generic
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.contrib import messages
+
+def delete_notification(request, notification_id):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    try:
+        notification = Notifications.objects.get(id=notification_id)
+        notification.delete()
+    except (TypeError, Notifications.DoesNotExist):
+        error = "Notification deletion failed."
+        render(request, 'registration/failure.html', {'error': error})
+    return HttpResponseRedirect(reverse('registration:notifications'))
+
+def notifications(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    # try:
+    #     message = Message.objects.get(id=message_id)
+    # except (TypeError, Message.DoesNotExist):
+    #     message = None
+    notifications = Notifications.objects.filter(receiver=request.user)
+    return render(request, 'registration/notifications.html', {'notifications': notifications})
 
 
 class UserListView(LoginRequiredMixin, generic.ListView):
@@ -63,7 +85,7 @@ def login_view(request):
 
 def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
-    td = datetime.now() - userprofile.last_login
+    td = timezone.now() - userprofile.last_login
     userprofile.total_minutes += (td.total_seconds()/60)
     userprofile.save()
     request.session.flush()
@@ -152,6 +174,12 @@ def profile(request):
     except (TypeError, Friend.DoesNotExist):
         friends = []
     up1 = get_object_or_404(UserProfile, user=u1)
+    messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
+    for m in messagesList:
+        messages.add_message(request, messages.INFO, m.message)
+        m.seen = True
+        m.save()
+    # Alerts.objects.filter(receiver=request.user).delete()
     return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
 
 
@@ -165,8 +193,14 @@ def add_friend(request):
                 new_friend = User.objects.get(username=form.cleaned_data['new_friend'])
                 if form.cleaned_data['action'] == 'Add':
                     Friend.make_friend(request.user, new_friend)
+                    alert = Notifications(receiver=new_friend,
+                                          message=f"{request.user.username} has added you to the friend list")
+                    alert.save()
                 else:
                     Friend.remove_friend(request.user, new_friend)
+                    alert = Notifications(receiver=new_friend,
+                                          message=f"{request.user.username} has removed you from the friend list")
+                    alert.save()
                 return HttpResponseRedirect(reverse('registration:index'))
             except (TypeError, User.DoesNotExist):
                 form = FriendForm()

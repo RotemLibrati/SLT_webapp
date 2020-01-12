@@ -8,6 +8,17 @@
         <li>Points: {{profile.points}}</li>
     </ul>
     <p><strong>Friends:</strong></p>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %} >
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        <script>alert("{{ message }}") </script>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
     <ul>
         {% for f in friends %}
         <li>{{f}}</li>

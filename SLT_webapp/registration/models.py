@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from datetime import timedelta, datetime
 
+class Notifications(models.Model):
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    message = models.CharField(max_length=256)
+    seen = models.BooleanField(default=False)
+
 class Users(models.Model):
     user_id = models.CharField(max_length=256)
     last_visit = models.DateTimeField()
