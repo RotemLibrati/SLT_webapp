@@ -110,6 +110,7 @@
     <a href="{% url 'registration:new-user' %}">Make a new user</a><br>
 {% endif %}
 {% if user.is_authenticated %}
+    <button id="send-game" onclick="stuff()">Save game</button>
     <a href="{% url 'registration:game' %}">Restart the game</a><br>
     <a href="{% url 'registration:exit' %}">Exit game</a><br>
 {% endif %}
