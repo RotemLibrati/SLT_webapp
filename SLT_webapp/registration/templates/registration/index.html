@@ -41,6 +41,7 @@
         {% if profile.type == 'parent' %}
             <a href="{% url 'registration:total-time-son' %}">Report total time of son</a><br>
             <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
+            <a href="{% url 'registration:time-restriction' %}">Set limitation for son</a><br>
         {% endif %}
         {% if profile.is_admin %}
             <a href="{% url 'registration:reports-menu' %}">Reports menu</a><br>

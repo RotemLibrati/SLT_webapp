@@ -31,5 +31,5 @@ urlpatterns = [
     path('reports-menu/avg-points/', views.avg_points, name='avg-points'),
     path('rank-game/', views.rank_game, name='rank-game'),
     path('rank-success/', views.rank_success, name='rank-success'),
-    path('online-limit/', views.online_limit, name='online-limit'),
+    path('time-restriction/', views.time_restriction, name='time-restriction'),
 ]

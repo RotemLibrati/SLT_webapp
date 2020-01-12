@@ -1,0 +1,7 @@
+<h2>Son online limitation menu</h2>
+<h3>Input a number of minutes to limit per day</h3>
+<form action="{% url 'registration:time-restriction' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Set limitation</button>
+</form>
