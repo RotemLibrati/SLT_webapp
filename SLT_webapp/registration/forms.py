@@ -76,3 +76,7 @@ class RankGameForm(forms.Form):
 class GameForm(forms.Form):
     moves = forms.IntegerField()
     mistakes = forms.IntegerField()
+
+
+class OnlineLimitForm(forms.Form):
+    minutes = forms.IntegerField(initial=0)

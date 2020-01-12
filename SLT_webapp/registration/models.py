@@ -16,8 +16,10 @@ class UserProfile(models.Model):
     is_admin = models.BooleanField(default=False)
     suspention_time = models.DateTimeField(auto_now_add=True)
     total_minutes = models.FloatField(default=0)
+    daily_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
     rank = models.IntegerField(default=0)
+    limitation = models.IntegerField(default=-1)
 
     def was_born_recently(self):
         if self.age <= 0:
