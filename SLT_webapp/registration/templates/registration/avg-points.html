@@ -1,12 +1,9 @@
-<h2>Active Games</h2>
-    <h3>Active now</h3>
-    <ol>
-        {% for game in games %}
-            <li>
-                {{game.user}}
-            </li>
-        {% endfor %}
-    </ol>
+<h>{{u1.username}}</h><br>
+<h>Your points is:  </h>
+<h>{{up.points}}</h><br>
+
+<h>The average points of all users in game is :</h>
+
 <h>{{avg}}</h><br>
   {% if up.type == 'student' %}
   <a href="{% url 'registration:reports-menu-users' %}">Return to reports users</a><br>

@@ -1,0 +1,14 @@
+<h style="font-size:20px;"; >All users ranks  </h><br>
+<br>
+{% for f in user_list %}
+<li>Username: {{f.user}}</li>
+{% if f.rank == 0 %}
+            <li>Rank: No ranking</li>
+        {% else %}
+<li>Rank: {{f.rank}}</li>
+{% endif %}
+{% endfor %}
+<h>The average ranks of game is: </h><br>
+{{avg}}<br>
+<a href="{% url 'registration:reports-menu' %}">Return to reports </a><br>
+<a href="{% url 'registration:index' %}">Go to main menu</a><br>

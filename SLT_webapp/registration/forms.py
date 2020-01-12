@@ -67,3 +67,11 @@ class MessageForm(forms.Form):
     receiver = forms.CharField(max_length=50, initial='user name')
     subject = forms.CharField(max_length=50, initial='message subject')
     body = forms.CharField(max_length=250)
+
+class RankGameForm(forms.Form):
+    RANK = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
+    rank = forms.IntegerField(widget=forms.Select(choices=RANK))
+
+class ReportUserForm(forms.Form):
+    user_name = forms.CharField(max_length=50)
+    reason = forms.CharField(max_length=100, widget=forms.Textarea)

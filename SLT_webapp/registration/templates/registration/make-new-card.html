@@ -1,5 +1,4 @@
-{% extends 'registration/index.html' %}
-{% block content %}
+
     <h2>Card creation menu</h2>
     <form action="{% url 'registration:card-check'%}" method="post" enctype="multipart/form-data">
 
@@ -8,4 +7,4 @@
     <input type="submit" value="Submit">
 
     </form>
-{% endblock %}
+<a href="{% url 'registration:index' %}">Return to main menu</a><br>

@@ -30,7 +30,7 @@ class UserProfile(models.Model):
     suspention_time = models.DateTimeField(auto_now_add=True)
     total_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
-
+    rank = models.IntegerField(default=0)
 
     def was_born_recently(self):
         if self.age <= 0:
@@ -111,3 +111,8 @@ class GameSession(models.Model):
     time_start = models.DateTimeField(auto_now_add=True)
     time_stop = models.DateTimeField(null=True, blank=True)
     difficulty = models.IntegerField(default=0)
+
+class UserReoprt(models.Model):
+    reporter = models.ForeignKey(User, related_name='reporter', on_delete=models.SET_NULL, null=True)
+    reported = models.ForeignKey(User, related_name='reported', on_delete=models.SET_NULL, null=True)
+    reason = models.CharField(max_length=100)

@@ -33,4 +33,14 @@ urlpatterns = [
         view=views.UserListView.as_view(),
         name='user_list'
     ),
+    path('report-menu/', views.reports_menu, name='reports-menu'),
+    path('report-menu/details-of-users', views.reports_users, name='details-of-users'),
+    path('/reports-menu/avg-points/', views.avg_points, name='avg-points'),
+    path('rank-game/', views.rank_game, name='rank-game'),
+    path('rank-success/', views.rank_success, name='rank-success'),
+    path('/reports-menu/rank-for-admin/', views.rank_for_admin, name='rank-for-admin'),
+    #path('active-users/', views.active_users_page, name='active-users'),
+    path('report-user/', views.report_user, name='report-user'),
+    path('/reports-menu-users/active-users/', views.active_users_page, name='active-users'),
+    path('/reports-menu-users/', views.reports_menu_users, name='reports-menu-users'),
 ]
