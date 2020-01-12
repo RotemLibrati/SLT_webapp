@@ -30,4 +30,8 @@ urlpatterns = [
     path('rank-game/', views.rank_game, name='rank-game'),
     path('rank-success/', views.rank_success, name='rank-success'),
     path('/reports-menu/rank-for-admin/', views.rank_for_admin, name='rank-for-admin'),
+    #path('active-users/', views.active_users_page, name='active-users'),
+    path('report-user/', views.report_user, name='report-user'),
+    path('/reports-menu-users/active-users/', views.active_users_page, name='active-users'),
+    path('/reports-menu-users/', views.reports_menu_users, name='reports-menu-users'),
 ]
