@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/New folder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/New folder.iml" afterDir="false" />
+    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/online-limit.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/time-restriction.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Eilon-local" />
+        <entry key="$PROJECT_DIR$" value="Niro" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,17 +41,30 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SLT_webapp/registration/static/registration/chatjs" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\chatjs" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates\registration\django_private_chat" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
       <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
       </list>
     </option>
   </component>
@@ -194,49 +201,50 @@
       <option name="project" value="LOCAL" />
       <updated>1578248282928</updated>
     </task>
-    <task id="LOCAL-00020" summary="process of login time">
-      <created>1578483475114</created>
+    <task id="LOCAL-00020" summary="login process">
+      <created>1578483586431</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1578483475114</updated>
+      <updated>1578483586432</updated>
     </task>
-    <task id="LOCAL-00021" summary="finished login time">
-      <created>1578485232144</created>
+    <task id="LOCAL-00021" summary="report for parent">
+      <created>1578510913302</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1578485232144</updated>
+      <updated>1578510913302</updated>
     </task>
-    <task id="LOCAL-00022" summary="syntax cleanup">
-      <created>1578490631215</created>
+    <task id="LOCAL-00022" summary="report for parent finish">
+      <created>1578513085031</created>
       <option name="number" value="00022" />
       <option name="presentableId" value="LOCAL-00022" />
       <option name="project" value="LOCAL" />
-      <updated>1578490631215</updated>
+      <updated>1578513085032</updated>
     </task>
-    <task id="LOCAL-00023" summary="added reply option to mail">
-      <created>1578492313011</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1578492313011</updated>
+    <task id="LOCAL‎00023" summary="after new chat">
+      <created>1578765598237</created>
+      <option name="number" value="LOCAL‎00023" />
+      <option name="presentableId" value="LOCAL‎00023" />
+      <updated>1578765598237</updated>
     </task>
-    <task id="LOCAL-00024" summary="added sending data from js frontend to django backend">
-      <created>1578819593467</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1578819593467</updated>
+    <task id="LOCAL‎00024" summary="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications">
+      <created>1578834555791</created>
+      <option name="number" value="LOCAL‎00024" />
+      <option name="presentableId" value="LOCAL‎00024" />
+      <updated>1578834555791</updated>
     </task>
-    <task id="LOCAL‎00025" summary="added limitation checking function and limitation setting page">
-      <created>1578837092734</created>
+    <task id="LOCAL‎00025" summary="after merging with rotem">
+      <created>1578836438728</created>
       <option name="number" value="LOCAL‎00025" />
       <option name="presentableId" value="LOCAL‎00025" />
-      <updated>1578837092734</updated>
+      <updated>1578836438728</updated>
     </task>
     <option name="localTasksCounter" value="26" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -268,46 +276,32 @@
     <MESSAGE value="new tests 2" />
     <MESSAGE value="added Friends system" />
     <MESSAGE value="removing friends available too" />
-    <MESSAGE value="process of login time" />
-    <MESSAGE value="finished login time" />
-    <MESSAGE value="syntax cleanup" />
-    <MESSAGE value="added reply option to mail" />
-    <MESSAGE value="added sending data from js frontend to django backend" />
-    <MESSAGE value="added limitation checking function and limitation setting page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added limitation checking function and limitation setting page" />
+    <MESSAGE value="login process" />
+    <MESSAGE value="report for parent" />
+    <MESSAGE value="report for parent finish" />
+    <MESSAGE value="after new chat" />
+    <MESSAGE value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
+    <MESSAGE value="after merging with rotem" />
+    <option name="LAST_COMMIT_MESSAGE" value="after merging with rotem" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1578837091580">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1578837091580" />
-    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1578834649114">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1578834649114" />
-    <state x="471" y="85" key="RollbackChangesDialog" timestamp="1578833490990" />
-    <state x="471" y="85" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1578833490990" />
-    <state x="184" y="6" key="SettingsEditor" timestamp="1578837775333">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1578837775333" />
-    <state x="92" y="92" width="1182" height="544" key="ShowDiffWithBranchDialog" timestamp="1578833490990" />
-    <state x="92" y="92" width="1182" height="544" key="ShowDiffWithBranchDialog/0.0.1366.728@0.0.1366.728" timestamp="1578833490990" />
-    <state x="470" y="79" key="VCS.ChangeListViewerDialog" timestamp="1578833490990" />
-    <state x="470" y="79" key="VCS.ChangeListViewerDialog/0.0.1366.728@0.0.1366.728" timestamp="1578833490990" />
-    <state x="375" y="99" key="VcsDiffUtil.ChangesDialog" timestamp="1578834089566">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="375" y="99" key="VcsDiffUtil.ChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1578834089566" />
-    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578833508604">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1578833508604" />
-    <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog" timestamp="1578833603655">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1578833603655" />
-    <state x="346" y="49" key="search.everywhere.popup" timestamp="1578833490990" />
-    <state x="346" y="49" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1578833490990" />
+    <state x="192" y="0" key="CommitChangelistDialog2" />
+    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" />
+    <state x="471" y="85" key="RollbackChangesDialog" />
+    <state x="471" y="85" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" />
+    <state x="184" y="6" key="SettingsEditor" />
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" />
+    <state x="92" y="92" width="1182" height="544" key="ShowDiffWithBranchDialog" />
+    <state x="92" y="92" width="1182" height="544" key="ShowDiffWithBranchDialog/0.0.1366.728@0.0.1366.728" />
+    <state x="470" y="79" key="VCS.ChangeListViewerDialog" />
+    <state x="470" y="79" key="VCS.ChangeListViewerDialog/0.0.1366.728@0.0.1366.728" />
+    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
+    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" />
+    <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog" />
+    <state x="0" y="76" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" />
+    <state x="346" y="49" key="search.everywhere.popup" />
+    <state x="346" y="49" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" />
   </component>
 </project>
