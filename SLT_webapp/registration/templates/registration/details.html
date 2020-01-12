@@ -7,6 +7,16 @@
         <li>Age: {{profile.age}}</li>
         <li>Points: {{profile.points}}</li>
     </ul>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <script>
+                    alert('{{message.message}}')
+                </script>
+<!--                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>-->
+            {% endfor %}
+        </ul>
+    {% endif %}
     <p><strong>Friends:</strong></p>
     <ul>
         {% for f in friends %}
