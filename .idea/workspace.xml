@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
+    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/rank-for-admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/rank-for-admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_auto_20200108_1404.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200108_2202.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_chat_users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_userprofile_rank.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_alerts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_userreoprt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0006_auto_20200112_1354.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="limition_test" />
+        <entry key="$PROJECT_DIR$" value="Niro" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,7 +51,19 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SLT_webapp/registration/static/registration/chatjs" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\chatjs" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates\registration\django_private_chat" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -213,50 +231,23 @@
       <option name="project" value="LOCAL" />
       <updated>1578513085032</updated>
     </task>
-    <task id="LOCAL-00023" summary="report for parent finish">
-      <created>1578514160682</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1578514160682</updated>
+    <task id="LOCAL‎00023" summary="after new chat">
+      <created>1578765598237</created>
+      <option name="number" value="LOCAL‎00023" />
+      <option name="presentableId" value="LOCAL‎00023" />
+      <updated>1578765598237</updated>
     </task>
-    <task id="LOCAL-00024" summary="report for admin about users, address and age&#10;fix links to main menu">
-      <created>1578772259286</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1578772259286</updated>
+    <task id="LOCAL‎00024" summary="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications">
+      <created>1578834555791</created>
+      <option name="number" value="LOCAL‎00024" />
+      <option name="presentableId" value="LOCAL‎00024" />
+      <updated>1578834555791</updated>
     </task>
-    <task id="LOCAL-00025" summary="all user can rank the game&#10;fix part of html templates">
-      <created>1578824091349</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1578824091349</updated>
-    </task>
-    <task id="LOCAL-00026" summary="update of report for admin">
-      <created>1578826269632</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1578826269632</updated>
-    </task>
-    <task id="LOCAL-00027" summary="proccess">
-      <created>1578828888066</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1578828888066</updated>
-    </task>
-    <task id="LOCAL-00028" summary="fix bugs and fix the menu">
-      <created>1578834073363</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1578834073363</updated>
-    </task>
-    <option name="localTasksCounter" value="29" />
+    <option name="localTasksCounter" value="25" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -291,12 +282,9 @@
     <MESSAGE value="login process" />
     <MESSAGE value="report for parent" />
     <MESSAGE value="report for parent finish" />
-    <MESSAGE value="report for admin about users, address and age&#10;fix links to main menu" />
-    <MESSAGE value="all user can rank the game&#10;fix part of html templates" />
-    <MESSAGE value="update of report for admin" />
-    <MESSAGE value="proccess" />
-    <MESSAGE value="fix bugs and fix the menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bugs and fix the menu" />
+    <MESSAGE value="after new chat" />
+    <MESSAGE value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />
