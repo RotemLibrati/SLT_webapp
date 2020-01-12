@@ -45,9 +45,8 @@
         {% if profile.is_admin %}
             <a href="{% url 'registration:reports-menu' %}">Reports menu</a><br>
         {% endif %}
-        <a href="{% url 'registration:avg-points' %}">Average points </a><br>
+        <a href="{% url 'registration:reports-menu-users' %}">Reports menu users</a><br>
         <a href="{% url 'registration:info' %}">Game instructions</a><br>
-        <a href="{% url 'registration:active-games' %}">Active games</a><br>
         <a href="{% url 'registration:logout' %}">Logout</a><br>
     {% endif %}
 {% endblock %}

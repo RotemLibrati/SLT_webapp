@@ -97,3 +97,8 @@ class GameSession(models.Model):
     time_start = models.DateTimeField(auto_now_add=True)
     time_stop = models.DateTimeField(null=True, blank=True)
     difficulty = models.IntegerField(default=0)
+
+class UserReoprt(models.Model):
+    reporter = models.ForeignKey(User, related_name='reporter', on_delete=models.SET_NULL, null=True)
+    reported = models.ForeignKey(User, related_name='reported', on_delete=models.SET_NULL, null=True)
+    reason = models.CharField(max_length=100)

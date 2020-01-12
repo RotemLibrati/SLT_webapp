@@ -2,6 +2,15 @@
 <h>Your points is:  </h>
 <h>{{up.points}}</h><br>
 
-<h>The avg points of all users in game is :</h>
+<h>The average points of all users in game is :</h>
 
-<h>{{avg}}</h>
+<h>{{avg}}</h><br>
+  {% if up.type == 'student' %}
+  <a href="{% url 'registration:reports-menu-users' %}">Return to reports users</a><br>
+{% else %}
+    <a href="{% url 'registration:reports-menu-users' %}">Return to reports users</a><br>
+{% endif %}
+{% if up.is_admin %}
+ <a href="{% url 'registration:reports-menu' %}">Return to reports </a><br>
+{% endif %}
+<a href="{% url 'registration:index' %}">Go to main menu</a><br>

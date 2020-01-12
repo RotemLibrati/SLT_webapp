@@ -1,9 +1,9 @@
-<h2>Active Games</h2>
-    <h3>Active now</h3>
+<h2>Active Users</h2>
+    <h3>Active users now</h3>
     <ol>
-        {% for game in games %}
+        {% for user in users %}
             <li>
-                {{game.user}}
+                {{user.username}}
             </li>
         {% endfor %}
     </ol>
