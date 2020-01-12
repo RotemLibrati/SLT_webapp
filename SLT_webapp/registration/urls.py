@@ -25,7 +25,8 @@ urlpatterns = [
     path('exit/', views.exit_game, name='exit'),
     path('total-time-son/', views.total_time_son, name='total-time-son'),
     path('report-menu/', views.reports_menu, name='reports-menu'),
-    path('avg-points/', views.avg_points, name='avg-points'),
+    path('report-menu/details-of-users', views.reports_users, name='details-of-users'),
+    path('/reports-menu/avg-points/', views.avg_points, name='avg-points'),
     path('rank-game/', views.rank_game, name='rank-game'),
     path('rank-success/', views.rank_success, name='rank-success'),
 ]

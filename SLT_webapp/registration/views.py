@@ -345,6 +345,12 @@ def reports_menu(request):
     user_list = list(user_profile)
     return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list' : user_list})
 
+def reports_users(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    return render(request, 'registration/details-of-users.html', {'user': user_profile, 'user_list': user_list})
+
 def avg_points(request):
     user = request.user
     up1 = get_object_or_404(UserProfile, user=user)
@@ -391,6 +397,9 @@ def rank_game(request):
 
 def rank_success(request):
     return render(request, 'registration/rank-success.html')
+
+# def rank_for_admin(request):
+
 
 
 
