@@ -1,6 +1,6 @@
-{% extends 'registration/index.html' %}
+
 <h2>Inbox</h2>
-{% block content %}
+
     <h3>Messages received</h3>
     <ol>
         {% for message in messages_received %}
@@ -23,4 +23,4 @@
     </ol>
     <br>
     <a href="{% url 'registration:new-message' %}">Send new message</a><br>
-{% endblock %}
+<a href="{% url 'registration:index' %}">Return to main menu</a><br>

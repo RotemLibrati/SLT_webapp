@@ -1,8 +1,25 @@
+
+<!--<style>-->
+<!--body {-->
+<!--  background-image: url('http://www.nitzotzot.org.il/wp-content/uploads/2016/02/%D7%A9%D7%A4%D7%AA-%D7%94%D7%A1%D7%99%D7%9E%D7%A0%D7%99%D7%9D.png');-->
+<!--  background-repeat: no-repeat;-->
+<!--  background-attachment: fixed;-->
+<!--  background-size: cover;-->
+<!--}-->
+<!--</style>-->
+
+<!--&lt;!&ndash;<style>&ndash;&gt;-->
+<!--&lt;!&ndash;body {&ndash;&gt;-->
+<!--&lt;!&ndash;  background-image: url('https://www.pqpq2.co.il/productImages2/127/2018/02/18/image1518956383.jpg');&ndash;&gt;-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+<!--</style>-->
 {% block title %}
     <h1>Sign Language Teacher</h1>
+<!--<h1 style="background-color:DodgerBlue;">Sign Language Teacher</h1>-->
 {% endblock %}
 {% block content %}
     <h2>Main menu</h2>
+<!--    <h1 style="background-color:Yellow;">Main menu</h1>-->
     {% if user.is_authenticated %}
         <p><strong>Logged in as {{user.username}}</strong></p>
     {% endif %}
@@ -15,12 +32,20 @@
     {% if user.is_authenticated %}
         <a href="{% url 'registration:game' %}">Play the game</a><br>
         <a href="{% url 'registration:profile' %}">Profile menu</a><br>
-        <a href="{% url 'registration:index' %}">Back to main menu</a><br>
         <a href="{% url 'registration:add-friend' %}">Manage friends</a><br>
         <a href="{% url 'registration:inbox' %}">Mail</a><br>
         {% if profile.type == 'student' %}
             <a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
+            <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
         {% endif %}
+        {% if profile.type == 'parent' %}
+            <a href="{% url 'registration:total-time-son' %}">Report total time of son</a><br>
+            <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
+        {% endif %}
+        {% if profile.is_admin %}
+            <a href="{% url 'registration:reports-menu' %}">Reports menu</a><br>
+        {% endif %}
+        <a href="{% url 'registration:avg-points' %}">Average points </a><br>
         <a href="{% url 'registration:info' %}">Game instructions</a><br>
         <a href="{% url 'registration:active-games' %}">Active games</a><br>
         <a href="{% url 'registration:logout' %}">Logout</a><br>

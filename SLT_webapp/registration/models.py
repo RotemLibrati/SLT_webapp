@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from datetime import timedelta, datetime
 from datetime import datetime
 
 
 class UserProfile(models.Model):
     TYPES = (('parent', 'parent'), ('student', 'student'))
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
     son = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='son')
     address = models.CharField(max_length=100, default='')
     age = models.IntegerField(default=0)
@@ -15,6 +17,7 @@ class UserProfile(models.Model):
     suspention_time = models.DateTimeField(auto_now_add=True)
     total_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
+    rank = models.IntegerField(default=0)
 
     def was_born_recently(self):
         if self.age <= 0:

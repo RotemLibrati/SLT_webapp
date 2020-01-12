@@ -68,6 +68,10 @@ class MessageForm(forms.Form):
     subject = forms.CharField(max_length=50, initial='message subject')
     body = forms.CharField(max_length=250)
 
+class RankGameForm(forms.Form):
+    RANK = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
+    rank = forms.IntegerField(widget=forms.Select(choices=RANK))
+
 
 class GameForm(forms.Form):
     moves = forms.IntegerField()

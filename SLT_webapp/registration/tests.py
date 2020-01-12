@@ -33,6 +33,11 @@ class IndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sign Language Teacher")
 
+    def test_menu(self):
+        response = self.client.get(reverse('registration:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Main menu")
+
     def test_game_links_without_login(self):
         response = self.client.get(reverse("registration:index"))
         self.assertContains(response, 'Login with existing user')

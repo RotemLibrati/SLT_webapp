@@ -1,5 +1,4 @@
-{% extends 'registration/index.html' %}
-{% block content %}
+
 
 <form action="{% url 'registration:add-friend' %}" method="POST">
     {% csrf_token %}
@@ -13,4 +12,5 @@
     {{form.as_p}}
     <button type="submit">Submit</button>
 </form>
-{% endblock %}
+<a href="{% url 'registration:inbox' %}">Mail</a><br>
+<a href="{% url 'registration:index' %}">Return to main menu</a><br>
