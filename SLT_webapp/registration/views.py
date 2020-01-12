@@ -379,7 +379,8 @@ def send_game(request):
     print(f'moves={moves}. mistakes={mistakes}')
     return HttpResponse("hello")
 
-def online_limit(request):
+
+def time_restriction(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     user_profile = UserProfile.objects.get(user=request.user)
@@ -394,7 +395,7 @@ def online_limit(request):
             return HttpResponseRedirect(reverse('registration:index'))
     else:
         form = OnlineLimitForm()
-    return render(request, 'registration/online-limit.html', {'form': form, 'son': son_user})
+    return render(request, 'registration/time-restriction.html')
 
 
 def exceeded_limitation(user):
