@@ -25,4 +25,11 @@ urlpatterns = [
     path('active-games/', views.active_games, name='active-games'),
     path('exit/', views.exit_game, name='exit'),
     path('send-game/', views.send_game, name='send-game'),
+    path('total-time-son/', views.total_time_son, name='total-time-son'),
+    path('report-menu/', views.reports_menu, name='reports-menu'),
+    path('report-menu/details-of-users', views.reports_users, name='details-of-users'),
+    path('reports-menu/avg-points/', views.avg_points, name='avg-points'),
+    path('rank-game/', views.rank_game, name='rank-game'),
+    path('rank-success/', views.rank_success, name='rank-success'),
+    path('online-limit/', views.online_limit, name='online-limit'),
 ]

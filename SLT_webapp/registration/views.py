@@ -5,10 +5,11 @@ from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession
-from .forms import CardForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm
+from django.views import generic
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, RankGameForm, OnlineLimitForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def info(request):
@@ -38,6 +39,8 @@ def login_view(request):
                 login(request, user)
                 user = request.user
                 userprofile = UserProfile.objects.get(user=user)
+                if userprofile.last_login.date() < datetime.now().date():
+                    userprofile.daily_minutes = 0
                 userprofile.last_login = datetime.now()
                 userprofile.save()
                 return HttpResponseRedirect(reverse('registration:profile'))
@@ -52,7 +55,8 @@ def login_view(request):
 def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
     td = datetime.now() - userprofile.last_login
-    userprofile.total_minutes += td.total_seconds()/60
+    userprofile.total_minutes += td.total_seconds() / 60
+    userprofile.daily_minutes += td.total_seconds() / 60
     userprofile.save()
     request.session.flush()
 
@@ -65,7 +69,8 @@ def inbox(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     current_user = request.user
-    messages_received = list(Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
+    messages_received = list(
+        Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
     messages_sent = list(Message.objects.filter(sender=current_user, deleted_by_sender=False).order_by('-sent_date'))
     return render(request, 'registration/inbox.html', {'user': current_user,
                                                        'messages_received': messages_received,
@@ -189,11 +194,15 @@ def new_user(request):
 
 
 def new_profile(request, username):
+    # if request.user is None:
+    #     return HttpResponse("Not logged in")
+
     def attach_user(sender, **kwargs):
         userprofile = kwargs['instance']
         userprofile.user = user
         post_save.disconnect(attach_user, sender=UserProfile)
         userprofile.save()
+
     if request.method == 'POST':
         user = User.objects.get(username=username)
         form = ProfileForm(request.POST)
@@ -223,6 +232,7 @@ def new_profile_parent(request, username):
     else:
         form = ParentForm()
     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
+
 
 # class DetailView(generic.DetailView):
 #     model = UserProfile
@@ -294,6 +304,33 @@ def active_games(request):
     return render(request, 'registration/active-games.html', {'games': game_list})
 
 
+def reports_menu(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list': user_list})
+
+
+def reports_users(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    return render(request, 'registration/details-of-users.html', {'user': user_profile, 'user_list': user_list})
+
+
+def avg_points(request):
+    user = request.user
+    up1 = get_object_or_404(UserProfile, user=user)
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    sum = 0
+    for p in user_list:
+        sum += p.points
+    avg = sum / len(user_list)
+    return render(request, 'registration/avg-points.html',
+                  {'user': user_profile, 'user_list': user_list, 'u1': user, 'up': up1, 'avg': avg})
+
+
 def exit_game(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
@@ -304,6 +341,36 @@ def exit_game(request):
     return HttpResponseRedirect(reverse('registration:index'))
 
 
+def total_time_son(request):
+    current_user_profile = UserProfile.objects.get(user=request.user)
+    son_user = User.objects.get(username=current_user_profile.son.username)
+    son_profile = UserProfile.objects.get(user=son_user)
+    if son_profile:
+        context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile}
+        return render(request, 'registration/total-time-son.html', context)
+    return HttpResponseRedirect(reverse('registration:index'))
+
+
+def rank_game(request):
+    if request.method == 'POST':
+        form = RankGameForm(request.POST)
+        if form.is_valid():
+            rank_val = form.cleaned_data['rank']
+            user = request.user
+            up1 = get_object_or_404(UserProfile, user=user)
+            up1.rank = rank_val
+            up1.save()
+        return HttpResponseRedirect(reverse('registration:rank-success'))
+    else:
+        form = RankGameForm()
+
+    return render(request, 'registration/rank-game.html', {'form': form})
+
+
+def rank_success(request):
+    return render(request, 'registration/rank-success.html')
+
+
 def send_game(request):
     data = request.body.decode('utf-8')
     received_json_data = json.loads(data)
@@ -311,3 +378,25 @@ def send_game(request):
     mistakes = received_json_data['mistakes']
     print(f'moves={moves}. mistakes={mistakes}')
     return HttpResponse("hello")
+
+def online_limit(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    user_profile = UserProfile.objects.get(user=request.user)
+    son_profile = UserProfile.objects.get(user=user_profile.son)
+    son_user = User.objects.get(username=son_profile.user.username)
+    if request.method == 'POST':
+        form = OnlineLimitForm(request.POST)
+        if form.is_valid():
+            minutes = form.cleaned_data.get('minutes')
+            son_profile.limitation = minutes
+            son_profile.save()
+            return HttpResponseRedirect(reverse('registration:index'))
+    else:
+        form = OnlineLimitForm()
+    return render(request, 'registration/online-limit.html', {'form': form, 'son': son_user})
+
+
+def exceeded_limitation(user):
+    profile = UserProfile.objects.get(user=user)
+    return profile.daily_limitation > profile.limitation
