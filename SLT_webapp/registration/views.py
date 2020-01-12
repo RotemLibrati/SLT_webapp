@@ -351,7 +351,12 @@ def rank_game(request):
 def rank_success(request):
     return render(request, 'registration/rank-success.html')
 
-# def rank_for_admin(request):
+def rank_for_admin(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    return render(request, 'registration/rank-for-admin.html', {'user': user_profile, 'user_list': user_list})
+
 
 
 
