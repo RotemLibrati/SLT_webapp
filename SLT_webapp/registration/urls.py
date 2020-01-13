@@ -47,4 +47,6 @@ urlpatterns = [
     path('/success-message/', views.success_message, name='success-message'),
     path('/lottery/', views.lottery_for_tournament, name='lottery'),
     path('/parent-list/', views.parent_list, name='parent-list'),
+    path('/level-of-son/', views.level_of_son, name='level-of-son'),
+    path('/success-level/', views.success_level, name='success-level'),
 ]
