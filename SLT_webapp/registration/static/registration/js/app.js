@@ -10,7 +10,7 @@ let moves = 0;
 let counter = document.querySelector(".moves");
 
 // declaring mistakes variable
-let mistakes = 0
+let mistakes = 0;
 
 // declare variables for star icons
 const stars = document.querySelectorAll(".fa-star");
@@ -248,7 +248,7 @@ for (var i = 0; i < cards.length; i++){
     card = cards[i];
     card.addEventListener("click", displayCard);
     card.addEventListener("click", cardOpen);
-    card.addEventListener("click",congratulations);
+//    card.addEventListener("click",congratulations);
 };
 
 // send game data to backend

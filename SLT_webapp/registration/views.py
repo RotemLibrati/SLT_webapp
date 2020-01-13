@@ -5,8 +5,8 @@ from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession
-from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, RankGameForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
+    RankGameForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
@@ -53,7 +53,7 @@ def login_view(request):
 def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
     td = datetime.now() - userprofile.last_login
-    userprofile.total_minutes += td.total_seconds()/60
+    userprofile.total_minutes += td.total_seconds() / 60
     userprofile.save()
     request.session.flush()
 
@@ -66,7 +66,8 @@ def inbox(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     current_user = request.user
-    messages_received = list(Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
+    messages_received = list(
+        Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
     messages_sent = list(Message.objects.filter(sender=current_user, deleted_by_sender=False).order_by('-sent_date'))
     return render(request, 'registration/inbox.html', {'user': current_user,
                                                        'messages_received': messages_received,
@@ -198,6 +199,7 @@ def new_profile(request, username):
         userprofile.user = user
         post_save.disconnect(attach_user, sender=UserProfile)
         userprofile.save()
+
     if request.method == 'POST':
         user = User.objects.get(username=username)
         form = ProfileForm(request.POST)
@@ -227,6 +229,7 @@ def new_profile_parent(request, username):
     else:
         form = ParentForm()
     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
+
 
 # class DetailView(generic.DetailView):
 #     model = UserProfile
@@ -297,11 +300,13 @@ def active_games(request):
     game_list = list(games)
     return render(request, 'registration/active-games.html', {'games': game_list})
 
+
 def reports_menu(request):
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
-    return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list' : user_list})
+    return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list': user_list})
+
 
 def reports_users(request):
     user = request.user
@@ -309,16 +314,18 @@ def reports_users(request):
     user_list = list(user_profile)
     return render(request, 'registration/details-of-users.html', {'user': user_profile, 'user_list': user_list})
 
+
 def avg_points(request):
     user = request.user
     up1 = get_object_or_404(UserProfile, user=user)
     user_profile = UserProfile.objects.all()
-    user_list= list(user_profile)
-    sum=0
+    user_list = list(user_profile)
+    sum = 0
     for p in user_list:
-        sum+=p.points
-    avg=sum/len(user_list)
-    return render(request, 'registration/avg-points.html', {'user': user_profile, 'user_list' : user_list, 'u1': user, 'up':up1,'avg':avg})
+        sum += p.points
+    avg = sum / len(user_list)
+    return render(request, 'registration/avg-points.html',
+                  {'user': user_profile, 'user_list': user_list, 'u1': user, 'up': up1, 'avg': avg})
 
 
 def exit_game(request):
@@ -330,6 +337,7 @@ def exit_game(request):
         i.save()
     return HttpResponseRedirect(reverse('registration:index'))
 
+
 def total_time_son(request):
     current_user_profile = UserProfile.objects.get(user=request.user)
     son_user = User.objects.get(username=current_user_profile.son.username)
@@ -338,6 +346,7 @@ def total_time_son(request):
         context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile}
         return render(request, 'registration/total-time-son.html', context)
     return HttpResponseRedirect(reverse('registration:index'))
+
 
 def rank_game(request):
     if request.method == 'POST':
@@ -349,40 +358,32 @@ def rank_game(request):
             up1.rank = rank_val
             up1.save()
         return HttpResponseRedirect(reverse('registration:rank-success'))
-    else :
+    else:
         form = RankGameForm()
 
     return render(request, 'registration/rank-game.html', {'form': form})
 
+
 def rank_success(request):
     return render(request, 'registration/rank-success.html')
+
 
 def send_game(request):
     data = request.body.decode('utf-8')
     received_json_data = json.loads(data)
     moves = received_json_data['moves']
     mistakes = received_json_data['mistakes']
-    print(f'moves={moves}. mistakes={mistakes}')
+    up = UserProfile.objects.get(user=request.user)
+    print(moves)
     return HttpResponse("hello")
 
-
-
-
-
-
-
-
-
-
-
-
-        # def logout(request):
-        #     userprofile = UserProfile.objects.get(user=request.user)
-        #     td = datetime.now() - userprofile.last_login
-        #     userprofile.total_minutes += (td.total_seconds() / 60)
-        #     userprofile.save()
-        #     request.session.flush()
-        #
-        #     if hasattr(request, 'user'):
-        #         request.user = AnonymousUser()
-        #     return HttpResponseRedirect(reverse('registration:index'))
+    # def logout(request):
+    #     userprofile = UserProfile.objects.get(user=request.user)
+    #     td = datetime.now() - userprofile.last_login
+    #     userprofile.total_minutes += (td.total_seconds() / 60)
+    #     userprofile.save()
+    #     request.session.flush()
+    #
+    #     if hasattr(request, 'user'):
+    #         request.user = AnonymousUser()
+    #     return HttpResponseRedirect(reverse('registration:index'))
