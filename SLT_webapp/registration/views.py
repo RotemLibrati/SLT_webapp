@@ -1,51 +1,15 @@
+import json
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.core.serializers import json
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt
-from django.views import generic
+from .models import UserProfile, Card, User, Friend, Message, GameSession
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend
+    RankGameForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
-from braces.views import LoginRequiredMixin
-from django.views import generic
-from django.contrib.auth import get_user_model
-from django.utils import timezone
-from django.contrib import messages
-from django.contrib.sessions.models import Session
-import random
-def delete_notification(request, notification_id):
-    if request.user is None or not request.user.is_authenticated:
-        return HttpResponse("Not logged in")
-    try:
-        notification = Notifications.objects.get(id=notification_id)
-        notification.delete()
-    except (TypeError, Notifications.DoesNotExist):
-        error = "Notification deletion failed."
-        render(request, 'registration/failure.html', {'error': error})
-    return HttpResponseRedirect(reverse('registration:notifications'))
-
-def notifications(request):
-    if request.user is None or not request.user.is_authenticated:
-        return HttpResponse("Not logged in")
-    # try:
-    #     message = Message.objects.get(id=message_id)
-    # except (TypeError, Message.DoesNotExist):
-    #     message = None
-    notifications = Notifications.objects.filter(receiver=request.user)
-    return render(request, 'registration/notifications.html', {'notifications': notifications})
-
-
-class UserListView(LoginRequiredMixin, generic.ListView):
-    model = get_user_model()
-    # These next two lines tell the view to index lookups by username
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
-    template_name = 'registration/chat.html'
-    login_url = 'login/'
 
 
 def info(request):
@@ -88,8 +52,8 @@ def login_view(request):
 
 def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
-    td = timezone.now() - userprofile.last_login
-    userprofile.total_minutes += (td.total_seconds()/60)
+    td = datetime.now() - userprofile.last_login
+    userprofile.total_minutes += td.total_seconds() / 60
     userprofile.save()
     request.session.flush()
 
@@ -102,7 +66,8 @@ def inbox(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     current_user = request.user
-    messages_received = list(Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
+    messages_received = list(
+        Message.objects.filter(receiver=current_user, deleted_by_receiver=False).order_by('-sent_date'))
     messages_sent = list(Message.objects.filter(sender=current_user, deleted_by_sender=False).order_by('-sent_date'))
     return render(request, 'registration/inbox.html', {'user': current_user,
                                                        'messages_received': messages_received,
@@ -116,8 +81,11 @@ def view_message(request, message_id):
     try:
         message = Message.objects.get(id=message_id)
     except (TypeError, Message.DoesNotExist):
-        message = None
-    return render(request, 'registration/message.html', {'user': request.user, 'message': message})
+        error = "Message getting failed."
+        return render(request, 'registration/failure.html', {'error': error})
+    return render(request, 'registration/message.html', {'user': request.user,
+                                                         'message': message,
+                                                         })
 
 
 def delete_message(request, message_id):
@@ -140,14 +108,13 @@ def delete_message(request, message_id):
     return HttpResponseRedirect(reverse('registration:inbox'))
 
 
-def new_message(request):
+def new_message(request, **kwargs):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
-    user_profile = UserProfile.objects.get(user=request.user)
     user_list = User.objects.all()
-    profile_list = UserProfile.objects.all()
     if request.method == 'POST':
         form = MessageForm(request.POST)
+        request.user.reply = None
         if form.is_valid():
             sender = request.user
             receiver_name = form.cleaned_data['receiver']
@@ -161,11 +128,14 @@ def new_message(request):
             sent_date = datetime.now()
             message = Message(sender=sender, receiver=receiver, subject=subject, body=body, sent_date=sent_date)
             message.save()
-            return HttpResponseRedirect(reverse('registration:success-message'))
+            return HttpResponseRedirect(reverse('registration:inbox'))
     else:
         form = MessageForm()
+        if kwargs:
+            if kwargs['reply']:
+                form = MessageForm({'receiver': kwargs['reply']})
     return render(request, 'registration/new-message.html', {
-        'form': form, 'users': user_list, 'user': request.user, 'user_profile':user_profile, 'profiles':profile_list
+        'form': form, 'users': user_list, 'user': request.user
     })
 
 
@@ -178,13 +148,8 @@ def profile(request):
         friends = list(map(lambda x: x.username, friend.users.all()))
     except (TypeError, Friend.DoesNotExist):
         friends = []
+        messages.add_message(request, messages.INFO, 'Hello world.')
     up1 = get_object_or_404(UserProfile, user=u1)
-    messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
-    for m in messagesList:
-        messages.add_message(request, messages.INFO, m.message)
-        m.seen = True
-        m.save()
-    # Alerts.objects.filter(receiver=request.user).delete()
     return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
 
 
@@ -198,14 +163,8 @@ def add_friend(request):
                 new_friend = User.objects.get(username=form.cleaned_data['new_friend'])
                 if form.cleaned_data['action'] == 'Add':
                     Friend.make_friend(request.user, new_friend)
-                    alert = Notifications(receiver=new_friend,
-                                          message=f"{request.user.username} has added you to the friend list")
-                    alert.save()
                 else:
                     Friend.remove_friend(request.user, new_friend)
-                    alert = Notifications(receiver=new_friend,
-                                          message=f"{request.user.username} has removed you from the friend list")
-                    alert.save()
                 return HttpResponseRedirect(reverse('registration:index'))
             except (TypeError, User.DoesNotExist):
                 form = FriendForm()
@@ -240,6 +199,7 @@ def new_profile(request, username):
         userprofile.user = user
         post_save.disconnect(attach_user, sender=UserProfile)
         userprofile.save()
+
     if request.method == 'POST':
         user = User.objects.get(username=username)
         form = ProfileForm(request.POST)
@@ -270,11 +230,10 @@ def new_profile_parent(request, username):
         form = ParentForm()
     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
 
+
 # class DetailView(generic.DetailView):
 #     model = UserProfile
 #     template_name = 'registration/details.html'
-
-
 
 
 def make_new_card(request):
@@ -324,8 +283,8 @@ def game(request):
         context['user'] = request.user
     if request.user.is_authenticated:
         context['profile'] = UserProfile.objects.get(user=request.user)
-    suspended = timezone.now() < context['profile'].suspention_time
-    timeleft = context['profile'].suspention_time - timezone.now()
+    suspended = datetime.now() < context['profile'].suspention_time
+    timeleft = context['profile'].suspention_time - datetime.now()
     context['suspended'] = suspended
     context['timeleft'] = timeleft
     if not suspended:
@@ -336,28 +295,18 @@ def game(request):
         return render(request, 'registration/suspended.html', context)
 
 
-# def active_games(request):
-#     games = GameSession.objects.filter(time_stop__isnull=True)
-#     game_list = list(games)
-#     return render(request, 'registration/active-games.html', {'games': game_list})
 def active_games(request):
-    user = request.user
-    up1 = get_object_or_404(UserProfile, user=user)
     games = GameSession.objects.filter(time_stop__isnull=True)
     game_list = list(games)
-    return render(request, 'registration/active-games.html', {'games': game_list, 'up': up1})
+    return render(request, 'registration/active-games.html', {'games': game_list})
+
 
 def reports_menu(request):
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
-    return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list' : user_list})
+    return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list': user_list})
 
-def reports_menu_users(request):
-    user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
-    return render(request, 'registration/reports-menu-users.html', {'user': user_profile, 'user_list' : user_list})
 
 def reports_users(request):
     user = request.user
@@ -365,24 +314,19 @@ def reports_users(request):
     user_list = list(user_profile)
     return render(request, 'registration/details-of-users.html', {'user': user_profile, 'user_list': user_list})
 
-def parent_list(request):
-    user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
-    return render(request, 'registration/parent-list.html', {'user': user_profile, 'user_list': user_list})
 
-
-# if form.cleaned_data['type'] == 'parent':
 def avg_points(request):
     user = request.user
     up1 = get_object_or_404(UserProfile, user=user)
     user_profile = UserProfile.objects.all()
-    user_list= list(user_profile)
-    sum=0
+    user_list = list(user_profile)
+    sum = 0
     for p in user_list:
-        sum+=p.points
-    avg=sum/len(user_list)
-    return render(request, 'registration/avg-points.html', {'user': user_profile, 'user_list' : user_list, 'u1': user, 'up':up1,'avg':avg})
+        sum += p.points
+    avg = sum / len(user_list)
+    return render(request, 'registration/avg-points.html',
+                  {'user': user_profile, 'user_list': user_list, 'u1': user, 'up': up1, 'avg': avg})
+
 
 def exit_game(request):
     user = request.user
@@ -391,12 +335,8 @@ def exit_game(request):
     for i in session:
         i.time_stop = datetime.now()
         i.save()
-    if user_profile.points > 1000 and user_profile.points < 10000:
-        user_profile.level += 1
-        user_profile.save()
-        return render(request, 'registration/level-up.html', {'up1': user_profile})
-
     return HttpResponseRedirect(reverse('registration:index'))
+
 
 def total_time_son(request):
     current_user_profile = UserProfile.objects.get(user=request.user)
@@ -406,6 +346,7 @@ def total_time_son(request):
         context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile}
         return render(request, 'registration/total-time-son.html', context)
     return HttpResponseRedirect(reverse('registration:index'))
+
 
 def rank_game(request):
     if request.method == 'POST':
@@ -417,120 +358,15 @@ def rank_game(request):
             up1.rank = rank_val
             up1.save()
         return HttpResponseRedirect(reverse('registration:rank-success'))
-    else :
+    else:
         form = RankGameForm()
 
     return render(request, 'registration/rank-game.html', {'form': form})
 
+
 def rank_success(request):
     return render(request, 'registration/rank-success.html')
 
-def success_message(request):
-    return render(request, 'registration/success-message.html')
-
-def success_level(request):
-    return render(request, 'registration/success-level.html')
-
-def rank_for_admin(request):
-    user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
-    sum = 0
-    for p in user_list:
-        sum += p.rank
-    avg = sum / len(user_list)
-    return render(request, 'registration/rank-for-admin.html', {'user': user_profile, 'user_list': user_list, 'avg' : avg})
-
-def active_users():
-    active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
-    user_id_list = []
-    for session in active_sessions:
-        data = session.get_decoded()
-        user_id_list.append(data.get('_auth_user_id', None))
-    return User.objects.filter(id__in=user_id_list)
-
-
-def active_users_page(request):
-    user = request.user
-    up1 = get_object_or_404(UserProfile, user=user)
-    users = active_users()
-    users = list(users)
-    if request.user is None or not request.user.is_authenticated:
-        return HttpResponse("Not logged in")
-    user = request.user
-    return render(request, 'registration/active-users.html', {'current_user': user, 'users': users, 'up' : up1})
-
-def report_user(request):
-    if request.user is None or not request.user.is_authenticated:
-        return HttpResponse("Not logged in")
-    if request.method == 'POST':
-        form = ReportUserForm(request.POST)
-        if form.is_valid():
-            reporter = request.user
-            reported_s = form.cleaned_data.get('user_name')
-            reported = User.objects.get(username=reported_s)
-            reason = form.cleaned_data.get('reason')
-            user_report = UserReoprt(reporter=reporter,reported=reported, reason=reason)
-            user_report.save()
-            return HttpResponseRedirect(reverse('registration:index'))
-    else:
-        users = list(User.objects.all())
-        form = ReportUserForm()
-    return render(request, 'registration/report-user.html', {'form': form, 'users': users})
-
-
-def level_of_son(request):
-    if request.method == 'POST':
-        form = ChooseLevelSon(request.POST)
-        if form.is_valid():
-            level_val = form.cleaned_data['level']
-            user = request.user
-            up1 = get_object_or_404(UserProfile, user=user)
-            current_user_profile = UserProfile.objects.get(user=request.user)
-            son_user = User.objects.get(username=current_user_profile.son.username)
-            son_profile = UserProfile.objects.get(user=son_user)
-            son_profile.level = level_val
-            son_profile.save()
-        return HttpResponseRedirect(reverse('registration:success-level'))
-    else :
-        form = ChooseLevelSon()
-    current_user_profile = UserProfile.objects.get(user=request.user)
-    son_user = User.objects.get(username=current_user_profile.son.username)
-    son_profile = UserProfile.objects.get(user=son_user)
-    context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile, 'form':form}
-    return render(request, 'registration/level-of-son.html', context)
-
-
-def lottery_for_tournament(request):
-    user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
-    list1 = []
-    list2 = []
-    list3 = []
-    list4 = []
-    listof2 = []
-    lastlist = []
-    templist = user_list
-    i = len(templist) // 2
-    for _ in range(i):
-        listof2 = random.choices(templist, k=2)
-        while (listof2[0] == listof2[1]):
-            listof2 = random.choices(templist, k=2)
-        tuple1 = [listof2[0], listof2[1]]
-        lastlist.append(tuple1)
-        templist.remove(listof2[0])
-        templist.remove(listof2[1])
-    list1 = lastlist[0][0]
-    list2=lastlist[0][1]
-    list3 = lastlist[1][0]
-    list4 = lastlist[2][1]
-    list5 = lastlist[3][0]
-    list6 = lastlist[1][1]
-    list7 = lastlist[2][0]
-    list8 = lastlist[3][1]
-    return render(request, 'registration/lottery.html', { 'last':lastlist,'list1':list1, 'list2':list2, 'list3':list3, 'list4':list4,
-                                                          'list5':list5, 'list6':list6, 'list7':list7, 'list8':list8})
 
 def send_game(request):
     data = request.body.decode('utf-8')
@@ -541,39 +377,13 @@ def send_game(request):
     print(moves)
     return HttpResponse("hello")
 
-# def invite_friend(request, username):
-#     if request.method == 'POST':
-#         form = InviteFriend(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             user = get_object_or_404(User, username=username)
-#             userprofile = get_object_or_404(UserProfile, user=user)
-#             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_friend'])
-#             userprofile.friend = friend_user
-#             userprofile.save()
-#             return HttpResponseRedirect(reverse('registration:index'))
-#     else:
-#         form = ParentForm()
-#     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
+    # def logout(request):
+    #     userprofile = UserProfile.objects.get(user=request.user)
+    #     td = datetime.now() - userprofile.last_login
+    #     userprofile.total_minutes += (td.total_seconds() / 60)
+    #     userprofile.save()
+    #     request.session.flush()
     #
-    # def send_game(request):
-    #     data = request.body.decode('utf-8')
-    #     received_json_data = json.loads(data)
-    #     moves = received_json_data['moves']
-    #     mistakes = received_json_data['mistakes']
-    #     user = request.user
-    #     up1 = get_object_or_404(UserProfile, user=user)
-    #     up1.points += 100 - mistakes
-    #     up1.save()
-    #     print(up1.points)
-    #     return HttpResponse("hello")
-        # def logout(request):
-        #     userprofile = UserProfile.objects.get(user=request.user)
-        #     td = datetime.now() - userprofile.last_login
-        #     userprofile.total_minutes += (td.total_seconds() / 60)
-        #     userprofile.save()
-        #     request.session.flush()
-        #
-        #     if hasattr(request, 'user'):
-        #         request.user = AnonymousUser()
-        #     return HttpResponseRedirect(reverse('registration:index'))
+    #     if hasattr(request, 'user'):
+    #         request.user = AnonymousUser()
+    #     return HttpResponseRedirect(reverse('registration:index'))
