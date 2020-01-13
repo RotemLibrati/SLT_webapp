@@ -1,7 +1,7 @@
 // cards array holds all cards
+// cards array holds all cards
 let card = document.getElementsByClassName("card");
-let cards = [...card]
-console.log(cards);
+let cards = [...card];
 
 // deck of all cards in game
 const deck = document.getElementById("card-deck");
@@ -10,8 +10,7 @@ const deck = document.getElementById("card-deck");
 let moves = 0;
 let counter = document.querySelector(".moves");
 
-// declaring mistakes variable
-let mistakes = 0
+let mistakes = 0;
 
 // declare variables for star icons
 const stars = document.querySelectorAll(".fa-star");
@@ -70,10 +69,9 @@ function startGame(){
         });
         cards[i].classList.remove("show", "open", "match", "disabled");
     }
-    // reset moves and mistakes
+    // reset moves
     moves = 0;
     counter.innerHTML = moves;
-    mistakes = 0;
     // reset rating
     for (var i= 0; i < stars.length; i++){
         stars[i].style.color = "#FFD700";
@@ -249,13 +247,12 @@ for (var i = 0; i < cards.length; i++){
     card = cards[i];
     card.addEventListener("click", displayCard);
     card.addEventListener("click", cardOpen);
-    card.addEventListener("click",congratulations);
+//    card.addEventListener("click",congratulations);
 };
-
-// send game data to backend
 function stuff(){
     let data = {
         'moves': moves,
+        'mistakes': mistakes,
         'mistakes': mistakes,
     };
     let csrftoken = getCookie('csrftoken');

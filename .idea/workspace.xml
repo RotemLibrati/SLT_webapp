@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="159731a5-fa9d-4fff-93d8-5351b6c0aaaf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_userprofile_level.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/level-up.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +77,27 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unittests for registration.tests.IndexViewTests.test_details_title_users" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="New folder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SLT_webapp" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;registration.tests.IndexViewTests.test_details_title_users&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Unittests for registration.tests.IndexViewTests.test_details_title_users" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -250,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578889822232</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="background for opening">
+      <created>1578890757699</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1578890757699</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -293,7 +329,8 @@
     <MESSAGE value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
     <MESSAGE value="fix template message and message success" />
     <MESSAGE value="add lottery for tournament&#10;add tests of template" />
-    <option name="LAST_COMMIT_MESSAGE" value="add lottery for tournament&#10;add tests of template" />
+    <MESSAGE value="background for opening" />
+    <option name="LAST_COMMIT_MESSAGE" value="background for opening" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

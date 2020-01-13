@@ -36,52 +36,52 @@
 
         <ul class="deck" id="card-deck">
             <li class="card" type="diamond">
-                <img src="{{ image.0.image.url }}" alt="image">
-            </li>
-            <li class="card" type="diamond">
-                {{ image.0.word }}
+                <i class="fa fa-hand-scissors-o"></i>
             </li>
             <li class="card" type="plane">
-                <img src="{{ image.1.image.url }}" alt="image">
+                <i class="fa fa-hand-spock-o"></i>
             </li>
             <li class="card match" type="anchor">
-                <img src="{{ image.2.image.url }}" alt="image">
+                <i class="fa fa-hand-peace-o"></i>
             </li>
             <li class="card" type="bolt" >
-                <img src="{{ image.3.image.url }}" alt="image">
+                <i class="fa fa-hand-lizard-o"></i>
             </li>
             <li class="card" type="cube">
-                <img src="{{ image.4.image.url }}" alt="image">
+                <i class="fa fa-hand-rock-o"></i>
             </li>
             <li class="card match" type="anchor">
-                {{ image.2.word }}
+                peace
             </li>
             <li class="card" type="leaf">
-                <img src="{{ image.5.image.url }}" alt="image">
+                <i class="fa fa-hand-paper-o"></i>
             </li>
             <li class="card" type="bicycle">
-                <img src="{{ image.6.image.url }}" alt="image">
+                <i class="fa fa-sign-language"></i>
+            </li>
+            <li class="card" type="diamond">
+                scissors
             </li>
             <li class="card" type="bomb">
-                <img src="{{ image.7.image.url }}" alt="image">
+                <i class="fa fa-american-sign-language-interpreting"></i>
             </li>
             <li class="card" type="leaf">
-                {{ image.5.word }}
+                hello
             </li>
             <li class="card" type="bomb">
-                {{ image.7.word }}
+                friendship
             </li>
             <li class="card open show" type="bolt">
-                {{ image.3.word }}
+                lizard
             </li>
             <li class="card" type="bicycle">
-                {{ image.6.word }}
+                stop
             </li>
             <li class="card" type="plane">
-                {{ image.1.word }}
+                split
             </li>
             <li class="card" type="cube">
-                {{ image.4.word }}
+                close
             </li>
         </ul>
 
@@ -110,7 +110,8 @@
     <a href="{% url 'registration:new-user' %}">Make a new user</a><br>
 {% endif %}
 {% if user.is_authenticated %}
-    <button id="send-game" onclick="stuff()">Save game</button>
+    <button id="send game" onclick="stuff()">Save game</button>
+    <br>
     <a href="{% url 'registration:game' %}">Restart the game</a><br>
     <a href="{% url 'registration:exit' %}">Exit game</a><br>
 {% endif %}

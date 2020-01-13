@@ -2,8 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from datetime import timedelta, datetime
-from datetime import datetime
 
+class Notifications(models.Model):
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    message = models.CharField(max_length=256)
+    seen = models.BooleanField(default=False)
+
+class Users(models.Model):
+    user_id = models.CharField(max_length=256)
+    last_visit = models.DateTimeField()
+
+class Chat(models.Model):
+    sender = models.CharField(max_length=256)
+    receiver = models.CharField(max_length=256)
+    msg = models.TextField()
+    time = models.DateTimeField()
 
 class UserProfile(models.Model):
     TYPES = (('parent', 'parent'), ('student', 'student'))
@@ -16,10 +29,9 @@ class UserProfile(models.Model):
     is_admin = models.BooleanField(default=False)
     suspention_time = models.DateTimeField(auto_now_add=True)
     total_minutes = models.FloatField(default=0)
-    daily_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
     rank = models.IntegerField(default=0)
-    limitation = models.IntegerField(default=-1)
+    level = models.IntegerField(default=1)
 
     def was_born_recently(self):
         if self.age <= 0:
@@ -77,22 +89,16 @@ class Prize(models.Model):
     condition = models.CharField(max_length=200)
     points = models.IntegerField()
 
-    def __str__(self):
-        return str(self.name) + ' points: ' + str(self.points)
-
 
 class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, default=1)
     win_date = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return str(self.user.user.username) + ' won: ' + str(self.prize.name)
-
 
 class Card(models.Model):
     word = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images', null=True)
+    image = models.ImageField(upload_to='uploads/', null=True)
     authorized = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
@@ -107,5 +113,7 @@ class GameSession(models.Model):
     time_stop = models.DateTimeField(null=True, blank=True)
     difficulty = models.IntegerField(default=0)
 
-    def __str__(self):
-        return str(self.user.user.username) + ' at: ' + str(self.time_start)
+class UserReoprt(models.Model):
+    reporter = models.ForeignKey(User, related_name='reporter', on_delete=models.SET_NULL, null=True)
+    reported = models.ForeignKey(User, related_name='reported', on_delete=models.SET_NULL, null=True)
+    reason = models.CharField(max_length=100)
