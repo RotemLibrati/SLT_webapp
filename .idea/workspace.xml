@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/fixtures/initial_data.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/images/minimal_sign_11-256.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/images/minimal_sign_12-256.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/images/minimal_sign_6-256.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/images/minimal_sign_8-256.png" afterDir="false" />
+    <list default="true" id="159731a5-fa9d-4fff-93d8-5351b6c0aaaf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/success-message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/New folder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/New folder.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/notifications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,20 +51,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Memory-game-2-master/Memory-game-2-master/index.html" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SLT_webapp/registration/static/registration/chatjs" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../../../Memory-game-2-master/Memory-game-2-master/index.html" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates" />
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates\registration\django_private_chat" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\chatjs" />
       <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
       <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates\registration\django_private_chat" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -84,7 +82,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="" />
+      <changelist id="159731a5-fa9d-4fff-93d8-5351b6c0aaaf" name="Default Changelist" comment="" />
       <created>1577126007240</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -245,25 +243,7 @@
       <option name="presentableId" value="LOCAL‎00024" />
       <updated>1578834555791</updated>
     </task>
-    <task id="LOCAL‎00025" summary="after merging with rotem">
-      <created>1578836438728</created>
-      <option name="number" value="LOCAL‎00025" />
-      <option name="presentableId" value="LOCAL‎00025" />
-      <updated>1578836438728</updated>
-    </task>
-    <task id="LOCAL‎00026" summary="after mergeing with omer">
-      <created>1578839733479</created>
-      <option name="number" value="LOCAL‎00026" />
-      <option name="presentableId" value="LOCAL‎00026" />
-      <updated>1578839733479</updated>
-    </task>
-    <task id="LOCAL‎00027" summary="added option to upload new images for the game.&#10;added option to show images instead normal fonts at the game.">
-      <created>1578923039503</created>
-      <option name="number" value="LOCAL‎00027" />
-      <option name="presentableId" value="LOCAL‎00027" />
-      <updated>1578923039503</updated>
-    </task>
-    <option name="localTasksCounter" value="28" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -304,10 +284,7 @@
     <MESSAGE value="report for parent finish" />
     <MESSAGE value="after new chat" />
     <MESSAGE value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
-    <MESSAGE value="after merging with rotem" />
-    <MESSAGE value="after mergeing with omer" />
-    <MESSAGE value="added option to upload new images for the game.&#10;added option to show images instead normal fonts at the game." />
-    <option name="LAST_COMMIT_MESSAGE" value="added option to upload new images for the game.&#10;added option to show images instead normal fonts at the game." />
+    <option name="LAST_COMMIT_MESSAGE" value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

@@ -1,5 +1,4 @@
-{% extends 'registration/index.html' %}
-{% block content %}
+
 <h2>Notifications</h2>
 <ul>
     {% for f in notifications %}
@@ -9,4 +8,4 @@
     <p>No Notifications</p>
     {% endfor %}
 </ul>
-{% endblock %}
+<a href="{% url 'registration:index' %}">Go to main menu</a><br>
