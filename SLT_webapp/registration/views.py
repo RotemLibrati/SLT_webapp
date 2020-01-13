@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm, ChooseLevelSon
+    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
@@ -540,6 +540,21 @@ def send_game(request):
     up = UserProfile.objects.get(user=request.user)
     print(moves)
     return HttpResponse("hello")
+
+# def invite_friend(request, username):
+#     if request.method == 'POST':
+#         form = InviteFriend(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             user = get_object_or_404(User, username=username)
+#             userprofile = get_object_or_404(UserProfile, user=user)
+#             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_friend'])
+#             userprofile.friend = friend_user
+#             userprofile.save()
+#             return HttpResponseRedirect(reverse('registration:index'))
+#     else:
+#         form = ParentForm()
+#     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
     #
     # def send_game(request):
     #     data = request.body.decode('utf-8')
