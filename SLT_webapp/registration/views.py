@@ -15,7 +15,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.sessions.models import Session
-
+import random
 def delete_notification(request, notification_id):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
@@ -456,6 +456,42 @@ def report_user(request):
         users = list(User.objects.all())
         form = ReportUserForm()
     return render(request, 'registration/report-user.html', {'form': form, 'users': users})
+
+def lottery_for_tournament(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    list1 = []
+    list2 = []
+    list3 = []
+    list4 = []
+    listof2 = []
+    lastlist = []
+    templist = user_list
+    i = len(templist) // 2
+    for _ in range(i):
+        listof2 = random.choices(templist, k=2)
+        while (listof2[0] == listof2[1]):
+            listof2 = random.choices(templist, k=2)
+        tuple1 = [listof2[0], listof2[1]]
+        lastlist.append(tuple1)
+        templist.remove(listof2[0])
+        templist.remove(listof2[1])
+    list1 = lastlist[0]
+    list2 = lastlist[1]
+    list3 = lastlist[2]
+    list4 = lastlist[3]
+    return render(request, 'registration/lottery.html', {'user': user_profile, 'user_list': user_list, 'last':lastlist,
+                                                         'list1':list1, 'list2':list2, 'list3':list3, 'list4':list4})
+
+
+
+
+
+
+
+
+
 
 
         # def logout(request):

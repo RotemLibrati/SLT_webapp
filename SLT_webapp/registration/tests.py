@@ -42,6 +42,44 @@ class IndexViewTests(TestCase):
         self.assertContains(response, 'Login with existing user')
         self.assertContains(response, 'Make a new user')
 
+    def test_details_title_users(self):
+        response = self.client.get(reverse('registration:profile'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Profile menu")
+
+    def test_details_users(self):
+        response = self.client.get(reverse('registration:profile'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Hellow")
+
+    def test_link_in_details_to_menu(self):
+        response = self.client.get(reverse("registration:profile"))
+        self.assertContains(response, 'Go to main menu')
+
+    def test_title_mail(self):
+        response = self.client.get(reverse('registration:inbox'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Inbox")
+
+    def test_link_in_inbox(self):
+        response = self.client.get(reverse("registration:inbox"))
+        self.assertContains(response, 'Send new message')
+        self.assertContains(response, 'Return to main menu')
+
+    def test_title_notifications(self):
+        response = self.client.get(reverse('registration:notifications'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Notifications")
+
+    def test_link_in_notifications(self):
+        response = self.client.get(reverse("registration:notifications"))
+        self.assertContains(response, 'Go to main menu')
+
+    def test_title_info(self):
+        response = self.client.get(reverse('registration:info'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "The rules for playing memory")
+
 
 # class LogInTest(TestCase):
 #     def setUp(self):
