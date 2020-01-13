@@ -486,8 +486,6 @@ def level_of_son(request):
             level_val = form.cleaned_data['level']
             user = request.user
             up1 = get_object_or_404(UserProfile, user=user)
-            # up1.level = level_val
-            # up1.save()
             current_user_profile = UserProfile.objects.get(user=request.user)
             son_user = User.objects.get(username=current_user_profile.son.username)
             son_profile = UserProfile.objects.get(user=son_user)
@@ -523,12 +521,16 @@ def lottery_for_tournament(request):
         lastlist.append(tuple1)
         templist.remove(listof2[0])
         templist.remove(listof2[1])
-    list1 = lastlist[0]
-    list2 = lastlist[1]
-    list3 = lastlist[2]
-    list4 = lastlist[3]
-    return render(request, 'registration/lottery.html', {'user': user_profile, 'user_list': user_list, 'last':lastlist,
-                                                         'list1':list1, 'list2':list2, 'list3':list3, 'list4':list4})
+    list1 = lastlist[0][0]
+    list2=lastlist[0][1]
+    list3 = lastlist[1][0]
+    list4 = lastlist[2][1]
+    list5 = lastlist[3][0]
+    list6 = lastlist[1][1]
+    list7 = lastlist[2][0]
+    list8 = lastlist[3][1]
+    return render(request, 'registration/lottery.html', { 'last':lastlist,'list1':list1, 'list2':list2, 'list3':list3, 'list4':list4,
+                                                          'list5':list5, 'list6':list6, 'list7':list7, 'list8':list8})
 
 def send_game(request):
     data = request.body.decode('utf-8')
