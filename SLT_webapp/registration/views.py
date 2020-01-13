@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm
+    ReportUserForm, RankGameForm, ChooseLevelSon
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
@@ -428,6 +428,9 @@ def rank_success(request):
 def success_message(request):
     return render(request, 'registration/success-message.html')
 
+def success_level(request):
+    return render(request, 'registration/success-level.html')
+
 def rank_for_admin(request):
     user = request.user
     user_profile = UserProfile.objects.all()
@@ -476,10 +479,28 @@ def report_user(request):
     return render(request, 'registration/report-user.html', {'form': form, 'users': users})
 
 
-
-    # up1 = get_object_or_404(UserProfile, user=user)
-    # up1.rank = rank_val
-
+def level_of_son(request):
+    if request.method == 'POST':
+        form = ChooseLevelSon(request.POST)
+        if form.is_valid():
+            level_val = form.cleaned_data['level']
+            user = request.user
+            up1 = get_object_or_404(UserProfile, user=user)
+            # up1.level = level_val
+            # up1.save()
+            current_user_profile = UserProfile.objects.get(user=request.user)
+            son_user = User.objects.get(username=current_user_profile.son.username)
+            son_profile = UserProfile.objects.get(user=son_user)
+            son_profile.level = level_val
+            son_profile.save()
+        return HttpResponseRedirect(reverse('registration:success-level'))
+    else :
+        form = ChooseLevelSon()
+    current_user_profile = UserProfile.objects.get(user=request.user)
+    son_user = User.objects.get(username=current_user_profile.son.username)
+    son_profile = UserProfile.objects.get(user=son_user)
+    context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile, 'form':form}
+    return render(request, 'registration/level-of-son.html', context)
 
 
 def lottery_for_tournament(request):

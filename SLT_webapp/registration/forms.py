@@ -79,3 +79,7 @@ class ReportUserForm(forms.Form):
 class GameForm(forms.Form):
     moves = forms.IntegerField()
     mistakes = forms.IntegerField()
+
+class ChooseLevelSon(forms.Form):
+    LEVEL = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
+    level = forms.IntegerField(widget=forms.Select(choices=LEVEL))
