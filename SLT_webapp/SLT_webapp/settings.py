@@ -132,6 +132,10 @@ DATETIME_FORMAT = "d.m.Y H:i:s"
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'registration/static/registration/uploads')
+
 
 INTERNAL_IPS = ['127.0.0.1', 'localhost']
 SESSION_COOKIE_AGE = 12096000

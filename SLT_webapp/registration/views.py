@@ -1,4 +1,5 @@
 import json
+import random
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
@@ -6,12 +7,10 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, RankGameForm, OnlineLimitForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, RankGameForm, OnlineLimitForm, ReportUserForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
-from datetime import datetime, timedelta
+from datetime import datetime
 from braces.views import LoginRequiredMixin
 from django.views import generic
 from django.contrib.auth import get_user_model
@@ -340,6 +339,9 @@ def game(request):
     if not suspended:
         session = GameSession(user=context['profile'])
         session.save()
+        image = Card.objects.all().order_by('?')
+        # rand = random.sample(image, 3)
+        context['image'] = image
         return render(request, 'registration/game.html', context)
     else:
         return render(request, 'registration/suspended.html', context)

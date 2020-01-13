@@ -105,7 +105,7 @@ class Winning(models.Model):
 
 class Card(models.Model):
     word = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='uploads/', null=True)
+    image = models.ImageField(upload_to='images', null=True)
     authorized = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
