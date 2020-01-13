@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="159731a5-fa9d-4fff-93d8-5351b6c0aaaf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/lottery.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/info.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -248,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578884743819</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="add lottery for tournament&#10;add tests of template">
+      <created>1578889822232</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1578889822232</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -290,7 +292,8 @@
     <MESSAGE value="after new chat" />
     <MESSAGE value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
     <MESSAGE value="fix template message and message success" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix template message and message success" />
+    <MESSAGE value="add lottery for tournament&#10;add tests of template" />
+    <option name="LAST_COMMIT_MESSAGE" value="add lottery for tournament&#10;add tests of template" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />
