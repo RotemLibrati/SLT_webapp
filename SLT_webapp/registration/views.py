@@ -8,6 +8,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, RankGameForm, OnlineLimitForm, ReportUserForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
+    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime
@@ -151,7 +153,9 @@ def delete_message(request, message_id):
 def new_message(request, **kwargs):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
+    user_profile = UserProfile.objects.get(user=request.user)
     user_list = User.objects.all()
+    profile_list = UserProfile.objects.all()
     if request.method == 'POST':
         form = MessageForm(request.POST)
         request.user.reply = None
@@ -169,13 +173,14 @@ def new_message(request, **kwargs):
             message = Message(sender=sender, receiver=receiver, subject=subject, body=body, sent_date=sent_date)
             message.save()
             return HttpResponseRedirect(reverse('registration:inbox'))
+            return HttpResponseRedirect(reverse('registration:success-message'))
     else:
         form = MessageForm()
         if kwargs:
             if kwargs['reply']:
                 form = MessageForm({'receiver': kwargs['reply']})
     return render(request, 'registration/new-message.html', {
-        'form': form, 'users': user_list, 'user': request.user
+        'form': form, 'users': user_list, 'user': request.user, 'user_profile':user_profile, 'profiles':profile_list
     })
 
 
@@ -376,6 +381,14 @@ def reports_users(request):
     user_list = list(user_profile)
     return render(request, 'registration/details-of-users.html', {'user': user_profile, 'user_list': user_list})
 
+def parent_list(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    return render(request, 'registration/parent-list.html', {'user': user_profile, 'user_list': user_list})
+
+
+# if form.cleaned_data['type'] == 'parent':
 def avg_points(request):
     user = request.user
     up1 = get_object_or_404(UserProfile, user=user)
@@ -396,6 +409,11 @@ def exit_game(request):
     for i in session:
         i.time_stop = datetime.now()
         i.save()
+    if user_profile.points > 1000 and user_profile.points < 10000:
+        user_profile.level += 1
+        user_profile.save()
+        return render(request, 'registration/level-up.html', {'up1': user_profile})
+
     return HttpResponseRedirect(reverse('registration:index'))
 
 def total_time_son(request):
@@ -424,6 +442,12 @@ def rank_game(request):
 
 def rank_success(request):
     return render(request, 'registration/rank-success.html')
+
+def success_message(request):
+    return render(request, 'registration/success-message.html')
+
+def success_level(request):
+    return render(request, 'registration/success-level.html')
 
 def rank_for_admin(request):
     user = request.user
@@ -473,6 +497,94 @@ def report_user(request):
     return render(request, 'registration/report-user.html', {'form': form, 'users': users})
 
 
+def level_of_son(request):
+    if request.method == 'POST':
+        form = ChooseLevelSon(request.POST)
+        if form.is_valid():
+            level_val = form.cleaned_data['level']
+            user = request.user
+            up1 = get_object_or_404(UserProfile, user=user)
+            current_user_profile = UserProfile.objects.get(user=request.user)
+            son_user = User.objects.get(username=current_user_profile.son.username)
+            son_profile = UserProfile.objects.get(user=son_user)
+            son_profile.level = level_val
+            son_profile.save()
+        return HttpResponseRedirect(reverse('registration:success-level'))
+    else :
+        form = ChooseLevelSon()
+    current_user_profile = UserProfile.objects.get(user=request.user)
+    son_user = User.objects.get(username=current_user_profile.son.username)
+    son_profile = UserProfile.objects.get(user=son_user)
+    context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile, 'form':form}
+    return render(request, 'registration/level-of-son.html', context)
+
+
+def lottery_for_tournament(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    list1 = []
+    list2 = []
+    list3 = []
+    list4 = []
+    listof2 = []
+    lastlist = []
+    templist = user_list
+    i = len(templist) // 2
+    for _ in range(i):
+        listof2 = random.choices(templist, k=2)
+        while (listof2[0] == listof2[1]):
+            listof2 = random.choices(templist, k=2)
+        tuple1 = [listof2[0], listof2[1]]
+        lastlist.append(tuple1)
+        templist.remove(listof2[0])
+        templist.remove(listof2[1])
+    list1 = lastlist[0][0]
+    list2=lastlist[0][1]
+    list3 = lastlist[1][0]
+    list4 = lastlist[2][1]
+    list5 = lastlist[3][0]
+    list6 = lastlist[1][1]
+    list7 = lastlist[2][0]
+    list8 = lastlist[3][1]
+    return render(request, 'registration/lottery.html', { 'last':lastlist,'list1':list1, 'list2':list2, 'list3':list3, 'list4':list4,
+                                                          'list5':list5, 'list6':list6, 'list7':list7, 'list8':list8})
+
+def send_game(request):
+    data = request.body.decode('utf-8')
+    received_json_data = json.loads(data)
+    moves = received_json_data['moves']
+    mistakes = received_json_data['mistakes']
+    up = UserProfile.objects.get(user=request.user)
+    print(moves)
+    return HttpResponse("hello")
+
+# def invite_friend(request, username):
+#     if request.method == 'POST':
+#         form = InviteFriend(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             user = get_object_or_404(User, username=username)
+#             userprofile = get_object_or_404(UserProfile, user=user)
+#             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_friend'])
+#             userprofile.friend = friend_user
+#             userprofile.save()
+#             return HttpResponseRedirect(reverse('registration:index'))
+#     else:
+#         form = ParentForm()
+#     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
+    #
+    # def send_game(request):
+    #     data = request.body.decode('utf-8')
+    #     received_json_data = json.loads(data)
+    #     moves = received_json_data['moves']
+    #     mistakes = received_json_data['mistakes']
+    #     user = request.user
+    #     up1 = get_object_or_404(UserProfile, user=user)
+    #     up1.points += 100 - mistakes
+    #     up1.save()
+    #     print(up1.points)
+    #     return HttpResponse("hello")
         # def logout(request):
         #     userprofile = UserProfile.objects.get(user=request.user)
         #     td = datetime.now() - userprofile.last_login
@@ -483,13 +595,13 @@ def report_user(request):
         #     if hasattr(request, 'user'):
         #         request.user = AnonymousUser()
         #     return HttpResponseRedirect(reverse('registration:index'))
-def send_game(request):
-    data = request.body.decode('utf-8')
-    received_json_data = json.loads(data)
-    moves = received_json_data['moves']
-    mistakes = received_json_data['mistakes']
-    print(f'moves={moves}. mistakes={mistakes}')
-    return HttpResponse("hello")
+# def send_game(request):
+#     data = request.body.decode('utf-8')
+#     received_json_data = json.loads(data)
+#     moves = received_json_data['moves']
+#     mistakes = received_json_data['mistakes']
+#     print(f'moves={moves}. mistakes={mistakes}')
+#     return HttpResponse("hello")
 
 
 def time_restriction(request):

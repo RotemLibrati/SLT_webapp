@@ -26,7 +26,7 @@ class ProfileForm(forms.ModelForm):
 
 
 class ParentForm(forms.ModelForm):
-    chosen_son = forms.CharField(max_length=25)
+    #chosen_son = forms.CharField(max_length=25)
 
     class Meta:
         model = UserProfile
@@ -84,3 +84,14 @@ class GameForm(forms.Form):
 
 class OnlineLimitForm(forms.Form):
     minutes = forms.IntegerField(initial=0)
+
+
+class ChooseLevelSon(forms.Form):
+    LEVEL = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
+    level = forms.IntegerField(widget=forms.Select(choices=LEVEL))
+
+class InviteFriend(forms.ModelForm):
+
+    class Meta:
+        model = Friend
+        fields = ('users',)

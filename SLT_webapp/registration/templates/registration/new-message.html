@@ -8,6 +8,20 @@
         <li>{{user}}</li>
     {% endfor %}
     </ul>
+    {% if user_profile.type == 'parent' %}
+<h>Parent list:</h><br>
+<ul>
+{% for f in profiles %}
+
+{% if f.type == 'parent' %}
+  <li>
+<h>{{f}}</h><br>
+ </li>
+{% endif %}
+
+{% endfor %}
+    </ul>
+{% endif%}
     {{form.as_p}}
     <button type="submit">Submit</button>
 </form>

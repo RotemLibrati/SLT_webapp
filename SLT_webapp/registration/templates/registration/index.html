@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  background-image: url('https://i.ytimg.com/vi/w-AIVFo6PfU/maxresdefault.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
 
 <!--<style>-->
 <!--body {-->
@@ -8,11 +18,10 @@
 <!--}-->
 <!--</style>-->
 
-<!--&lt;!&ndash;<style>&ndash;&gt;-->
-<!--&lt;!&ndash;body {&ndash;&gt;-->
-<!--&lt;!&ndash;  background-image: url('https://www.pqpq2.co.il/productImages2/127/2018/02/18/image1518956383.jpg');&ndash;&gt;-->
-<!--&lt;!&ndash;}&ndash;&gt;-->
-<!--</style>-->
+</style>
+<body>
+<p><font color="black">
+
 {% block title %}
     <h1>Sign Language Teacher</h1>
 <!--<h1 style="background-color:DodgerBlue;">Sign Language Teacher</h1>-->
@@ -30,26 +39,30 @@
         <a href="{% url 'registration:new-user' %}">Make a new user</a><br>
     {% endif %}
     {% if user.is_authenticated %}
-        <a href="{% url 'registration:game' %}">Play the game</a><br>
-        <a href="{% url 'registration:profile' %}">Profile menu</a><br>
-        <a href="{% url 'registration:add-friend' %}">Manage friends</a><br>
-        <a href="{% url 'registration:inbox' %}">Mail</a><br>
-        <a href="{% url 'registration:user_list' %}">Chat</a><br>
-        <a href="{% url 'registration:notifications' %}">Notiifications</a><br>
+        <a href="{% url 'registration:game' %}"style="color:black">Play the game</a><br>
+        <a href="{% url 'registration:profile' %}"style="color:black">Profile menu</a><br>
+        <a href="{% url 'registration:add-friend' %}"style="color:black">Manage friends</a><br>
+        <a href="{% url 'registration:inbox' %}"style="color:black">Mail</a><br>
+        <a href="{% url 'registration:user_list' %}"style="color:black">Chat</a><br>
+        <a href="{% url 'registration:notifications' %}"style="color:black">Notifications</a><br>
         {% if profile.type == 'student' %}
-            <a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
-            <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
+            <a href="{% url 'registration:make-new-card' %}"style="color:black">Make a new card</a><br>
+            <a href="{% url 'registration:rank-game' %}"style="color:black">Rank game</a><br>
         {% endif %}
         {% if profile.type == 'parent' %}
             <a href="{% url 'registration:total-time-son' %}">Report total time of son</a><br>
             <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
             <a href="{% url 'registration:time-restriction' %}">Set limitation for son</a><br>
+            <a href="{% url 'registration:parent-list' %}">Parent list</a><br>
+            <a href="{% url 'registration:level-of-son' %}">Your son's level</a><br>
         {% endif %}
         {% if profile.is_admin %}
-            <a href="{% url 'registration:reports-menu' %}">Reports menu</a><br>
+            <a href="{% url 'registration:reports-menu' %}"style="color:black">Reports menu</a><br>
+            <a href="{% url 'registration:lottery' %}"style="color:black">Lottery for tournament</a><br>
         {% endif %}
-        <a href="{% url 'registration:reports-menu-users' %}">Reports menu users</a><br>
-        <a href="{% url 'registration:info' %}">Game instructions</a><br>
-        <a href="{% url 'registration:logout' %}">Logout</a><br>
+        <a href="{% url 'registration:reports-menu-users' %}"style="color:black">Reports menu users</a><br>
+        <a href="{% url 'registration:info' %}"style="color:black">Game instructions</a><br>
+        <a href="{% url 'registration:logout' %}"style="color:black">Logout</a><br>
     {% endif %}
 {% endblock %}
+</font></p>

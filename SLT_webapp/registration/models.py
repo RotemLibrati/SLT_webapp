@@ -33,6 +33,7 @@ class UserProfile(models.Model):
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
     rank = models.IntegerField(default=0)
     limitation = models.IntegerField(default=-1)
+    level = models.IntegerField(default=1)
 
     def was_born_recently(self):
         if self.age <= 0:
