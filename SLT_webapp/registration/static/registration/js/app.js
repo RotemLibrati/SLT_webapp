@@ -72,6 +72,7 @@ function startGame(){
     // reset moves
     moves = 0;
     counter.innerHTML = moves;
+    mistakes = 0;
     // reset rating
     for (var i= 0; i < stars.length; i++){
         stars[i].style.color = "#FFD700";
@@ -210,7 +211,7 @@ function congratulations(){
         finalTime = timer.innerHTML;
 
         // show congratulations modal
-        modal.classList.add("show");
+        //modal.classList.add("show");
 
         // declare star rating variable
         var starRating = document.querySelector(".stars").innerHTML;

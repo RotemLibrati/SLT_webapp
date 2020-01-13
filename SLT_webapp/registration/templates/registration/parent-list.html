@@ -1,0 +1,39 @@
+<h>Parent list:</h><br>
+<br>
+<ul>
+{% for f in user_list %}
+
+{% if f.type == 'parent' %}
+    <li>
+<h>{{f}}</h><br>
+ </li>
+{% endif %}
+
+{% endfor %}
+    </ul>
+
+<h style="font-size:20px;";>if you want to send a message to other parents</h><br>
+<html>
+<head>
+<style>
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<form action="{% url 'registration:new-message' %}" method="POST">
+    {% csrf_token %}
+<button class="button">Send message</button>
+
+    </form>
+<a href="{% url 'registration:index' %}">Return to main menu</a><br>

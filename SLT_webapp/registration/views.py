@@ -143,7 +143,9 @@ def delete_message(request, message_id):
 def new_message(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
+    user_profile = UserProfile.objects.get(user=request.user)
     user_list = User.objects.all()
+    profile_list = UserProfile.objects.all()
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -163,7 +165,7 @@ def new_message(request):
     else:
         form = MessageForm()
     return render(request, 'registration/new-message.html', {
-        'form': form, 'users': user_list, 'user': request.user
+        'form': form, 'users': user_list, 'user': request.user, 'user_profile':user_profile, 'profiles':profile_list
     })
 
 
@@ -272,16 +274,7 @@ def new_profile_parent(request, username):
 #     model = UserProfile
 #     template_name = 'registration/details.html'
 
-def send_game(request):
-    data = request.body.decode('utf-8')
-    received_json_data = json.loads(data)
-    moves = received_json_data['moves']
-    mistakes = received_json_data['mistakes']
-    user = request.user
-    up1 = get_object_or_404(UserProfile, user=user)
-    up1.points += 100-mistakes
-    up1.save()
-    return HttpResponse("hello")
+
 
 
 def make_new_card(request):
@@ -372,6 +365,14 @@ def reports_users(request):
     user_list = list(user_profile)
     return render(request, 'registration/details-of-users.html', {'user': user_profile, 'user_list': user_list})
 
+def parent_list(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    user_list = list(user_profile)
+    return render(request, 'registration/parent-list.html', {'user': user_profile, 'user_list': user_list})
+
+
+# if form.cleaned_data['type'] == 'parent':
 def avg_points(request):
     user = request.user
     up1 = get_object_or_404(UserProfile, user=user)
@@ -508,16 +509,26 @@ def lottery_for_tournament(request):
     return render(request, 'registration/lottery.html', {'user': user_profile, 'user_list': user_list, 'last':lastlist,
                                                          'list1':list1, 'list2':list2, 'list3':list3, 'list4':list4})
 
-
-
-
-
-
-
-
-
-
-
+def send_game(request):
+    data = request.body.decode('utf-8')
+    received_json_data = json.loads(data)
+    moves = received_json_data['moves']
+    mistakes = received_json_data['mistakes']
+    up = UserProfile.objects.get(user=request.user)
+    print(moves)
+    return HttpResponse("hello")
+    #
+    # def send_game(request):
+    #     data = request.body.decode('utf-8')
+    #     received_json_data = json.loads(data)
+    #     moves = received_json_data['moves']
+    #     mistakes = received_json_data['mistakes']
+    #     user = request.user
+    #     up1 = get_object_or_404(UserProfile, user=user)
+    #     up1.points += 100 - mistakes
+    #     up1.save()
+    #     print(up1.points)
+    #     return HttpResponse("hello")
         # def logout(request):
         #     userprofile = UserProfile.objects.get(user=request.user)
         #     td = datetime.now() - userprofile.last_login

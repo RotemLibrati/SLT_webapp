@@ -36,7 +36,7 @@ body {
         <a href="{% url 'registration:add-friend' %}"style="color:black">Manage friends</a><br>
         <a href="{% url 'registration:inbox' %}"style="color:black">Mail</a><br>
         <a href="{% url 'registration:user_list' %}"style="color:black">Chat</a><br>
-        <a href="{% url 'registration:notifications' %}"style="color:black">Notiifications</a><br>
+        <a href="{% url 'registration:notifications' %}"style="color:black">Notifications</a><br>
         {% if profile.type == 'student' %}
             <a href="{% url 'registration:make-new-card' %}"style="color:black">Make a new card</a><br>
             <a href="{% url 'registration:rank-game' %}"style="color:black">Rank game</a><br>
@@ -44,6 +44,7 @@ body {
         {% if profile.type == 'parent' %}
             <a href="{% url 'registration:total-time-son' %}">Report total time of son</a><br>
             <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
+            <a href="{% url 'registration:parent-list' %}">Parent list</a><br>
         {% endif %}
         {% if profile.is_admin %}
             <a href="{% url 'registration:reports-menu' %}"style="color:black">Reports menu</a><br>
