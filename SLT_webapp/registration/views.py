@@ -339,9 +339,9 @@ def game(request):
     if not suspended:
         session = GameSession(user=context['profile'])
         session.save()
-        image = Card.objects.all().order_by('?')
-        # rand = random.sample(image, 3)
-        context['image'] = image
+        image = list(Card.objects.all())
+        rand = random.sample(image, 8)
+        context['image'] = rand
         return render(request, 'registration/game.html', context)
     else:
         return render(request, 'registration/suspended.html', context)
