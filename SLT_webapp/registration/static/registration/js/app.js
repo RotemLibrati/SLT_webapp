@@ -1,4 +1,5 @@
 // cards array holds all cards
+// cards array holds all cards
 let card = document.getElementsByClassName("card");
 let cards = [...card];
 
@@ -8,6 +9,8 @@ const deck = document.getElementById("card-deck");
 // declaring move variable
 let moves = 0;
 let counter = document.querySelector(".moves");
+
+let mistakes = 0;
 
 // declare variables for star icons
 const stars = document.querySelectorAll(".fa-star");
@@ -102,6 +105,7 @@ function cardOpen() {
             matched();
         } else {
             unmatched();
+            mistakes++;
         }
     }
 };
@@ -243,5 +247,35 @@ for (var i = 0; i < cards.length; i++){
     card = cards[i];
     card.addEventListener("click", displayCard);
     card.addEventListener("click", cardOpen);
-    card.addEventListener("click",congratulations);
+//    card.addEventListener("click",congratulations);
 };
+function stuff(){
+    let data = {
+        'moves': moves,
+        'mistakes': mistakes,
+        'mistakes': mistakes,
+    };
+    let csrftoken = getCookie('csrftoken');
+    let response = fetch("http://127.0.0.1:8000/sign-language-teacher/send-game/", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { "X-CSRFToken": csrftoken },
+    })
+
+    // The following function are copying from
+    // https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+}

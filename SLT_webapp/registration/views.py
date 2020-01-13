@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.core.serializers import json
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -271,6 +272,17 @@ def new_profile_parent(request, username):
 #     model = UserProfile
 #     template_name = 'registration/details.html'
 
+def send_game(request):
+    data = request.body.decode('utf-8')
+    received_json_data = json.loads(data)
+    moves = received_json_data['moves']
+    mistakes = received_json_data['mistakes']
+    user = request.user
+    up1 = get_object_or_404(UserProfile, user=user)
+    up1.points += 100-mistakes
+    up1.save()
+    return HttpResponse("hello")
+
 
 def make_new_card(request):
     if request.user is None or not request.user.is_authenticated:
@@ -378,6 +390,11 @@ def exit_game(request):
     for i in session:
         i.time_stop = datetime.now()
         i.save()
+    if user_profile.points > 1000 and user_profile.points < 10000:
+        user_profile.level += 1
+        user_profile.save()
+        return render(request, 'registration/level-up.html', {'up1': user_profile})
+
     return HttpResponseRedirect(reverse('registration:index'))
 
 def total_time_son(request):
@@ -456,6 +473,13 @@ def report_user(request):
         users = list(User.objects.all())
         form = ReportUserForm()
     return render(request, 'registration/report-user.html', {'form': form, 'users': users})
+
+
+
+    # up1 = get_object_or_404(UserProfile, user=user)
+    # up1.rank = rank_val
+
+
 
 def lottery_for_tournament(request):
     user = request.user

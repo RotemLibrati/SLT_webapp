@@ -31,6 +31,7 @@ class UserProfile(models.Model):
     total_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
     rank = models.IntegerField(default=0)
+    level = models.IntegerField(default=1)
 
     def was_born_recently(self):
         if self.age <= 0:
