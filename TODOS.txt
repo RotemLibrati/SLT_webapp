@@ -12,5 +12,4 @@
 # TODO: 26: add time limitation option by parent and alerts when exceeded limitation
 # TODO: 27: report of amount of time played by son
 # TODO: 29: 2 vs 2 multiplayer
-# TODO: 30: option for parent to set difficulty level for son - Rotem
 # TODO: 33: alert when son won a prize
