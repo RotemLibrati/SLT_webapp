@@ -35,55 +35,53 @@
         </section>
 
         <ul class="deck" id="card-deck">
-
             <li class="card" type="diamond">
+                <img src="{{ image.0.image.url }}" alt="image">
+            </li>
+            <li class="card" type="diamond">
+                {{ image.0.word }}
+            </li>
+            <li class="card" type="plane">
                 <img src="{{ image.1.image.url }}" alt="image">
             </li>
-            <li class="card" type="diamond">
-                {{ image.1.word }}
-            </li>
-
-            <li class="card" type="plane">
+            <li class="card match" type="anchor">
                 <img src="{{ image.2.image.url }}" alt="image">
             </li>
-            <li class="card match" type="anchor">
+            <li class="card" type="bolt" >
                 <img src="{{ image.3.image.url }}" alt="image">
             </li>
-            <li class="card" type="bolt" >
+            <li class="card" type="cube">
                 <img src="{{ image.4.image.url }}" alt="image">
             </li>
-            <li class="card" type="cube">
-                <img src="{{ image.5.image.url }}" alt="image">
-            </li>
             <li class="card match" type="anchor">
-                {{ image.3.word }}
-            </li>
-            <li class="card" type="leaf">
-                <img src="{{ image.6.image.url }}" alt="image">
-            </li>
-            <li class="card" type="bicycle">
-                <img src="{{ image.7.image.url }}" alt="image">
-            </li>
-            <li class="card" type="bomb">
-                <img src="{{ image.8.image.url }}" alt="image">
-            </li>
-            <li class="card" type="leaf">
-                {{ image.6.word }}
-            </li>
-            <li class="card" type="bomb">
-                {{ image.8.word }}
-            </li>
-            <li class="card open show" type="bolt">
-                {{ image.4.word }}
-            </li>
-            <li class="card" type="bicycle">
-                {{ image.7.word }}
-            </li>
-            <li class="card" type="plane">
                 {{ image.2.word }}
             </li>
-            <li class="card" type="cube">
+            <li class="card" type="leaf">
+                <img src="{{ image.5.image.url }}" alt="image">
+            </li>
+            <li class="card" type="bicycle">
+                <img src="{{ image.6.image.url }}" alt="image">
+            </li>
+            <li class="card" type="bomb">
+                <img src="{{ image.7.image.url }}" alt="image">
+            </li>
+            <li class="card" type="leaf">
                 {{ image.5.word }}
+            </li>
+            <li class="card" type="bomb">
+                {{ image.7.word }}
+            </li>
+            <li class="card open show" type="bolt">
+                {{ image.3.word }}
+            </li>
+            <li class="card" type="bicycle">
+                {{ image.6.word }}
+            </li>
+            <li class="card" type="plane">
+                {{ image.1.word }}
+            </li>
+            <li class="card" type="cube">
+                {{ image.4.word }}
             </li>
         </ul>
 
