@@ -1,5 +1,4 @@
 # TODO: 1: implement card authorization by admin
-# TODO: 5: make report by age and address
 # TODO: 6: implement page to suspend user by admin
 # TODO: 7: tourneer games (multiplayer)
 # TODO: 8: tourneer randomizer function
