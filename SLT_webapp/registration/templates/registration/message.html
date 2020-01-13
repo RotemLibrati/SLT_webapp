@@ -1,9 +1,9 @@
-{% extends 'registration/index.html' %}
-{% block content %}
+
     {% if message %}
         <h3><strong>Subject:</strong> {{message.subject}}</h3>
         <p><strong>Sender:</strong> {{message.sender}}. <strong>Receiver:</strong> {{message.receiver}}</p>
         <p><strong>Content:</strong></p>
         <p>{{message.body}}</p>
     {% endif %}
-{% endblock %}
+<a href="{% url 'registration:inbox' %}">Mail</a><br>
+ <a href="{% url 'registration:index' %}">Return to main menu</a><br>

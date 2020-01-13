@@ -158,7 +158,7 @@ def new_message(request):
             sent_date = datetime.now()
             message = Message(sender=sender, receiver=receiver, subject=subject, body=body, sent_date=sent_date)
             message.save()
-            HttpResponseRedirect(reverse('registration:inbox'))
+            return HttpResponseRedirect(reverse('registration:success-message'))
     else:
         form = MessageForm()
     return render(request, 'registration/new-message.html', {
@@ -406,6 +406,9 @@ def rank_game(request):
 
 def rank_success(request):
     return render(request, 'registration/rank-success.html')
+
+def success_message(request):
+    return render(request, 'registration/success-message.html')
 
 def rank_for_admin(request):
     user = request.user

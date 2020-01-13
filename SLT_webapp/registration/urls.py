@@ -43,4 +43,5 @@ urlpatterns = [
     path('report-user/', views.report_user, name='report-user'),
     path('/reports-menu-users/active-users/', views.active_users_page, name='active-users'),
     path('/reports-menu-users/', views.reports_menu_users, name='reports-menu-users'),
+    path('/success-message/', views.success_message, name='success-message'),
 ]
