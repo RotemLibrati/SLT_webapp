@@ -75,3 +75,7 @@ class RankGameForm(forms.Form):
 class ReportUserForm(forms.Form):
     user_name = forms.CharField(max_length=50)
     reason = forms.CharField(max_length=100, widget=forms.Textarea)
+
+class GameForm(forms.Form):
+    moves = forms.IntegerField()
+    mistakes = forms.IntegerField()

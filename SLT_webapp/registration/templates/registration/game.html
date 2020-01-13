@@ -85,23 +85,7 @@
             </li>
         </ul>
 
-        <div id="popup1" class="overlay">
-            <div class="popup">
-                <h2>Congratulations 🎉</h2>
-                <a class="close" href=# >×</a>
-                <div class="content-1">
-                    Congratulations you're a winner 🎉🎉
-                </div>
-                <div class="content-2">
-                    <p>You made <span id=finalMove> </span> moves </p>
-                    <p>in <span id=totalTime> </span> </p>
-                    <p>Rating:  <span id=starRating></span></p>
-                </div>
-                <button id="play-again"onclick="playAgain()">
-                    Play again 😄</a>
-                </button>
-            </div>
-        </div>
+
 
     </div>
     <script src="{% static 'registration/js/app.js' %}"></script>
@@ -110,7 +94,7 @@
     <a href="{% url 'registration:new-user' %}">Make a new user</a><br>
 {% endif %}
 {% if user.is_authenticated %}
-    <button id="send game" onclick="stuff()">Save game</button>
+    <button id="send-game" onclick="stuff()">Save game</button>
     <br>
     <a href="{% url 'registration:game' %}">Restart the game</a><br>
     <a href="{% url 'registration:exit' %}">Exit game</a><br>

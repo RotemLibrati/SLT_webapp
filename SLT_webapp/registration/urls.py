@@ -27,6 +27,7 @@ urlpatterns = [
     path('inbox/new-message/', views.new_message, name='new-message'),
     path('active-games/', views.active_games, name='active-games'),
     path('exit/', views.exit_game, name='exit'),
+    path('send-game/', views.send_game, name='send-game'),
     path('total-time-son/', views.total_time_son, name='total-time-son'),
     url(
         regex=r'^chat$',
@@ -45,5 +46,5 @@ urlpatterns = [
     path('/reports-menu-users/', views.reports_menu_users, name='reports-menu-users'),
     path('/success-message/', views.success_message, name='success-message'),
     path('/lottery/', views.lottery_for_tournament, name='lottery'),
-    path('/send-game/', views.send_game, name='send-game'),
+    path('/parent-list/', views.parent_list, name='parent-list'),
 ]
