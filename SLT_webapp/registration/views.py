@@ -193,7 +193,7 @@ def profile(request):
         friends = list(map(lambda x: x.username, friend.users.all()))
     except (TypeError, Friend.DoesNotExist):
         friends = []
-        messages.add_message(request, messages.INFO, 'Hello world.')
+        # messages.add_message(request, messages.INFO, 'Hello world.')
     up1 = get_object_or_404(UserProfile, user=u1)
     messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
     for m in messagesList:

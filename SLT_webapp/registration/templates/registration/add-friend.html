@@ -1,16 +1,14 @@
-
-
+{% extends 'registration/SubPage.html' %}
+    {% block title %}
+    <h2>Friend Dddition Menu</h2>
+    {% endblock %}
+    {% block data %}
+        <h3>Choose Your Friend From The List Below</h3><br>
 <form action="{% url 'registration:add-friend' %}" method="POST">
     {% csrf_token %}
-    <h2>Friend addition menu</h2>
-    <h3>Users:</h3><br>
-    <ul>
-    {% for user in users %}
-        <li>{{user}}</li>
-    {% endfor %}
-    </ul>
     {{form.as_p}}
-    <button type="submit">Submit</button>
+    <button type="submit" >Submit</button>
 </form>
-<a href="{% url 'registration:inbox' %}">Mail</a><br>
-<a href="{% url 'registration:index' %}">Return to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt fit">Return to main menu</a><br>
+        {% endblock %}
+

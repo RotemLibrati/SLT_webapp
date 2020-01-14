@@ -27,8 +27,8 @@ class ProfileForm(forms.ModelForm):
 
 class ParentForm(forms.Form):
     set = User.objects.all()
-    CHOICES=list(map(lambda x: (str(x.username), str(x.username)) ,set))
-    chosen_son = forms.CharField(label = "choose a sun", widget=forms.Select(choices=CHOICES))
+    CHOICES=list(map(lambda x: (str(x.username), str(x.username)), set))
+    chosen_son = forms.CharField(label = "Choose Your Son", widget=forms.Select(choices=CHOICES))
 
 
 
@@ -58,8 +58,10 @@ class CompleteUserForm(UserCreationForm):
 
 
 class FriendForm(forms.Form):
+    set = User.objects.all()
+    USERS=list(map(lambda x: (str(x.username), str(x.username)), set))
+    new_friend = forms.CharField( widget=forms.Select(choices=USERS))
     ACTIONS = (('Add', 'Add'), ('Remove', 'Remove'))
-    new_friend = forms.CharField(max_length=25)
     action = forms.CharField(max_length=25, widget=forms.Select(choices=ACTIONS))
 
 
