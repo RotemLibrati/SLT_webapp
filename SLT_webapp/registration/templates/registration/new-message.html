@@ -3,11 +3,6 @@
     {% csrf_token %}
     <h2>New message</h2>
     <h3>Users:</h3><br>
-    <ul>
-    {% for user in users %}
-        <li>{{user}}</li>
-    {% endfor %}
-    </ul>
     {% if user_profile.type == 'parent' %}
 <h>Parent list:</h><br>
 <ul>

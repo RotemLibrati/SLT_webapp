@@ -90,3 +90,7 @@ class ChooseLevelSon(forms.Form):
 class InviteFriend(forms.Form):
     chosen_friend = forms.CharField(max_length=25)
 
+
+class SuspendUsers(forms.Form):
+    chosen_suspend = forms.CharField(max_length=25)
+

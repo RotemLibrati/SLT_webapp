@@ -51,4 +51,5 @@ urlpatterns = [
     path('/success-level/', views.success_level, name='success-level'),
     path('/invite-friend/', views.invite_friend, name='invite-friend'),
     path('/success-invite/', views.success_invite, name='success-invite'),
+    path('/suspend-users/', views.suspend_users, name='suspend-users'),
 ]
