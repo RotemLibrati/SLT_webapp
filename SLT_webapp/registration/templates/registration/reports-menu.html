@@ -1,4 +1,25 @@
-
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Reports Menu - Admin Page</h2>
+{% endblock %}
+{% block data %}
+<header class="align-center" >
+                        <h2><a href="{% url 'registration:active-users' %}" style="text-decoration: none; color: #000000">Active users</a></h2>
+                    </header>
+<header class="align-center" >
+                        <h2><a href="{% url 'registration:avg-points' %}" style="text-decoration: none; color: #000000">Average points</a></h2>
+                    </header>
+<header class="align-center" >
+                        <h2><a href="{% url 'registration:active-games' %}" style="text-decoration: none; color: #000000">Active games</a></h2>
+                    </header>
+<header class="align-center" >
+                        <h2><a href="{% url 'registration:details-of-users' %}" style="text-decoration: none; color: #000000">Details of users</a></h2>
+                    </header>
+<header class="align-center" >
+                        <h2><a href="{% url 'registration:rank-for-admin' %}" style="text-decoration: none; color: #000000">Rank of users</a></h2>
+                    </header>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
 <a href="{% url 'registration:avg-points' %}">Average points</a><br>
 <a href="{% url 'registration:details-of-users' %}">Details of users</a><br>
 <a href="{% url 'registration:rank-for-admin' %}">Rank of users</a><br>

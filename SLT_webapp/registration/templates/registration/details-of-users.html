@@ -1,9 +1,41 @@
-<h style="font-size:20px;"; >All users details  </h><br>
-<br>
-{% for f in user_list %}
-<li>Username: {{f.user}}</li>
-<li>Age: {{f.age}}</li>
-<li>Address: {{f.address}}</li><br>
-{% endfor %}
-<a href="{% url 'registration:reports-menu' %}">Return to reports </a><br>
-<a href="{% url 'registration:index' %}">Go to main menu</a><br>
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+<h2>Details Of Users</h2>
+{% endblock %}
+{% block data %}
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Age</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        {% for f in user_list %}
+        <tbody>
+        <tr>
+            <td>{{f.user}}</td>
+            <td>{{f.age}}</td>
+            <td>{{f.address}}</td>
+        </tr>
+        </tbody>
+        {% endfor %}
+        <tfoot> </tfoot>
+    </table>
+</div>
+{% if not user_list %}
+        <p>No Users.</p>
+    {% endif %}
+
+  {% if up.type == 'student' %}
+  <a href="{% url 'registration:reports-menu-users' %}"class="button alt">Return to reports - users</a><br>
+{% else %}
+    <a href="{% url 'registration:reports-menu-users' %}"class="button alt">Return to reports - users</a><br>
+{% endif %}
+{% if up.is_admin %}
+ <a href="{% url 'registration:reports-menu' %}"class="button alt">Return to reports - Admin</a><br>
+{% endif %}
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

@@ -1,9 +1,15 @@
-
-<h>The game in tournament:</h><br>
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Tournament Page</h2>
+{% endblock %}
+{% block data %}
+<h2>The game in tournament:</h2><br>
 <br>
+
 <h style="font-size:20px;";>{{list1}} V.S {{list2}}</h><br>
 <h style="font-size:20px;";>{{list3}} V.S {{list4}}</h><br>
 <h style="font-size:20px;";>{{list5}} V.S {{list6}}</h><br>
 <h style="font-size:20px;";>{{list7}} V.S {{list8}}</h><br>
 <br>
-<a href="{% url 'registration:index' %}">Return to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
