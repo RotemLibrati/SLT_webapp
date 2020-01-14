@@ -1,16 +1,22 @@
-<h>{{u1.username}}</h><br>
-<h>Your points is:  </h>
-<h>{{up.points}}</h><br>
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Avarage Points</h2>
+{% endblock %}
+{% block data %}
+<h2>{{u1.username}}</h2><br>
+<h2>Your points is:  </h2>
+<h2>{{up.points}}</h2><br>
 
-<h>The average points of all users in game is :</h>
+<h3>The average points of all users in game is :</h3>
 
-<h>{{avg}}</h><br>
+<h3>{{avg}}</h3><br>
   {% if up.type == 'student' %}
-  <a href="{% url 'registration:reports-menu-users' %}">Return to reports users</a><br>
+  <a href="{% url 'registration:reports-menu-users' %}"class="button alt">Return to reports - users</a><br>
 {% else %}
-    <a href="{% url 'registration:reports-menu-users' %}">Return to reports users</a><br>
+    <a href="{% url 'registration:reports-menu-users' %}"class="button alt">Return to reports - users</a><br>
 {% endif %}
 {% if up.is_admin %}
- <a href="{% url 'registration:reports-menu' %}">Return to reports </a><br>
+ <a href="{% url 'registration:reports-menu' %}"class="button alt">Return to reports - Admin</a><br>
 {% endif %}
-<a href="{% url 'registration:index' %}">Go to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

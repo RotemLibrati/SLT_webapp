@@ -1,10 +1,12 @@
-
-    <h2>Card creation menu</h2>
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Card Creation Menu</h2>
+{% endblock %}
+{% block data %}
     <form action="{% url 'registration:card-check'%}" method="post" enctype="multipart/form-data">
-
     {% csrf_token%}
     {{form.as_p}}
     <input type="submit" value="Submit">
-
     </form>
-<a href="{% url 'registration:index' %}">Return to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
