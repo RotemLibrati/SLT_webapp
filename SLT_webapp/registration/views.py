@@ -431,6 +431,9 @@ def success_message(request):
 def success_level(request):
     return render(request, 'registration/success-level.html')
 
+def success_invite(request):
+    return render(request, 'registration/success-invite.html')
+
 def rank_for_admin(request):
     user = request.user
     user_profile = UserProfile.objects.all()
@@ -505,12 +508,9 @@ def lottery_for_tournament(request):
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
-    list1 = []
-    list2 = []
-    list3 = []
-    list4 = []
     listof2 = []
     lastlist = []
+    templist = user_list
     templist = user_list
     i = len(templist) // 2
     for _ in range(i):
@@ -522,7 +522,7 @@ def lottery_for_tournament(request):
         templist.remove(listof2[0])
         templist.remove(listof2[1])
     list1 = lastlist[0][0]
-    list2=lastlist[0][1]
+    list2 = lastlist[0][1]
     list3 = lastlist[1][0]
     list4 = lastlist[2][1]
     list5 = lastlist[3][0]
@@ -541,39 +541,18 @@ def send_game(request):
     print(moves)
     return HttpResponse("hello")
 
-# def invite_friend(request, username):
-#     if request.method == 'POST':
-#         form = InviteFriend(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             user = get_object_or_404(User, username=username)
-#             userprofile = get_object_or_404(UserProfile, user=user)
-#             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_friend'])
-#             userprofile.friend = friend_user
-#             userprofile.save()
-#             return HttpResponseRedirect(reverse('registration:index'))
-#     else:
-#         form = ParentForm()
-#     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
-    #
-    # def send_game(request):
-    #     data = request.body.decode('utf-8')
-    #     received_json_data = json.loads(data)
-    #     moves = received_json_data['moves']
-    #     mistakes = received_json_data['mistakes']
-    #     user = request.user
-    #     up1 = get_object_or_404(UserProfile, user=user)
-    #     up1.points += 100 - mistakes
-    #     up1.save()
-    #     print(up1.points)
-    #     return HttpResponse("hello")
-        # def logout(request):
-        #     userprofile = UserProfile.objects.get(user=request.user)
-        #     td = datetime.now() - userprofile.last_login
-        #     userprofile.total_minutes += (td.total_seconds() / 60)
-        #     userprofile.save()
-        #     request.session.flush()
-        #
-        #     if hasattr(request, 'user'):
-        #         request.user = AnonymousUser()
-        #     return HttpResponseRedirect(reverse('registration:index'))
+def invite_friend(request):
+    user = request.user
+    if request.method == 'POST':
+        form = InviteFriend(request.POST)
+        if form.is_valid():
+            receiver = form.cleaned_data['chosen_friend']
+            receiver_user = User.objects.get(username=receiver)
+            alert = Notifications(receiver=receiver_user, message=f'You have been invited to a game by {user.username}')
+            alert.save()
+        return HttpResponseRedirect(reverse('registration:success-invite'))
+    else:
+        form = InviteFriend()
+        friend = Friend.objects.filter(current_user=user)[0]
+        friend_list = list(map(lambda x: x.username, friend.users.all()))
+    return render(request, 'registration/invite-friend.html', {'form': form, 'friend': friend, 'friend_list':friend_list})

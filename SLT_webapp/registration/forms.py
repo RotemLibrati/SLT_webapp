@@ -25,7 +25,7 @@ class ProfileForm(forms.ModelForm):
         fields = ('address', 'age', 'type')
 
 
-class ParentForm(forms.ModelForm):
+class ParentForm(forms.Form):
     #chosen_son = forms.CharField(max_length=25)
 
     class Meta:
@@ -76,16 +76,17 @@ class ReportUserForm(forms.Form):
     user_name = forms.CharField(max_length=50)
     reason = forms.CharField(max_length=100, widget=forms.Textarea)
 
+
 class GameForm(forms.Form):
     moves = forms.IntegerField()
     mistakes = forms.IntegerField()
+
 
 class ChooseLevelSon(forms.Form):
     LEVEL = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
     level = forms.IntegerField(widget=forms.Select(choices=LEVEL))
 
-class InviteFriend(forms.ModelForm):
 
-    class Meta:
-        model = Friend
-        fields = ('users',)
+class InviteFriend(forms.Form):
+    chosen_friend = forms.CharField(max_length=25)
+
