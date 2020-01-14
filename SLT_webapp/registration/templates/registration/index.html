@@ -50,6 +50,7 @@ body {
         {% if profile.is_admin %}
             <a href="{% url 'registration:reports-menu' %}"style="color:black">Reports menu</a><br>
             <a href="{% url 'registration:lottery' %}"style="color:black">Lottery for tournament</a><br>
+            <a href="{% url 'registration:suspend-users' %}"style="color:black">Suspend users</a><br>
         {% endif %}
         <a href="{% url 'registration:invite-friend' %}"style="color:black">Invite your friend</a><br>
         <a href="{% url 'registration:reports-menu-users' %}"style="color:black">Reports menu users</a><br>

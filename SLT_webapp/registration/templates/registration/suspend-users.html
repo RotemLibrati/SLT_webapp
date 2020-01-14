@@ -6,7 +6,7 @@
 <form action="{% url 'registration:suspend-users'  %}" method="POST">
   {% csrf_token %}
   {{form.as_p}}
-     <button type="submit">Suspend</button>
+     <button type="submit">Invite</button>
     </form>
 
 <a href="{% url 'registration:index' %}">Return to main menu</a><br>
