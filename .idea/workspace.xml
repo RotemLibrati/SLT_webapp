@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game-sessions-report.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/limit-son.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/pending-cards.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/suspend-users.html" afterDir="false" />
+    <list default="true" id="b4f2c1b8-7f9b-4098-bc88-253d689c0070" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/success-invite.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/invite-friend.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/invite-friend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/level-of-son.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/level-of-son.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
@@ -18,9 +17,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="projectnew1" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,20 +50,16 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SLT_webapp/registration/static/registration/chatjs" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../../../Memory-game-2-master/Memory-game-2-master/index.html" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\uploads" />
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\sitestyle\assets\css" />
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\sitestyle" />
       <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\chatjs" />
       <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
       <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates" />
       <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates\registration\django_private_chat" />
     </key>
@@ -84,12 +76,33 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Unittests for registration.tests.IndexViewTests.test_details_title_users" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="New folder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SLT_webapp" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;registration.tests.IndexViewTests.test_details_title_users&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Unittests for registration.tests.IndexViewTests.test_details_title_users" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="" />
+      <changelist id="b4f2c1b8-7f9b-4098-bc88-253d689c0070" name="Default Changelist" comment="" />
       <created>1577126007240</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -250,65 +263,59 @@
       <option name="presentableId" value="LOCAL‎00024" />
       <updated>1578834555791</updated>
     </task>
-    <task id="LOCAL‎00025" summary="after merging with rotem">
-      <created>1578836438728</created>
-      <option name="number" value="LOCAL‎00025" />
-      <option name="presentableId" value="LOCAL‎00025" />
-      <updated>1578836438728</updated>
+    <task id="LOCAL-00025" summary="fix template message and message success">
+      <created>1578884743819</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1578884743819</updated>
     </task>
-    <task id="LOCAL‎00026" summary="after mergeing with omer">
-      <created>1578839733479</created>
-      <option name="number" value="LOCAL‎00026" />
-      <option name="presentableId" value="LOCAL‎00026" />
-      <updated>1578839733479</updated>
+    <task id="LOCAL-00026" summary="add lottery for tournament&#10;add tests of template">
+      <created>1578889822232</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1578889822232</updated>
     </task>
-    <task id="LOCAL‎00027" summary="added option to upload new images for the game.&#10;added option to show images instead normal fonts at the game.">
-      <created>1578923039503</created>
-      <option name="number" value="LOCAL‎00027" />
-      <option name="presentableId" value="LOCAL‎00027" />
-      <updated>1578923039503</updated>
+    <task id="LOCAL-00027" summary="background for opening">
+      <created>1578890757699</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1578890757699</updated>
     </task>
-    <task id="LOCAL‎00028" summary="added option to randomise the pictures before sending them to game area.&#10;added initial_data.json file to save time when making changes on database. the json file keep inside 2 admin users (admin 1, admin2) and the 8 built in cards of the game before we add others.&#10;bug fix on card image looking.">
-      <created>1578955462148</created>
-      <option name="number" value="LOCAL‎00028" />
-      <option name="presentableId" value="LOCAL‎00028" />
-      <updated>1578955462148</updated>
+    <task id="LOCAL-00028" summary="add level for players">
+      <created>1578949818151</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1578949818151</updated>
     </task>
-    <task id="LOCAL‎00029" summary="fix parent registration and in procces of tamplates design">
-      <created>1579020998317</created>
-      <option name="number" value="LOCAL‎00029" />
-      <option name="presentableId" value="LOCAL‎00029" />
-      <updated>1579020998317</updated>
+    <task id="LOCAL-00029" summary="parent can change the level of son">
+      <created>1578952719821</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1578952719821</updated>
     </task>
-    <task id="LOCAL‎00030" summary="inbox designed&#10;add-friend designed">
-      <created>1579026146248</created>
-      <option name="number" value="LOCAL‎00030" />
-      <option name="presentableId" value="LOCAL‎00030" />
-      <updated>1579026146248</updated>
+    <task id="LOCAL-00030" summary="lottery for tournament">
+      <created>1578954472233</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1578954472233</updated>
     </task>
-    <task id="LOCAL‎00031" summary="notifications template designed&#10;add_message template designed">
-      <created>1579029275555</created>
-      <option name="number" value="LOCAL‎00031" />
-      <option name="presentableId" value="LOCAL‎00031" />
-      <updated>1579029275555</updated>
+    <task id="LOCAL-00031" summary="fix register of parent">
+      <created>1578955779115</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1578955779115</updated>
     </task>
-    <task id="LOCAL‎00032" summary="active games template designed&#10;active users template designed&#10;avg points template designed&#10;details of users template designed&#10;lottery template designed&#10;make new card template designed&#10;rank for admin template designed&#10;rank game template designed&#10;reports menu template designed&#10;reports menu admin template designed">
-      <created>1579045168236</created>
-      <option name="number" value="LOCAL‎00032" />
-      <option name="presentableId" value="LOCAL‎00032" />
-      <updated>1579045168236</updated>
-    </task>
-    <task id="LOCAL‎00033" summary="chat template designed&#10;messages users template designed&#10;new message form bug&#10;remove warnings makers from urls">
-      <created>1579046877495</created>
-      <option name="number" value="LOCAL‎00033" />
-      <option name="presentableId" value="LOCAL‎00033" />
-      <updated>1579046877495</updated>
-    </task>
-    <option name="localTasksCounter" value="34" />
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -323,24 +330,11 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="User">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="me" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="123" />
+    <MESSAGE value="123444" />
     <MESSAGE value="1234445" />
     <MESSAGE value="555" />
     <MESSAGE value="game addition" />
@@ -357,16 +351,14 @@
     <MESSAGE value="report for parent finish" />
     <MESSAGE value="after new chat" />
     <MESSAGE value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
-    <MESSAGE value="after merging with rotem" />
-    <MESSAGE value="after mergeing with omer" />
-    <MESSAGE value="added option to upload new images for the game.&#10;added option to show images instead normal fonts at the game." />
-    <MESSAGE value="added option to randomise the pictures before sending them to game area.&#10;added initial_data.json file to save time when making changes on database. the json file keep inside 2 admin users (admin 1, admin2) and the 8 built in cards of the game before we add others.&#10;bug fix on card image looking." />
-    <MESSAGE value="fix parent registration and in procces of tamplates design" />
-    <MESSAGE value="inbox designed&#10;add-friend designed" />
-    <MESSAGE value="notifications template designed&#10;add_message template designed" />
-    <MESSAGE value="active games template designed&#10;active users template designed&#10;avg points template designed&#10;details of users template designed&#10;lottery template designed&#10;make new card template designed&#10;rank for admin template designed&#10;rank game template designed&#10;reports menu template designed&#10;reports menu admin template designed" />
-    <MESSAGE value="chat template designed&#10;messages users template designed&#10;new message form bug&#10;remove warnings makers from urls" />
-    <option name="LAST_COMMIT_MESSAGE" value="chat template designed&#10;messages users template designed&#10;new message form bug&#10;remove warnings makers from urls" />
+    <MESSAGE value="fix template message and message success" />
+    <MESSAGE value="add lottery for tournament&#10;add tests of template" />
+    <MESSAGE value="background for opening" />
+    <MESSAGE value="add level for players" />
+    <MESSAGE value="parent can change the level of son" />
+    <MESSAGE value="lottery for tournament" />
+    <MESSAGE value="fix register of parent" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix register of parent" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

@@ -26,11 +26,11 @@ class ProfileForm(forms.ModelForm):
 
 
 class ParentForm(forms.Form):
-    set = User.objects.all()
-    CHOICES=list(map(lambda x: (str(x.username), str(x.username)), set))
-    chosen_son = forms.CharField(label = "Choose Your Son", widget=forms.Select(choices=CHOICES))
+    #chosen_son = forms.CharField(max_length=25)
 
-
+    class Meta:
+        model = UserProfile
+        fields = ('son',)
 
 
 class CompleteUserForm(UserCreationForm):
@@ -58,19 +58,15 @@ class CompleteUserForm(UserCreationForm):
 
 
 class FriendForm(forms.Form):
-    set = User.objects.all()
-    USERS=list(map(lambda x: (str(x.username), str(x.username)), set))
-    new_friend = forms.CharField( widget=forms.Select(choices=USERS))
     ACTIONS = (('Add', 'Add'), ('Remove', 'Remove'))
+    new_friend = forms.CharField(max_length=25)
     action = forms.CharField(max_length=25, widget=forms.Select(choices=ACTIONS))
 
 
 class MessageForm(forms.Form):
-    set = User.objects.all()
-    USERS=list(map(lambda x: (str(x.username), str(x.username)), set))
-    receiver = forms.CharField( widget=forms.Select(choices=USERS))
+    receiver = forms.CharField(max_length=50, initial='user name')
     subject = forms.CharField(max_length=50, initial='message subject')
-    body = forms.CharField(max_length=5000, widget=forms.Textarea)
+    body = forms.CharField(max_length=250)
 
 class RankGameForm(forms.Form):
     RANK = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
@@ -80,20 +76,17 @@ class ReportUserForm(forms.Form):
     user_name = forms.CharField(max_length=50)
     reason = forms.CharField(max_length=100, widget=forms.Textarea)
 
+
 class GameForm(forms.Form):
     moves = forms.IntegerField()
     mistakes = forms.IntegerField()
+
 
 class ChooseLevelSon(forms.Form):
     LEVEL = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
     level = forms.IntegerField(widget=forms.Select(choices=LEVEL))
 
+
 class InviteFriend(forms.Form):
     chosen_friend = forms.CharField(max_length=25)
 
-
-class SuspendUsers(forms.Form):
-    chosen_suspend = forms.CharField(max_length=25)
-
-class LimitSon(forms.Form):
-    chosen_limited = forms.CharField(max_length=25)
