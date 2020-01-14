@@ -2,39 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/jquery.scrollex.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/skel.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/util.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/pic02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/pic03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide05.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/SubPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/New folder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/New folder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile-parent.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile-parent.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/add-friend.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/add-friend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/inbox.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/inbox.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -297,7 +270,13 @@
       <option name="presentableId" value="LOCAL‎00028" />
       <updated>1578955462148</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL‎00029" summary="fix parent registration and in procces of tamplates design">
+      <created>1579020998317</created>
+      <option name="number" value="LOCAL‎00029" />
+      <option name="presentableId" value="LOCAL‎00029" />
+      <updated>1579020998317</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -343,7 +322,8 @@
     <MESSAGE value="after mergeing with omer" />
     <MESSAGE value="added option to upload new images for the game.&#10;added option to show images instead normal fonts at the game." />
     <MESSAGE value="added option to randomise the pictures before sending them to game area.&#10;added initial_data.json file to save time when making changes on database. the json file keep inside 2 admin users (admin 1, admin2) and the 8 built in cards of the game before we add others.&#10;bug fix on card image looking." />
-    <option name="LAST_COMMIT_MESSAGE" value="added option to randomise the pictures before sending them to game area.&#10;added initial_data.json file to save time when making changes on database. the json file keep inside 2 admin users (admin 1, admin2) and the 8 built in cards of the game before we add others.&#10;bug fix on card image looking." />
+    <MESSAGE value="fix parent registration and in procces of tamplates design" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix parent registration and in procces of tamplates design" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />
