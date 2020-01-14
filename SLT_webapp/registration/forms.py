@@ -66,9 +66,11 @@ class FriendForm(forms.Form):
 
 
 class MessageForm(forms.Form):
-    receiver = forms.CharField(max_length=50, initial='user name')
+    set = User.objects.all()
+    USERS=list(map(lambda x: (str(x.username), str(x.username)), set))
+    To = forms.CharField( widget=forms.Select(choices=USERS))
     subject = forms.CharField(max_length=50, initial='message subject')
-    body = forms.CharField(max_length=250)
+    body = forms.CharField(max_length=5000, widget=forms.Textarea)
 
 class RankGameForm(forms.Form):
     RANK = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))

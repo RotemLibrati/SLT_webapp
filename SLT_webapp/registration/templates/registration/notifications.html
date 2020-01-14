@@ -1,11 +1,32 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Notifications</h2>
+{% endblock %}
+{% block data %}
 
-<h2>Notifications</h2>
-<ul>
-    {% for f in notifications %}
-    <li>{{f.message}} <a href="/sign-language-teacher/notifications/delete/{{ f.id }}"> Delete</a></li>
-
-    {% empty %}
-    <p>No Notifications</p>
-    {% endfor %}
-</ul>
-<a href="{% url 'registration:index' %}">Go to main menu</a><br>
+<div class="table-wrapper">
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>notification</th>
+            <th>delete</th>
+        </tr>
+        </thead>
+        {% for f in notifications %}
+        <tbody>
+        <tr>
+            <td>*</td>
+            <td>{{f.message}}</td>
+            <td> <a href="/sign-language-teacher/notifications/delete/{{ f.id }}"> Delete</a></td>
+        </tr>
+        </tbody>
+        {% endfor %}
+        <tfoot> </tfoot>
+    </table>
+</div>
+{% if not notifications %}
+        <p>No Messages.</p>
+    {% endif %}
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
