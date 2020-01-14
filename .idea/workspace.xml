@@ -2,17 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/jquery.scrollex.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/skel.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/sitestyle/assets/js/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/pic02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/pic03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads/slide05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/SubPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/New folder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/New folder.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/static/registration/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile-parent.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile-parent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-user.html" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="projectnew1" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -25,7 +56,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Eilon-local" />
+        <entry key="$PROJECT_DIR$" value="Niro" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,7 +76,24 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SLT_webapp/registration/static/registration/uploads" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../../../Memory-game-2-master/Memory-game-2-master/index.html" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\uploads" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\sitestyle\assets\css" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\sitestyle" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration\chatjs" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\static\registration" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates" />
+      <recent name="C:\Users\nirb1\OneDrive\Desktop\לימודים - הנדסת תוכנה\שנה ב\יסודות הנדסת תוכנה\פרוייקט שלי\projectnew1\SLT_webapp\registration\templates\registration\django_private_chat" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -192,50 +240,69 @@
       <option name="project" value="LOCAL" />
       <updated>1578248282928</updated>
     </task>
-    <task id="LOCAL-00020" summary="process of login time">
-      <created>1578483475114</created>
+    <task id="LOCAL-00020" summary="login process">
+      <created>1578483586431</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1578483475114</updated>
+      <updated>1578483586432</updated>
     </task>
-    <task id="LOCAL-00021" summary="finished login time">
-      <created>1578485232144</created>
+    <task id="LOCAL-00021" summary="report for parent">
+      <created>1578510913302</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1578485232144</updated>
+      <updated>1578510913302</updated>
     </task>
-    <task id="LOCAL-00022" summary="syntax cleanup">
-      <created>1578490631215</created>
+    <task id="LOCAL-00022" summary="report for parent finish">
+      <created>1578513085031</created>
       <option name="number" value="00022" />
       <option name="presentableId" value="LOCAL-00022" />
       <option name="project" value="LOCAL" />
-      <updated>1578490631215</updated>
+      <updated>1578513085032</updated>
     </task>
-    <task id="LOCAL-00023" summary="added reply option to mail">
-      <created>1578492313011</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1578492313011</updated>
+    <task id="LOCAL‎00023" summary="after new chat">
+      <created>1578765598237</created>
+      <option name="number" value="LOCAL‎00023" />
+      <option name="presentableId" value="LOCAL‎00023" />
+      <updated>1578765598237</updated>
     </task>
-    <task id="LOCAL-00024" summary="added sending data from js frontend to django backend">
-      <created>1578819593467</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1578819593467</updated>
+    <task id="LOCAL‎00024" summary="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications">
+      <created>1578834555791</created>
+      <option name="number" value="LOCAL‎00024" />
+      <option name="presentableId" value="LOCAL‎00024" />
+      <updated>1578834555791</updated>
     </task>
-    <task id="LOCAL-00025" summary="added message popup test">
-      <created>1578824431126</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1578824431126</updated>
+    <task id="LOCAL‎00025" summary="after merging with rotem">
+      <created>1578836438728</created>
+      <option name="number" value="LOCAL‎00025" />
+      <option name="presentableId" value="LOCAL‎00025" />
+      <updated>1578836438728</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL‎00026" summary="after mergeing with omer">
+      <created>1578839733479</created>
+      <option name="number" value="LOCAL‎00026" />
+      <option name="presentableId" value="LOCAL‎00026" />
+      <updated>1578839733479</updated>
+    </task>
+    <task id="LOCAL‎00027" summary="added option to upload new images for the game.&#10;added option to show images instead normal fonts at the game.">
+      <created>1578923039503</created>
+      <option name="number" value="LOCAL‎00027" />
+      <option name="presentableId" value="LOCAL‎00027" />
+      <updated>1578923039503</updated>
+    </task>
+    <task id="LOCAL‎00028" summary="added option to randomise the pictures before sending them to game area.&#10;added initial_data.json file to save time when making changes on database. the json file keep inside 2 admin users (admin 1, admin2) and the 8 built in cards of the game before we add others.&#10;bug fix on card image looking.">
+      <created>1578955462148</created>
+      <option name="number" value="LOCAL‎00028" />
+      <option name="presentableId" value="LOCAL‎00028" />
+      <updated>1578955462148</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -267,13 +334,16 @@
     <MESSAGE value="new tests 2" />
     <MESSAGE value="added Friends system" />
     <MESSAGE value="removing friends available too" />
-    <MESSAGE value="process of login time" />
-    <MESSAGE value="finished login time" />
-    <MESSAGE value="syntax cleanup" />
-    <MESSAGE value="added reply option to mail" />
-    <MESSAGE value="added sending data from js frontend to django backend" />
-    <MESSAGE value="added message popup test" />
-    <option name="LAST_COMMIT_MESSAGE" value="added message popup test" />
+    <MESSAGE value="login process" />
+    <MESSAGE value="report for parent" />
+    <MESSAGE value="report for parent finish" />
+    <MESSAGE value="after new chat" />
+    <MESSAGE value="added new module: Notifications&#10;added new views: notifications , notifications_delete&#10;added new template: notifications.html&#10;added new urls at urls.py at registration - for notifications" />
+    <MESSAGE value="after merging with rotem" />
+    <MESSAGE value="after mergeing with omer" />
+    <MESSAGE value="added option to upload new images for the game.&#10;added option to show images instead normal fonts at the game." />
+    <MESSAGE value="added option to randomise the pictures before sending them to game area.&#10;added initial_data.json file to save time when making changes on database. the json file keep inside 2 admin users (admin 1, admin2) and the 8 built in cards of the game before we add others.&#10;bug fix on card image looking." />
+    <option name="LAST_COMMIT_MESSAGE" value="added option to randomise the pictures before sending them to game area.&#10;added initial_data.json file to save time when making changes on database. the json file keep inside 2 admin users (admin 1, admin2) and the 8 built in cards of the game before we add others.&#10;bug fix on card image looking." />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

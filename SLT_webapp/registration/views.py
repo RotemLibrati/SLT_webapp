@@ -219,7 +219,6 @@ def new_profile_parent(request, username):
     if request.method == 'POST':
         form = ParentForm(request.POST)
         if form.is_valid():
-            form.save()
             user = get_object_or_404(User, username=username)
             userprofile = get_object_or_404(UserProfile, user=user)
             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_son'])
