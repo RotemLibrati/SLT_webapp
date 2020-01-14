@@ -25,12 +25,12 @@ class ProfileForm(forms.ModelForm):
         fields = ('address', 'age', 'type')
 
 
-class ParentForm(forms.ModelForm):
-    #chosen_son = forms.CharField(max_length=25)
+class ParentForm(forms.Form):
+    set = User.objects.all()
+    CHOICES=list(map(lambda x: (str(x.username), str(x.username)) ,set))
+    chosen_son = forms.CharField(label = "choose a sun", widget=forms.Select(choices=CHOICES))
 
-    class Meta:
-        model = UserProfile
-        fields = ('son',)
+
 
 
 class CompleteUserForm(UserCreationForm):

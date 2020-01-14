@@ -1,12 +1,13 @@
-{% extends 'registration/index.html' %}
-{% block content %}
+{% extends 'registration/SubPage.html' %}
+{% block title %}
 <h2>Login</h2>
+{% endblock %}
+{% block data %}
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Login</button>
 </form>
+<a href="{% url 'registration:new-user' %}" style="text-decoration: none; color: #0">Make a new user</a>
 {% endblock %}
-{% block links %}
-  <a href="{% url 'registration:new-user' %}">Make a new user</a><br>
-{% endblock %}
+
