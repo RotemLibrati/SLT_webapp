@@ -1,11 +1,13 @@
 from django.contrib import admin
-from .models import User
+from .models import UserProfile, Friend, Prize, Winning
+from .models import Card
+from .models import GameSession,UserReoprt
 
-# class FriendInline(admin.StackedInline):
-#     model = Friend
-#     extra = 5
-#
-# class UserAdmin(admin.ModelAdmin):
-#     inlines = [FriendInline]
 
-admin.site.register(User)
+admin.site.register(UserProfile)
+admin.site.register(Friend)
+admin.site.register(Prize)
+admin.site.register(Winning)
+admin.site.register(Card)
+admin.site.register(GameSession)
+admin.site.register(UserReoprt)

@@ -27,7 +27,7 @@ class UserProfile(models.Model):
     points = models.IntegerField(default=0)
     type = models.CharField(max_length=10, choices=TYPES, default='student')
     is_admin = models.BooleanField(default=False)
-    suspention_time = models.DateTimeField(auto_now_add=True)
+    suspention_time = models.DateTimeField(default=datetime.now())
     total_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
     rank = models.IntegerField(default=0)

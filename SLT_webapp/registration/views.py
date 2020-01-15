@@ -366,7 +366,6 @@ def parent_list(request):
     return render(request, 'registration/parent-list.html', {'user': user_profile, 'user_list': user_list})
 
 
-# if form.cleaned_data['type'] == 'parent':
 def avg_points(request):
     user = request.user
     up1 = get_object_or_404(UserProfile, user=user)
@@ -583,10 +582,11 @@ def suspend_users(request):
         if form.is_valid():
             receiver = form.cleaned_data['chosen_suspend']
             receiver_user = User.objects.get(username=receiver)
-            alert = Notifications(receiver=receiver_user, message=f'You are suspended fot 5 hours{user.username}')
+            alert = Notifications(receiver=receiver_user, message=f'You are suspended fot 5 hours by {user.username}')
             alert.save()
-            user_profile = UserProfile.objects.get(user=user)
-            user.profile.suspend_time = False
+            user_profile = UserProfile.objects.get(user=receiver_user)
+            user_profile.suspention_time = datetime.now()+timedelta(hours=5)
+            user_profile.save()
         return HttpResponseRedirect(reverse('registration:index'))
     else:
         form = SuspendUsers()
