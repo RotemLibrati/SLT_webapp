@@ -1,13 +1,5 @@
 # TODO: 1: implement card authorization by admin
-# TODO: 6: implement page to suspend user by admin 0.5
-# TODO: 7: tourneer games (multiplayer)
 # TODO: 12: points report for a student
 # TODO: 14: prize winning system
-# TODO: 16: multiplayer
 # TODO: 21: different difficulty levels
-# TODO: 24: watch son playing (multiplayer related)
-# TODO: 25: invitation option from parent to son
 # TODO: 26: add time limitation option by parent and alerts when exceeded limitation
-
-
-
