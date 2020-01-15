@@ -1,4 +1,4 @@
 # TODO: 12: points report for a student
 # TODO: 14: prize winning system
 # TODO: 21: different difficulty levels
-# TODO: 26: add time limitation option by parent and alerts when exceeded limitation
+
