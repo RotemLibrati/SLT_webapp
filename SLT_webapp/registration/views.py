@@ -3,7 +3,7 @@ from django.core.serializers import json
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt
+from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt, Winning
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
     ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers
@@ -180,8 +180,13 @@ def profile(request):
         friends = []
     up1 = get_object_or_404(UserProfile, user=u1)
     messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
+    winningList = Winning.objects.filter(user=up1, seen=False)
     for m in messagesList:
         messages.add_message(request, messages.INFO, m.message)
+        m.seen = True
+        m.save()
+    for m in winningList:
+        messages.add_message(request, messages.INFO, f'you have won {m.prize.name}')
         m.seen = True
         m.save()
     # Alerts.objects.filter(receiver=request.user).delete()
