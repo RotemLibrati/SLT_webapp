@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f2c1b8-7f9b-4098-bc88-253d689c0070" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0006_auto_20200115_1352.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game-sessions-report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -332,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579085727303</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="added alerts to parent for son winnings">
+      <created>1579086208767</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1579086208767</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -353,7 +366,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="game addition" />
     <MESSAGE value="fixed django messages localy by adding django.contrib.sites into installed apps and site_id=1 below it" />
     <MESSAGE value="added student card uploading and instructions page" />
     <MESSAGE value="added suspention system" />
@@ -378,7 +390,8 @@
     <MESSAGE value="add suspended user by admin" />
     <MESSAGE value="add suspension page for admin" />
     <MESSAGE value="added winning alerts" />
-    <option name="LAST_COMMIT_MESSAGE" value="added winning alerts" />
+    <MESSAGE value="added alerts to parent for son winnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="added alerts to parent for son winnings" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

@@ -46,6 +46,7 @@ body {
             <a href="{% url 'registration:rank-game' %}">Rank game</a><br>
             <a href="{% url 'registration:parent-list' %}">Parent list</a><br>
             <a href="{% url 'registration:level-of-son' %}">Your son's level</a><br>
+            <a href="{% url 'registration:game-sessions-report' %}">Your son's games</a><br>
         {% endif %}
         {% if profile.is_admin %}
             <a href="{% url 'registration:reports-menu' %}"style="color:black">Reports menu</a><br>

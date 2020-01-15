@@ -181,19 +181,26 @@ def profile(request):
     up1 = get_object_or_404(UserProfile, user=u1)
     messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
     winningList = Winning.objects.filter(user=up1, seen=False)
-    parent_profile = UserProfile.objects.filter(son=request.user)
-    parent_user = User.objects.filter(username=parent_profile.user.username)
+    if winningList:
+        if winningList[0]:
+            try:
+                parent_profile = UserProfile.objects.get(son=request.user)
+                parent_user = User.objects.get(username=parent_profile.user.username)
+            except (TypeError, UserProfile.DoesNotExist, User.DoesNotExist):
+                parent_profile = None
+                parent_user = None
+            for m in winningList:
+                messages.add_message(request, messages.INFO, f'you have won {m.prize.name}')
+                m.seen = True
+                m.save()
+            if parent_profile:
+                alert = Notifications(receiver=parent_user[0], message= 'your son has won a new prize')
+                alert.save()
     for m in messagesList:
         messages.add_message(request, messages.INFO, m.message)
         m.seen = True
         m.save()
-    for m in winningList:
-        messages.add_message(request, messages.INFO, f'you have won {m.prize.name}')
-        m.seen = True
-        m.save()
-    if parent_profile[0]:
-        alert = Notifications(receiver=parent_user[0], message= 'your son has won a new prize')
-        alert.save()
+
     # Alerts.objects.filter(receiver=request.user).delete()
     return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
 
@@ -603,3 +610,10 @@ def suspend_users(request):
         users = User.objects.all()
 
     return render(request, 'registration/suspend-users.html',{'form': form, 'users': users})
+
+def game_sessions_report(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    son_user = user_profile.son
+    son_profile = UserProfile.objects.get(user=son_user)
+    game_list = GameSession.objects.filter(user=son_profile)
+    return render(request, 'registration/game-sessions-report.html', {'game_list':game_list})
