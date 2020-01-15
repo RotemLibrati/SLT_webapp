@@ -1,12 +1,17 @@
-
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Message</h2>
+{% endblock %}
+{% block data %}
     {% if message %}
         <h3><strong>Subject:</strong> {{message.subject}}</h3>
         <p><strong>Sender:</strong> {{message.sender}}. <strong>Receiver:</strong> {{message.receiver}}</p>
         <p><strong>Content:</strong></p>
-        <p>{{message.body}}</p>
+        <blockquote><p>{{message.body}}</p></blockquote>
         {% if user == message.receiver %}
-            <a href="{% url 'registration:new-message' message.sender %}">Reply</a><br>
+            <a href="{% url 'registration:new-message' message.sender %}" class="button alt">Reply</a><br>
         {% endif %}
     {% endif %}
-<a href="{% url 'registration:inbox' %}">Mail</a><br>
- <a href="{% url 'registration:index' %}">Return to main menu</a><br>
+<a href="{% url 'registration:inbox' %}"class="button alt">Mail</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
