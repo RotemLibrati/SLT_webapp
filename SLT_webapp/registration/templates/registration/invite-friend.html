@@ -1,0 +1,17 @@
+
+  <h2>Your friends:</h2>
+<ul>
+        {% for f in friend_list %}
+        <li>{{f}}</li>
+        {% empty %}
+        <p>No friends</p>
+        {% endfor %}<br>
+        </ul>
+
+</ul>
+<form action="{% url 'registration:invite-friend'  %}" method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+     <button type="submit">Invite</button>
+    </form>
+

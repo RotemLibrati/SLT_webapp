@@ -94,8 +94,11 @@ class ChooseLevelSon(forms.Form):
     LEVEL = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
     level = forms.IntegerField(widget=forms.Select(choices=LEVEL))
 
-class InviteFriend(forms.ModelForm):
 
-    class Meta:
-        model = Friend
-        fields = ('users',)
+class InviteFriend(forms.Form):
+    chosen_friend = forms.CharField(max_length=25)
+
+
+class SuspendUsers(forms.Form):
+    chosen_suspend = forms.CharField(max_length=25)
+

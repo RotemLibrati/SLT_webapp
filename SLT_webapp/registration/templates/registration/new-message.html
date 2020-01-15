@@ -5,6 +5,27 @@
 {% block data %}
 <form action="{% url 'registration:new-message' %}" method="POST">
     {% csrf_token %}
+    <h2>New message</h2>
+    <h3>Users:</h3><br>
+    <ul>
+    {% for user in users %}
+        <li>{{user}}</li>
+    {% endfor %}
+    </ul>
+    {% if user_profile.type == 'parent' %}
+<h>Parent list:</h><br>
+<ul>
+{% for f in profiles %}
+
+{% if f.type == 'parent' %}
+  <li>
+<h>{{f}}</h><br>
+ </li>
+{% endif %}
+
+{% endfor %}
+    </ul>
+{% endif%}
     {{form.as_p}}
     <button type="submit">Submit</button>
 </form>

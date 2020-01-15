@@ -51,4 +51,7 @@ urlpatterns = [
     path('parent-list/', views.parent_list, name='parent-list'),
     path('level-of-son/', views.level_of_son, name='level-of-son'),
     path('success-level/', views.success_level, name='success-level'),
+    path('/invite-friend/', views.invite_friend, name='invite-friend'),
+    path('/success-invite/', views.success_invite, name='success-invite'),
+    path('/suspend-users/', views.suspend_users, name='suspend-users'),
 ]

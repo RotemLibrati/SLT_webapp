@@ -5,11 +5,11 @@ from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt
+from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt, Winning
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, RankGameForm, OnlineLimitForm, ReportUserForm
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend
+    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime
@@ -196,10 +196,20 @@ def profile(request):
         # messages.add_message(request, messages.INFO, 'Hello world.')
     up1 = get_object_or_404(UserProfile, user=u1)
     messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
+    winningList = Winning.objects.filter(user=up1, seen=False)
+    parent_profile = UserProfile.objects.filter(son=request.user)
+    parent_user = User.objects.filter(username=parent_profile.user.username)
     for m in messagesList:
         messages.add_message(request, messages.INFO, m.message)
         m.seen = True
         m.save()
+    for m in winningList:
+        messages.add_message(request, messages.INFO, f'you have won {m.prize.name}')
+        m.seen = True
+        m.save()
+    if parent_profile[0]:
+        alert = Notifications(receiver=parent_user[0], message= 'your son has won a new prize')
+        alert.save()
     # Alerts.objects.filter(receiver=request.user).delete()
     return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
 
@@ -288,6 +298,7 @@ def new_profile_parent(request, username):
 # class DetailView(generic.DetailView):
 #     model = UserProfile
 #     template_name = 'registration/details.html'
+
 
 
 def make_new_card(request):
@@ -388,7 +399,6 @@ def parent_list(request):
     return render(request, 'registration/parent-list.html', {'user': user_profile, 'user_list': user_list})
 
 
-# if form.cleaned_data['type'] == 'parent':
 def avg_points(request):
     user = request.user
     up1 = get_object_or_404(UserProfile, user=user)
@@ -448,6 +458,9 @@ def success_message(request):
 
 def success_level(request):
     return render(request, 'registration/success-level.html')
+
+def success_invite(request):
+    return render(request, 'registration/success-invite.html')
 
 def rank_for_admin(request):
     user = request.user
@@ -523,10 +536,6 @@ def lottery_for_tournament(request):
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
-    list1 = []
-    list2 = []
-    list3 = []
-    list4 = []
     listof2 = []
     lastlist = []
     templist = user_list
@@ -540,13 +549,38 @@ def lottery_for_tournament(request):
         templist.remove(listof2[0])
         templist.remove(listof2[1])
     list1 = lastlist[0][0]
-    list2=lastlist[0][1]
+    list2 = lastlist[0][1]
     list3 = lastlist[1][0]
     list4 = lastlist[2][1]
     list5 = lastlist[3][0]
     list6 = lastlist[1][1]
     list7 = lastlist[2][0]
     list8 = lastlist[3][1]
+    receiver_user1 = User.objects.get(username=list1)
+    receiver_user2 = User.objects.get(username=list2)
+    receiver_user3 = User.objects.get(username=list3)
+    receiver_user4 = User.objects.get(username=list4)
+    receiver_user5 = User.objects.get(username=list5)
+    receiver_user6 = User.objects.get(username=list6)
+    receiver_user7 = User.objects.get(username=list7)
+    receiver_user8 = User.objects.get(username=list8)
+    alert = Notifications(receiver=receiver_user1, message=f'You have 2 day to play against {user.username}')
+    alert.save()
+    alert = Notifications(receiver=receiver_user2, message=f'You have 2 day to play against {user.username}')
+    alert.save()
+    alert = Notifications(receiver=receiver_user3, message=f'You have 2 day to play against {user.username}')
+    alert.save()
+    alert = Notifications(receiver=receiver_user4, message=f'You have 2 day to play against {user.username}')
+    alert.save()
+    alert = Notifications(receiver=receiver_user5, message=f'You have 2 day to play against {user.username}')
+    alert.save()
+    alert = Notifications(receiver=receiver_user6, message=f'You have 2 day to play against {user.username}')
+    alert.save()
+    alert = Notifications(receiver=receiver_user7, message=f'You have 2 day to play against {user.username}')
+    alert.save()
+    alert = Notifications(receiver=receiver_user8, message=f'You have 2 day to play against {user.username}')
+    alert.save()
+
     return render(request, 'registration/lottery.html', { 'last':lastlist,'list1':list1, 'list2':list2, 'list3':list3, 'list4':list4,
                                                           'list5':list5, 'list6':list6, 'list7':list7, 'list8':list8})
 
@@ -558,6 +592,41 @@ def send_game(request):
     up = UserProfile.objects.get(user=request.user)
     print(moves)
     return HttpResponse("hello")
+
+def invite_friend(request):
+    user = request.user
+    if request.method == 'POST':
+        form = InviteFriend(request.POST)
+        if form.is_valid():
+            receiver = form.cleaned_data['chosen_friend']
+            receiver_user = User.objects.get(username=receiver)
+            alert = Notifications(receiver=receiver_user, message=f'You have been invited to a game by {user.username}')
+            alert.save()
+        return HttpResponseRedirect(reverse('registration:success-invite'))
+    else:
+        form = InviteFriend()
+        friend = Friend.objects.filter(current_user=user)[0]
+        friend_list = list(map(lambda x: x.username, friend.users.all()))
+    return render(request, 'registration/invite-friend.html', {'form': form, 'friend': friend, 'friend_list':friend_list})
+
+def suspend_users(request):
+    user = request.user
+    if request.method == 'POST':
+        form = SuspendUsers(request.POST)
+        if form.is_valid():
+            receiver = form.cleaned_data['chosen_suspend']
+            receiver_user = User.objects.get(username=receiver)
+            alert = Notifications(receiver=receiver_user, message=f'You are suspended fot 5 hours by {user.username}')
+            alert.save()
+            user_profile = UserProfile.objects.get(user=receiver_user)
+            user_profile.suspention_time = datetime.now()+timedelta(hours=5)
+            user_profile.save()
+        return HttpResponseRedirect(reverse('registration:index'))
+    else:
+        form = SuspendUsers()
+        users = User.objects.all()
+
+    return render(request, 'registration/suspend-users.html',{'form': form, 'users': users})
 
 # def invite_friend(request, username):
 #     if request.method == 'POST':
