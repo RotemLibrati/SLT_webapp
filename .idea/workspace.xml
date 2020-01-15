@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f2c1b8-7f9b-4098-bc88-253d689c0070" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -328,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579083380933</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="added winning alerts">
+      <created>1579085727303</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1579085727303</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -349,7 +353,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="555" />
     <MESSAGE value="game addition" />
     <MESSAGE value="fixed django messages localy by adding django.contrib.sites into installed apps and site_id=1 below it" />
     <MESSAGE value="added student card uploading and instructions page" />
@@ -374,7 +377,8 @@
     <MESSAGE value="add invite friend for game and notification to friend" />
     <MESSAGE value="add suspended user by admin" />
     <MESSAGE value="add suspension page for admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="add suspension page for admin" />
+    <MESSAGE value="added winning alerts" />
+    <option name="LAST_COMMIT_MESSAGE" value="added winning alerts" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

@@ -181,6 +181,8 @@ def profile(request):
     up1 = get_object_or_404(UserProfile, user=u1)
     messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
     winningList = Winning.objects.filter(user=up1, seen=False)
+    parent_profile = UserProfile.objects.filter(son=request.user)
+    parent_user = User.objects.filter(username=parent_profile.user.username)
     for m in messagesList:
         messages.add_message(request, messages.INFO, m.message)
         m.seen = True
@@ -189,6 +191,9 @@ def profile(request):
         messages.add_message(request, messages.INFO, f'you have won {m.prize.name}')
         m.seen = True
         m.save()
+    if parent_profile[0]:
+        alert = Notifications(receiver=parent_user[0], message= 'your son has won a new prize')
+        alert.save()
     # Alerts.objects.filter(receiver=request.user).delete()
     return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
 
