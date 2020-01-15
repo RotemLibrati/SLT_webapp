@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f2c1b8-7f9b-4098-bc88-253d689c0070" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200115_1134.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_auto_20200115_1135.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_auto_20200115_1209.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
@@ -325,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579031151075</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="add suspension page for admin">
+      <created>1579083380933</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1579083380933</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -346,7 +349,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="1234445" />
     <MESSAGE value="555" />
     <MESSAGE value="game addition" />
     <MESSAGE value="fixed django messages localy by adding django.contrib.sites into installed apps and site_id=1 below it" />
@@ -371,7 +373,8 @@
     <MESSAGE value="fix register of parent" />
     <MESSAGE value="add invite friend for game and notification to friend" />
     <MESSAGE value="add suspended user by admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="add suspended user by admin" />
+    <MESSAGE value="add suspension page for admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="add suspension page for admin" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />

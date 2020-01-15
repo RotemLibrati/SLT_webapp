@@ -94,6 +94,7 @@ class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, default=1)
     win_date = models.DateTimeField(auto_now_add=True)
+    seen = models.BooleanField(default=False)
 
 
 class Card(models.Model):
