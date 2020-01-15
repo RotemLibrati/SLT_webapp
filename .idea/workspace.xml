@@ -4,16 +4,10 @@
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/active-games.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/active-games.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/active-users.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/active-users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/avg-points.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/avg-points.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/details-of-users.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/details-of-users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/lottery.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/lottery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/make-new-card.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/make-new-card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/rank-for-admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/rank-for-admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/rank-game.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/rank-game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/reports-menu-users.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/reports-menu-users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/reports-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/reports-menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -294,7 +288,13 @@
       <option name="presentableId" value="LOCAL‎00031" />
       <updated>1579029275555</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL‎00032" summary="active games template designed&#10;active users template designed&#10;avg points template designed&#10;details of users template designed&#10;lottery template designed&#10;make new card template designed&#10;rank for admin template designed&#10;rank game template designed&#10;reports menu template designed&#10;reports menu admin template designed">
+      <created>1579045168236</created>
+      <option name="number" value="LOCAL‎00032" />
+      <option name="presentableId" value="LOCAL‎00032" />
+      <updated>1579045168236</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -316,7 +316,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="123" />
     <MESSAGE value="123444" />
     <MESSAGE value="1234445" />
     <MESSAGE value="555" />
@@ -341,7 +340,8 @@
     <MESSAGE value="fix parent registration and in procces of tamplates design" />
     <MESSAGE value="inbox designed&#10;add-friend designed" />
     <MESSAGE value="notifications template designed&#10;add_message template designed" />
-    <option name="LAST_COMMIT_MESSAGE" value="notifications template designed&#10;add_message template designed" />
+    <MESSAGE value="active games template designed&#10;active users template designed&#10;avg points template designed&#10;details of users template designed&#10;lottery template designed&#10;make new card template designed&#10;rank for admin template designed&#10;rank game template designed&#10;reports menu template designed&#10;reports menu admin template designed" />
+    <option name="LAST_COMMIT_MESSAGE" value="active games template designed&#10;active users template designed&#10;avg points template designed&#10;details of users template designed&#10;lottery template designed&#10;make new card template designed&#10;rank for admin template designed&#10;rank game template designed&#10;reports menu template designed&#10;reports menu admin template designed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />
