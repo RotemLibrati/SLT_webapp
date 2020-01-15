@@ -191,9 +191,6 @@ def new_user(request):
 
 
 def new_profile(request, username):
-    # if request.user is None:
-    #     return HttpResponse("Not logged in")
-
     def attach_user(sender, **kwargs):
         userprofile = kwargs['instance']
         userprofile.user = user
