@@ -1,3 +1,8 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Limitation Page</h2>
+{% endblock %}
+{% block data %}
 <h2>Son online limitation menu</h2>
 <h3>Input a number of minutes to limit per day</h3>
 <form action="{% url 'registration:time-restriction' %}" method="POST">
@@ -5,3 +10,5 @@
     {{ form.as_p }}
     <button type="submit">Set limitation</button>
 </form>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

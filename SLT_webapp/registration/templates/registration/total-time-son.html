@@ -1,30 +1,19 @@
-
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Limitation Page</h2>
+{% endblock %}
+{% block data %}
 <h style="font-size:20px;"; >Your son  </h>
 <h style="font-size:20px;";>{{profile.son}}</h>
 <h style="font-size:20px;";> play in the game </h>
 <h>{{ son_profile.total_minutes }} minutes</h> <br>
 <h style="font-size:20px;";>if you want to send a message push send</h><br>
-<html>
-<head>
-<style>
-.button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-</style>
-</head>
+
 <body>
 <form action="{% url 'registration:new-message' %}" method="POST">
     {% csrf_token %}
 <button class="button">Send message</button>
 
     </form>
-<a href="{% url 'registration:index' %}">Return to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

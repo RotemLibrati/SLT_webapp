@@ -1,2 +1,8 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Suspended Page</h2>
+{% endblock %}
+{% block data %}
 <h3>Hello {{ user.get_full_name }}. You are suspended for {{timeleft}} hours.</h3><br>
-<a href="{% url 'registration:index' %}">Back to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

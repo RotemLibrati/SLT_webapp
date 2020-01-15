@@ -1,3 +1,10 @@
-<h>Success change your son's level</h><br>
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Success Level</h2>
+{% endblock %}
+{% block data %}
 
-<a href="{% url 'registration:index' %}">Go to main menu</a><br>
+<h3>Success change your son's level</h3><br>
+
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
