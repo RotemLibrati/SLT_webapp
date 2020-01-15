@@ -1,6 +1,10 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+<h2>Details Of Users</h2>
+{% endblock %}
+{% block data %}
 
-
-        <h1>The rules for playing memory <br>
+        <h2>The rules for playing memory <br>
 1. Mix up the cards. <br>
 2. Lay them in rows, face down. <br>
 3. Turn over any two cards. <br>
@@ -9,5 +13,7 @@
 6. Remember what was on each card and where it was. <br>
 7. Watch and remember during the other player's turn. <br>
 8. The game is over when all the cards have been matched. <br>
-9. The player with the most matches wins.</h1>
-    <a href="{% url 'registration:index' %}">Return to main menu</a><br>
+9. The player with the most matches wins.</h2>
+<ul></ul>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

@@ -1,8 +1,14 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Rank Success</h2>
+{% endblock %}
+{% block data %}
     <h>Thank you that you rank the game</h><br>
 {%if user.type == 'student' %}
-  <a href="{% url 'registration:reports-menu-users' %}">Return to reports users</a><br>
+  <a href="{% url 'registration:reports-menu-users' %}"class="button alt">Return to reports users</a><br>
 
 {% else %}
-    <a href="{% url 'registration:reports-menu' %}">Return to reports </a><br>
+    <a href="{% url 'registration:reports-menu' %}"class="button alt">Return to reports </a><br>
 {% endif %}
-    <a href="{% url 'registration:index' %}">Return to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
