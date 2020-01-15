@@ -94,3 +94,5 @@ class InviteFriend(forms.Form):
 class SuspendUsers(forms.Form):
     chosen_suspend = forms.CharField(max_length=25)
 
+class LimitSon(forms.Form):
+    chosen_limited = forms.CharField(max_length=25)

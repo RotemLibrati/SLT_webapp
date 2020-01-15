@@ -53,4 +53,5 @@ urlpatterns = [
     path('/success-invite/', views.success_invite, name='success-invite'),
     path('/suspend-users/', views.suspend_users, name='suspend-users'),
     path('/game-sessions-report/', views.game_sessions_report, name='game-sessions-report'),
+    path('/limit-son/', views.limit_son, name='limit-son'),
 ]

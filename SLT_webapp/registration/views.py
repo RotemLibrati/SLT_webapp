@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt, Winning
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers
+    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers, LimitSon
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
@@ -617,3 +617,22 @@ def game_sessions_report(request):
     son_profile = UserProfile.objects.get(user=son_user)
     game_list = GameSession.objects.filter(user=son_profile)
     return render(request, 'registration/game-sessions-report.html', {'game_list':game_list})
+
+def limit_son(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    son_user = user_profile.son
+    son_profile = UserProfile.objects.get(user=son_user)
+    if request.method == 'POST':
+        form = LimitSon(request.POST)
+        if form.is_valid():
+            receiver = form.cleaned_data['chosen_limited']
+            receiver_user = User.objects.get(username=receiver)
+            receiver_user.limit = datetime.now()+timedelta(hours=2)
+            receiver_user.save()
+            alert = Notifications(receiver=receiver_user, message=f'You are passes the limit. by your dad')
+            alert.save()
+        return HttpResponseRedirect(reverse('registration:index'))
+    else:
+        form = LimitSon()
+    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile})
+
