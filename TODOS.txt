@@ -8,6 +8,6 @@
 # TODO: 24: watch son playing (multiplayer related)
 # TODO: 25: invitation option from parent to son
 # TODO: 26: add time limitation option by parent and alerts when exceeded limitation
-# TODO: 27: report of amount of time played by son
-# TODO: 29: 2 vs 2 multiplayer
-# TODO: 33: alert when son won a prize
+
+
+
