@@ -1,11 +1,10 @@
 {% extends 'registration/SubPage.html' %}
 {% block title %}
-<h1>Your son has played these games: </h1>
+    <h2>Points of users</h2>
 {% endblock %}
 {% block data %}
-{% for game in game_list %}
-<p>game start: {{ game.time_start }} game end: {{ game.time_stop}}  </p><br>
-{% endfor %}
-
+{% for i in user_profile %}
+Name: {{i.user }}.   Points: {{ i.points }}<br>
+{% endfor %}<br>
 <a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
 {% endblock %}

@@ -1,5 +1,8 @@
-
+{% extends 'registration/SubPage.html' %}
+{% block title %}
   <h2>Your friends:</h2>
+{% endblock %}
+{% block data %}
 <ul>
         {% for f in friend_list %}
         <li>{{f}}</li>
@@ -14,4 +17,5 @@
   {{form.as_p}}
      <button type="submit">Invite</button>
     </form>
-
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

@@ -5,7 +5,7 @@
 {% endblock %}
 {% block data %}
 <h>Your son: </h>
-{{ son }} played {{ son.total_minutes }}<br>
+{{ son }} played {{ son.total_minutes }} minutes <br>
 <p>send notification to you son </p>
 
 <form action="{% url 'registration:limit-son' %}" method="POST">

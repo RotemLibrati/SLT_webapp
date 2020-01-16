@@ -712,7 +712,7 @@ def limit_son(request):
         return HttpResponseRedirect(reverse('registration:index'))
     else:
         form = LimitSon()
-    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile})
+    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile[0]})
 
 def game_sessions_report(request):
     user_profile = UserProfile.objects.get(user=request.user)
@@ -770,5 +770,10 @@ def pending_cards(request):
         return HttpResponseRedirect(reverse('registration:pending-cards'))
     else:
         return render(request, 'registration/pending-cards.html', {'image': cardtoaccept})
+
+def points_users(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    return render(request, 'registration/points-users.html', {'user': user, 'user_profile': user_profile})
 
 
