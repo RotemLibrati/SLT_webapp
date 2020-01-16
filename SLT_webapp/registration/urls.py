@@ -51,4 +51,8 @@ urlpatterns = [
     path('parent-list/', views.parent_list, name='parent-list'),
     path('level-of-son/', views.level_of_son, name='level-of-son'),
     path('success-level/', views.success_level, name='success-level'),
+    path('limit-son/', views.limit_son, name='limit-son'),
+    path('game-sessions-report/', views.game_sessions_report, name='game-sessions-report'),
+    path('suspend-users/', views.suspend_users, name='suspend-users'),
+    path('pending-cards/', views.pending_cards, name='pending-cards'),
 ]

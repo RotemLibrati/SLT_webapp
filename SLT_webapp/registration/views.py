@@ -7,12 +7,13 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt
 from django.views import generic
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, RankGameForm, OnlineLimitForm, ReportUserForm
+from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
+    RankGameForm, OnlineLimitForm, ReportUserForm, LimitSon, SuspendUsers
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
     ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
-from datetime import datetime
+from datetime import datetime, timedelta
 from braces.views import LoginRequiredMixin
 from django.views import generic
 from django.contrib.auth import get_user_model
@@ -625,3 +626,80 @@ def time_restriction(request):
 def exceeded_limitation(user):
     profile = UserProfile.objects.get(user=user)
     return profile.daily_limitation > profile.limitation
+
+def limit_son(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    son_user = user_profile.son
+    son_profile = UserProfile.objects.get(user=son_user)
+    if request.method == 'POST':
+        form = LimitSon(request.POST)
+        if form.is_valid():
+            receiver = form.cleaned_data['chosen_limited']
+            receiver_user = User.objects.get(username=receiver)
+            # receiver_user.limit = datetime.now()+timedelta(hours=2)
+            receiver_user.save()
+            alert = Notifications(receiver=receiver_user, message=f'You are passes the limit. by your dad')
+            alert.save()
+        return HttpResponseRedirect(reverse('registration:index'))
+    else:
+        form = LimitSon()
+    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile})
+
+def game_sessions_report(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    son_user = user_profile.son
+    son_profile = UserProfile.objects.get(user=son_user)
+    game_list = GameSession.objects.filter(user=son_profile)
+    return render(request, 'registration/game-sessions-report.html', {'game_list':game_list})
+
+# def invite_friend(request):
+#     user = request.user
+#     if request.method == 'POST':
+#         form = InviteFriend(request.POST)
+#         if form.is_valid():
+#             receiver = form.cleaned_data['chosen_friend']
+#             receiver_user = User.objects.get(username=receiver)
+#             alert = Notifications(receiver=receiver_user, message=f'You have been invited to a game by {user.username}')
+#             alert.save()
+#         return HttpResponseRedirect(reverse('registration:success-invite'))
+#     else:
+#         form = InviteFriend()
+#         friend = Friend.objects.filter(current_user=user)[0]
+#         friend_list = list(map(lambda x: x.username, friend.users.all()))
+#     return render(request, 'registration/invite-friend.html', {'form': form, 'friend': friend, 'friend_list':friend_list})
+
+def suspend_users(request):
+    user = request.user
+    if request.method == 'POST':
+        form = SuspendUsers(request.POST)
+        if form.is_valid():
+            receiver = form.cleaned_data['chosen_suspend']
+            receiver_user = User.objects.get(username=receiver)
+            alert = Notifications(receiver=receiver_user, message=f'You are suspended fot 5 hours by {user.username}')
+            alert.save()
+            user_profile = UserProfile.objects.get(user=receiver_user)
+            user_profile.suspention_time = datetime.now()+timedelta(hours=5)
+            user_profile.save()
+        return HttpResponseRedirect(reverse('registration:index'))
+    else:
+        form = SuspendUsers()
+        users = User.objects.all()
+
+    return render(request, 'registration/suspend-users.html',{'form': form, 'users': users})
+
+def pending_cards(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    card = Card.objects.filter(authorized=False)
+    if request.method == 'POST':
+        checkscards = request.POST.getlist('checks')
+        for item in checkscards:
+            for wordi in card:
+                if item==15:
+                    wordi.authorized=True
+                    wordi.save()
+        return HttpResponseRedirect(reverse('registration:pending-cards'))
+    else:
+        return render(request, 'registration/pending-cards.html', {'image': card})
+
+
