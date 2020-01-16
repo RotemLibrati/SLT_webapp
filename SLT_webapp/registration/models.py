@@ -27,7 +27,7 @@ class UserProfile(models.Model):
     points = models.IntegerField(default=0)
     type = models.CharField(max_length=10, choices=TYPES, default='student')
     is_admin = models.BooleanField(default=False)
-    suspention_time = models.DateTimeField(auto_now_add=True)
+    suspention_time = models.DateTimeField(default=datetime.now())
     total_minutes = models.FloatField(default=0)
     daily_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
@@ -99,6 +99,7 @@ class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, default=1)
     win_date = models.DateTimeField(auto_now_add=True)
+    seen = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.user.user.username) + ' won: ' + str(self.prize.name)
