@@ -1,3 +1,4 @@
+
 {% extends 'registration/SubPage.html' %}
 {% block title %}
     <h2>Pending Cards Page</h2>
@@ -6,11 +7,11 @@
 <form action="{% url 'registration:pending-cards'  %}" method="POST">
     {% csrf_token %}
 {% for item in image %}
-    {{ item.word }}
 <img src="{{ item.image.url }}" alt="image">
-<input type="checkbox" id="{{ item }}" name="checks[]" value="{{ item.word }}" />
+<input type="checkbox" id="{{ item }}" name="checks[]" value={{ item.word }} />
 <label for="{{ item }}"></label>
 {% endfor %}
+
 <button type="submit">Suspend</button>
     </form>
 <a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
