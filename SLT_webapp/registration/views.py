@@ -761,10 +761,12 @@ def pending_cards(request):
         return HttpResponse("Not logged in")
     card = Card.objects.filter(authorized=False)
     if request.method == 'POST':
-        checkscards = request.POST.getlist('checks')
+        checkscards = request.POST.getlist('checks[]')
         for item in checkscards:
+            c=0
             for wordi in card:
-                if item==15:
+                c=c+1
+                if int(item)==c:
                     wordi.authorized=True
                     wordi.save()
         return HttpResponseRedirect(reverse('registration:pending-cards'))
