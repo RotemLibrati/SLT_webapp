@@ -1,0 +1,18 @@
+
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Ranking Game Menu</h2>
+{% endblock %}
+{% block data %}
+<h>Your son: </h>
+{{ son }} played {{ son.total_minutes }}<br>
+<p>send notification to you son </p>
+
+<form action="{% url 'registration:limit-son' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+<button class="button">limit</button>
+    </form>
+
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
