@@ -759,18 +759,16 @@ def suspend_users(request):
 def pending_cards(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
-    card = Card.objects.filter(authorized=False)
+    cardtoaccept = Card.objects.filter(authorized=False)
     if request.method == 'POST':
         checkscards = request.POST.getlist('checks[]')
-        for item in checkscards:
-            c=0
-            for wordi in card:
-                c=c+1
-                if int(item)==c:
-                    wordi.authorized=True
-                    wordi.save()
+        for word in checkscards:
+            for card in cardtoaccept:
+                if word == card.word:
+                    card.authorized = True
+                    card.save()
         return HttpResponseRedirect(reverse('registration:pending-cards'))
     else:
-        return render(request, 'registration/pending-cards.html', {'image': card})
+        return render(request, 'registration/pending-cards.html', {'image': cardtoaccept})
 
 
