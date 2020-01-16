@@ -35,57 +35,73 @@
         </section>
 
         <ul class="deck" id="card-deck">
-            <li class="card" type="diamond">
-                <i class="fa fa-hand-scissors-o"></i>
+            <li class="card" type="1">
+                <img src="{{ image.0.image.url }}" alt="image">
             </li>
-            <li class="card" type="plane">
-                <i class="fa fa-hand-spock-o"></i>
+            <li class="card" type="1">
+                {{ image.0.word }}
             </li>
-            <li class="card match" type="anchor">
-                <i class="fa fa-hand-peace-o"></i>
+            <li class="card" type="2">
+                <img src="{{ image.1.image.url }}" alt="image">
             </li>
-            <li class="card" type="bolt" >
-                <i class="fa fa-hand-lizard-o"></i>
+            <li class="card match" type="3">
+                <img src="{{ image.2.image.url }}" alt="image">
             </li>
-            <li class="card" type="cube">
-                <i class="fa fa-hand-rock-o"></i>
+            <li class="card" type="4" >
+                <img src="{{ image.3.image.url }}" alt="image">
             </li>
-            <li class="card match" type="anchor">
-                peace
+            <li class="card" type="5">
+                <img src="{{ image.4.image.url }}" alt="image">
             </li>
-            <li class="card" type="leaf">
-                <i class="fa fa-hand-paper-o"></i>
+            <li class="card match" type="3">
+                {{ image.2.word }}
             </li>
-            <li class="card" type="bicycle">
-                <i class="fa fa-sign-language"></i>
+            <li class="card" type="6">
+                <img src="{{ image.5.image.url }}" alt="image">
             </li>
-            <li class="card" type="diamond">
-                scissors
+            <li class="card" type="7">
+                <img src="{{ image.6.image.url }}" alt="image">
             </li>
-            <li class="card" type="bomb">
-                <i class="fa fa-american-sign-language-interpreting"></i>
+            <li class="card" type="8">
+                <img src="{{ image.7.image.url }}" alt="image">
             </li>
-            <li class="card" type="leaf">
-                hello
+            <li class="card" type="6">
+                {{ image.5.word }}
             </li>
-            <li class="card" type="bomb">
-                friendship
+            <li class="card" type="8">
+                {{ image.7.word }}
             </li>
-            <li class="card open show" type="bolt">
-                lizard
+            <li class="card open show" type="4">
+                {{ image.3.word }}
             </li>
-            <li class="card" type="bicycle">
-                stop
+            <li class="card" type="7">
+                {{ image.6.word }}
             </li>
-            <li class="card" type="plane">
-                split
+            <li class="card" type="2">
+                {{ image.1.word }}
             </li>
-            <li class="card" type="cube">
-                close
+            <li class="card" type="5">
+                {{ image.4.word }}
             </li>
         </ul>
 
-
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>Congratulations 🎉</h2>
+                <a class="close" href=# >×</a>
+                <div class="content-1">
+                    Congratulations you're a winner 🎉🎉
+                </div>
+                <div class="content-2">
+                    <p>You made <span id=finalMove> </span> moves </p>
+                    <p>in <span id=totalTime> </span> </p>
+                    <p>Rating:  <span id=starRating></span></p>
+                </div>
+                <button id="play-again"onclick="playAgain()">
+                    Play again 😄</a>
+                </button>
+            </div>
+        </div>
 
     </div>
     <script src="{% static 'registration/js/app.js' %}"></script>

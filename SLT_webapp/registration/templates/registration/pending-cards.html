@@ -7,12 +7,13 @@
 <form action="{% url 'registration:pending-cards'  %}" method="POST">
     {% csrf_token %}
 {% for item in image %}
+    {{ item.word }}
 <img src="{{ item.image.url }}" alt="image">
 <input type="checkbox" id="{{ item }}" name="checks[]" value={{ item.word }} />
 <label for="{{ item }}"></label>
 {% endfor %}
-
-<button type="submit">Suspend</button>
+<br><br><br>
+<button type="submit">Save</button>
     </form>
 <a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
 {% endblock %}
