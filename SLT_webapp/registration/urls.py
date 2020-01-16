@@ -55,4 +55,6 @@ urlpatterns = [
     path('game-sessions-report/', views.game_sessions_report, name='game-sessions-report'),
     path('suspend-users/', views.suspend_users, name='suspend-users'),
     path('pending-cards/', views.pending_cards, name='pending-cards'),
+    path('invite-friend/', views.invite_friend, name='invite-friend'),
+    path('success-invite/', views.success_invite, name='success-invite'),
 ]

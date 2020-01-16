@@ -699,13 +699,13 @@ def exceeded_limitation(user):
 def limit_son(request):
     user_profile = UserProfile.objects.get(user=request.user)
     son_user = user_profile.son
-    son_profile = UserProfile.objects.get(user=son_user)
+    son_profile = UserProfile.objects.filter(user=son_user)
     if request.method == 'POST':
         form = LimitSon(request.POST)
         if form.is_valid():
             receiver = form.cleaned_data['chosen_limited']
             receiver_user = User.objects.get(username=receiver)
-            # receiver_user.limit = datetime.now()+timedelta(hours=2)
+            receiver_user.limit = datetime.now()+timedelta(hours=2)
             receiver_user.save()
             alert = Notifications(receiver=receiver_user, message=f'You are passes the limit. by your dad')
             alert.save()
