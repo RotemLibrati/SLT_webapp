@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, UserProfile, Friend
+from .models import User, UserProfile, Friend, Prize
 
 
 class LoginForm(forms.Form):
@@ -107,3 +107,8 @@ class LimitSon(forms.Form):
 
 class InviteSon(forms.Form):
     chosen_son_for_game = forms.CharField(max_length=25)
+
+class PrizeForm(forms.ModelForm):
+    class Meta:
+        model = Prize
+        fields = ('name', 'condition_type', 'condition', 'points')

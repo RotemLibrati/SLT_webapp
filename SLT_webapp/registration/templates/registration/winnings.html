@@ -1,0 +1,17 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+<h2>Winnings</h2>
+{% endblock %}
+{% block data %}
+    <ol>
+        {% for win in winnings %}
+            <li>
+                Prize: {{win.prize.name}}. Time: {{ win.win_date }}
+            </li>
+        {% empty %}
+        <h1>You Have No Winnings</h1>
+        {% endfor %}
+    </ol>
+
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

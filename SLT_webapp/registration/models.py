@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from datetime import timedelta, datetime
 
+from django.utils import timezone
+
+
 class Notifications(models.Model):
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     message = models.CharField(max_length=256)
@@ -27,7 +30,7 @@ class UserProfile(models.Model):
     points = models.IntegerField(default=0)
     type = models.CharField(max_length=10, choices=TYPES, default='student')
     is_admin = models.BooleanField(default=False)
-    suspention_time = models.DateTimeField(default=datetime.now())
+    suspention_time = models.DateTimeField(default=timezone.now())
     total_minutes = models.FloatField(default=0)
     daily_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
@@ -87,9 +90,11 @@ class Friend(models.Model):
 
 
 class Prize(models.Model):
+    TYPES = (('time', 'time'), ('moves', 'moves'), ('mistakes', 'mistakes'))
     name = models.CharField(max_length=100)
-    condition = models.CharField(max_length=200)
-    points = models.IntegerField()
+    condition_type = models.CharField(max_length=20, choices=TYPES, default='time')
+    condition = models.IntegerField(default=1000)
+    points = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.name) + ' points: ' + str(self.points)
@@ -98,7 +103,7 @@ class Prize(models.Model):
 class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, default=1)
-    win_date = models.DateTimeField(auto_now_add=True)
+    win_date = models.DateTimeField(default=timezone.now())
     seen = models.BooleanField(default=False)
 
     def __str__(self):
@@ -118,9 +123,15 @@ class Card(models.Model):
 class GameSession(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     number_of_mistakes = models.IntegerField(default=0)
-    time_start = models.DateTimeField(auto_now_add=True)
+    number_of_moves = models.IntegerField(default=0)
+    time_start = models.DateTimeField(default=timezone.now())
     time_stop = models.DateTimeField(null=True, blank=True)
     difficulty = models.IntegerField(default=0)
+    finished = models.BooleanField(default=False)
+
+    def get_time_in_seconds(self):
+        td = self.time_stop - self.time_start
+        return td.total_seconds()
 
     def __str__(self):
         return str(self.user.user.username) + ' at: ' + str(self.time_start)

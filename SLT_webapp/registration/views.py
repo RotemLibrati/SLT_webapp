@@ -5,12 +5,10 @@ from django.contrib.auth import authenticate, login
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt, Winning
-from django.views import generic
+from .models import UserProfile, Card, User, Friend, Message, GameSession, Prize, Winning, Notifications, UserReoprt
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    RankGameForm, OnlineLimitForm, ReportUserForm, LimitSon, SuspendUsers, InviteSon
-from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers, LimitSon
+    RankGameForm, PrizeForm, SuspendUsers, LimitSon, OnlineLimitForm, InviteSon, InviteFriend, ChooseLevelSon, \
+    ReportUserForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
@@ -79,9 +77,9 @@ def login_view(request):
                 login(request, user)
                 user = request.user
                 userprofile = UserProfile.objects.get(user=user)
-                if userprofile.last_login.date() < datetime.now().date():
+                if userprofile.last_login.date() < timezone.now().date():
                     userprofile.daily_minutes = 0
-                userprofile.last_login = datetime.now()
+                userprofile.last_login = timezone.now()
                 userprofile.save()
                 return HttpResponseRedirect(reverse('registration:profile'))
     else:
@@ -170,7 +168,7 @@ def new_message(request, **kwargs):
                 render(request, 'registration/failure.html', {'error': error})
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
-            sent_date = datetime.now()
+            sent_date = timezone.now()
             message = Message(sender=sender, receiver=receiver, subject=subject, body=body, sent_date=sent_date)
             message.save()
             return HttpResponseRedirect(reverse('registration:inbox'))
@@ -429,13 +427,30 @@ def exit_game(request):
     user_profile = UserProfile.objects.get(user=user)
     session = GameSession.objects.filter(user=user_profile, time_stop__isnull=True)
     for i in session:
-        i.time_stop = datetime.now()
+        i.time_stop = timezone.now()
         i.save()
-    if user_profile.points > 1000 and user_profile.points < 10000:
-        user_profile.level += 1
-        user_profile.save()
-        return render(request, 'registration/level-up.html', {'up1': user_profile})
-
+    game_session = list(GameSession.objects.all())[-1]
+    if game_session.finished:
+        game_time = game_session.get_time_in_seconds()
+        game_moves = game_session.number_of_moves
+        game_mistakes = game_session.number_of_mistakes
+        prizes = Prize.objects.all()
+        for prize in prizes:  # TODO: add notification for winning
+            if prize.condition_type == 'time' and game_time < prize.condition:
+                win = Winning(prize=prize, user=user_profile)
+                win.save()
+                user_profile.points += prize.points
+                user_profile.save()
+            elif prize.condition_type == 'moves' and game_moves < prize.condition:
+                win = Winning(prize=prize, user=user_profile)
+                win.save()
+                user_profile.points += prize.points
+                user_profile.save()
+            elif prize.condition_type == 'mistakes' and game_mistakes < prize.condition:
+                win = Winning(prize=prize, user=user_profile)
+                win.save()
+                user_profile.points += prize.points
+                user_profile.save()
     return HttpResponseRedirect(reverse('registration:index'))
 
 def total_time_son(request):
@@ -601,8 +616,17 @@ def send_game(request):
     received_json_data = json.loads(data)
     moves = received_json_data['moves']
     mistakes = received_json_data['mistakes']
-    up = UserProfile.objects.get(user=request.user)
-    print(moves)
+    finished = received_json_data['finished']
+    print(moves, mistakes)
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+        gs = GameSession.objects.get(user=user_profile, time_stop__isnull=True)
+        gs.number_of_mistakes = mistakes
+        gs.number_of_moves = moves
+        gs.finished = finished
+        gs.save()
+    except (TypeError, GameSession.DoesNotExist):
+        pass
     return HttpResponse("hello")
 
 def invite_friend(request):
@@ -631,7 +655,7 @@ def suspend_users(request):
             alert = Notifications(receiver=receiver_user, message=f'You are suspended fot 5 hours by {user.username}')
             alert.save()
             user_profile = UserProfile.objects.get(user=receiver_user)
-            user_profile.suspention_time = datetime.now()+timedelta(hours=5)
+            user_profile.suspention_time = timezone.now()+timedelta(hours=5)
             user_profile.save()
         return HttpResponseRedirect(reverse('registration:index'))
     else:
@@ -716,7 +740,7 @@ def limit_son(request):
         if form.is_valid():
             receiver = form.cleaned_data['chosen_limited']
             receiver_user = User.objects.get(username=receiver)
-            receiver_user.limit = datetime.now()+timedelta(hours=2)
+            receiver_user.limit = timezone.now()+timedelta(hours=2)
             receiver_user.save()
             alert = Notifications(receiver=receiver_user, message=f'You are passes the limit. by your dad')
             alert.save()
@@ -758,7 +782,7 @@ def suspend_users(request):
             alert = Notifications(receiver=receiver_user, message=f'You are suspended fot 5 hours by {user.username}')
             alert.save()
             user_profile = UserProfile.objects.get(user=receiver_user)
-            user_profile.suspention_time = datetime.now()+timedelta(hours=5)
+            user_profile.suspention_time = timezone.now()+timedelta(hours=5)
             user_profile.save()
         return HttpResponseRedirect(reverse('registration:index'))
     else:
@@ -823,3 +847,22 @@ def invite_son(request):
         son_user = user_profile.son
         son_profile = UserProfile.objects.filter(user=son_user)
     return render(request, 'registration/invite-son.html', {'form': form, 'son_profile': son_profile, 'user': user})
+
+def new_prize(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    if request.method == 'POST':
+        form = PrizeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('registration:index'))
+    else:
+        form = PrizeForm()
+    return render(request, 'registration/new-prize.html', {
+        'form': form, 'user': request.user
+    })
+
+
+def winnings(request):
+    winnings_list = Winning.objects.filter(user=UserProfile.objects.get(user=request.user))
+    return render(request, 'registration/winnings.html', {'winnings': winnings_list})
