@@ -1,0 +1,15 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+  <h2>Invite Son:</h2>
+{% endblock %}
+{% block data %}
+
+
+
+<form action="{% url 'registration:invite-son'  %}" method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+     <button type="submit">Invite</button>
+    </form>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

@@ -104,3 +104,6 @@ class SuspendUsers(forms.Form):
 
 class LimitSon(forms.Form):
     chosen_limited = forms.CharField(max_length=25)
+
+class InviteSon(forms.Form):
+    chosen_son_for_game = forms.CharField(max_length=25)
