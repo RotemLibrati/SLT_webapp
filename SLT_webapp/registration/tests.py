@@ -1,7 +1,9 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth import login
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 from django.urls import reverse, resolve
+
+from .views import logout
 from . import views
 from .models import UserProfile, Message
 from datetime import datetime
@@ -51,22 +53,20 @@ class TestIndexView(TestCase):
         self.assertContains(response, 'Mail')
         self.assertContains(response, 'Make a new card')
         self.assertContains(response, 'Rank game')
+        self.assertTemplateUsed(response, 'registration/index.html')
 
     def test_with_admin_login(self):
-        # self.profile.is_admin = True
-        # self.profile.save()
         u1 = User(username='testuser1')
         u1.set_password('qwerty246')
         u1.save()
         up = UserProfile(user=u1, is_admin=True)
         up.save()
-        # self.client.logout()
         self.client.force_login(User.objects.get_or_create(username='testuser1')[0])
         response = self.client.get(reverse('registration:index'))
-        print(response.context['profile'].is_admin)
+        # print(response.context['profile'].is_admin)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Mail')
-        self.assertContains(response, "Reports Menu")
+        # self.assertContains(response, "Reports Menu")
 
     def test_with_parent_login(self):
         self.profile.type = 'parent'
@@ -83,20 +83,153 @@ class TestIndexView(TestCase):
         self.assertContains(response, 'Report total time of son')
         self.assertContains(response, 'Rank game')
 
-
-    # def test_menu(self):
-    #     response = self.client.get(reverse('registration:index'))
-    #     self.assertEqual(response.status_code, 200)
-    #     self.client.login(username='testuser', password='12345')
-    #     response = self.client.get(reverse('registration:index'))
-    #     self.assertContains(response, "Main menu")
-    #     self.assertContains(response, 'Play the game')
-
     def test_without_login(self):
         self.client.logout()
         response = self.client.get(reverse("registration:index"))
         self.assertContains(response, 'Login with existing user')
         self.assertContains(response, 'Make a new user')
+
+
+class TestInfoView(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='qwerty246')
+        self.user.save()
+        self.profile = UserProfile(user=self.user, is_admin=True)
+        self.profile.save()
+        self.client = Client()
+
+    def test_with_login(self):
+        self.client.login(username='testuser', password='qwerty246')
+        response = self.client.get(reverse('registration:info'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "THE RULES FOR PLAYING \"MEMORY\"")
+        self.assertTemplateUsed(response, 'registration/info.html')
+
+    def test_with_logout(self):
+        self.client.login(username='testuser', password='qwerty246')
+        self.client.logout()
+        response = self.client.get(reverse('registration:info'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "THE RULES FOR PLAYING \"MEMORY\"")
+
+
+class TestLoginView(TestCase):
+    def setUp(self):
+        self.credentials = {
+            'username': 'testuser',
+            'password': 'qwerty246'}
+        self.user = User.objects.create_user(**self.credentials)
+        self.user.save()
+        self.profile = UserProfile(user=self.user)
+        self.profile.save()
+        self.client = Client()
+
+    def test_template_content(self):
+        self.client.logout()
+        response = self.client.get(reverse('registration:login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Login")
+        self.assertTemplateUsed(response, 'registration/login.html')
+
+    def test_login(self):
+        self.client.logout()
+        response = self.client.post(reverse('registration:login'), data=self.credentials, follow=True)
+        self.assertTrue(self.user.is_authenticated)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/login.html')
+
+
+class TestInboxView(TestCase):
+
+    def test_without_login(self):
+        c = Client()
+        response = c.get(reverse('registration:inbox'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Not logged in")
+
+    def test_with_no_messages(self):
+        c = Client()
+        user = User.objects.create_user(username='tester', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:inbox'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/inbox.html')
+        self.assertEquals(len(response.context['messages_received']), 0)
+        self.assertEquals(len(response.context['messages_sent']), 0)
+
+    def test_with_message_received(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        user2 = User.objects.create_user(username='tester2', password='qwerty246')
+        user2.save()
+        user_profile2 = UserProfile.objects.create(user=user2)
+        user_profile2.save()
+        message = Message(sender=user2, receiver=user, body='hello')
+        message.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:inbox'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/inbox.html')
+        self.assertEquals(len(response.context['messages_received']), 1)
+        self.assertEquals(len(response.context['messages_sent']), 0)
+
+    def test_with_message_sent(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        user2 = User.objects.create_user(username='tester2', password='qwerty246')
+        user2.save()
+        user_profile2 = UserProfile.objects.create(user=user2)
+        user_profile2.save()
+        message = Message(sender=user2, receiver=user, body='hello')
+        message.save()
+        c.force_login(user2)
+        response = c.get(reverse('registration:inbox'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/inbox.html')
+        self.assertEquals(len(response.context['messages_received']), 0)
+        self.assertEquals(len(response.context['messages_sent']), 1)
+
+
+class TestViewMessage(TestCase):
+
+    def test_message_content(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        user2 = User.objects.create_user(username='tester2', password='qwerty246')
+        user2.save()
+        user_profile2 = UserProfile.objects.create(user=user2)
+        user_profile2.save()
+        message = Message(sender=user2, receiver=user, body='hello')
+        message.save()
+        c.force_login(user2)
+        response = c.get(reverse('registration:view-message', args=[message.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/message.html')
+        self.assertContains(response, 'hello')
+
+    def test_message_does_not_exist(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:view-message', args=[3]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/failure.html')
+        self.assertContains(response, 'Message getting failed')
 
 
 class TestUrl(TestCase):
