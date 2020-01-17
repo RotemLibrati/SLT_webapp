@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt, Winning
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    RankGameForm, OnlineLimitForm, ReportUserForm, LimitSon, SuspendUsers
+    RankGameForm, OnlineLimitForm, ReportUserForm, LimitSon, SuspendUsers, InviteSon
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
     ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers, LimitSon
 from django.urls import reverse
