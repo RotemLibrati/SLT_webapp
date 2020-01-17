@@ -62,6 +62,7 @@ class FriendForm(forms.Form):
     USERS=list(map(lambda x: (str(x.username), str(x.username)), set))
     new_friend = forms.CharField( widget=forms.Select(choices=USERS))
     ACTIONS = (('Add', 'Add'), ('Remove', 'Remove'))
+    new_friend = forms.CharField(max_length=25)
     action = forms.CharField(max_length=25, widget=forms.Select(choices=ACTIONS))
 
 
@@ -93,6 +94,7 @@ class OnlineLimitForm(forms.Form):
 class ChooseLevelSon(forms.Form):
     LEVEL = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
     level = forms.IntegerField(widget=forms.Select(choices=LEVEL))
+
 
 class InviteFriend(forms.Form):
     chosen_friend = forms.CharField(max_length=25)

@@ -10,7 +10,7 @@ from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
     RankGameForm, OnlineLimitForm, ReportUserForm, LimitSon, SuspendUsers
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers
+    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers, LimitSon
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
@@ -286,6 +286,7 @@ def new_profile_parent(request, username):
     if request.method == 'POST':
         form = ParentForm(request.POST)
         if form.is_valid():
+            form.save()
             user = get_object_or_404(User, username=username)
             userprofile = get_object_or_404(UserProfile, user=user)
             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_son'])
