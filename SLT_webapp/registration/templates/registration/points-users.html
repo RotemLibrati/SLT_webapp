@@ -1,0 +1,10 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Points of users</h2>
+{% endblock %}
+{% block data %}
+{% for i in user_profile %}
+Name: {{i.user }}.   Points: {{ i.points }}<br>
+{% endfor %}<br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

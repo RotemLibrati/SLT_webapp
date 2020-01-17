@@ -1,4 +1,9 @@
-<h>List of users: </h>
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+<h2>User List </h2>
+{% endblock %}
+{% block data %}
+<h2>List of users: </h2>
 {% for user in users %}
         <li>{{user}}</li>
     {% endfor %}
@@ -9,4 +14,5 @@
      <button type="submit">Suspend</button>
     </form>
 
-<a href="{% url 'registration:index' %}">Return to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

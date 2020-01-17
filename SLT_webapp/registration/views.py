@@ -10,7 +10,7 @@ from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
     RankGameForm, OnlineLimitForm, ReportUserForm, LimitSon, SuspendUsers
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers
+    ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers, LimitSon
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
 from datetime import datetime, timedelta
@@ -195,11 +195,17 @@ def profile(request):
     except (TypeError, Friend.DoesNotExist):
         friends = []
         # messages.add_message(request, messages.INFO, 'Hello world.')
+    try:
+        parent_profile = UserProfile.objects.get(son=u1)
+        parent_user = User.objects.get(username=parent_profile.user.username)
+        if parent_profile[0]:
+            alert = Notifications(receiver=parent_user[0], message='your son has won a new prize')
+            alert.save()
+    except (TypeError, UserProfile.DoesNotExist):
+        parent_user = []
     up1 = get_object_or_404(UserProfile, user=u1)
     messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
     winningList = Winning.objects.filter(user=up1, seen=False)
-    parent_profile = UserProfile.objects.filter(son=request.user)
-    parent_user = User.objects.filter(username=parent_profile.user.username)
     for m in messagesList:
         messages.add_message(request, messages.INFO, m.message)
         m.seen = True
@@ -208,9 +214,6 @@ def profile(request):
         messages.add_message(request, messages.INFO, f'you have won {m.prize.name}')
         m.seen = True
         m.save()
-    if parent_profile[0]:
-        alert = Notifications(receiver=parent_user[0], message= 'your son has won a new prize')
-        alert.save()
     # Alerts.objects.filter(receiver=request.user).delete()
     return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
 
@@ -286,6 +289,7 @@ def new_profile_parent(request, username):
     if request.method == 'POST':
         form = ParentForm(request.POST)
         if form.is_valid():
+            form.save()
             user = get_object_or_404(User, username=username)
             userprofile = get_object_or_404(UserProfile, user=user)
             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_son'])
@@ -356,9 +360,16 @@ def game(request):
     if not suspended:
         session = GameSession(user=context['profile'])
         session.save()
+        user4level = UserProfile.objects.get(user=request.user)
         image = list(Card.objects.all())
-        rand = random.sample(image, 8)
+        if user4level.level == 1:
+            rand = random.sample(image, 6)
+        elif user4level.level == 2:
+            rand = random.sample(image, 8)
+        else:
+            rand = random.sample(image, 10)
         context['image'] = rand
+        context['level'] = user4level.level
         return render(request, 'registration/game.html', context)
     else:
         return render(request, 'registration/suspended.html', context)
@@ -712,7 +723,7 @@ def limit_son(request):
         return HttpResponseRedirect(reverse('registration:index'))
     else:
         form = LimitSon()
-    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile})
+    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile[0]})
 
 def game_sessions_report(request):
     user_profile = UserProfile.objects.get(user=request.user)
@@ -770,5 +781,10 @@ def pending_cards(request):
         return HttpResponseRedirect(reverse('registration:pending-cards'))
     else:
         return render(request, 'registration/pending-cards.html', {'image': cardtoaccept})
+
+def points_users(request):
+    user = request.user
+    user_profile = UserProfile.objects.all()
+    return render(request, 'registration/points-users.html', {'user': user, 'user_profile': user_profile})
 
 
