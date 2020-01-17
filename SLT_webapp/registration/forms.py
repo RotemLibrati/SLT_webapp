@@ -83,7 +83,7 @@ class GameForm(forms.Form):
 
 
 class ChooseLevelSon(forms.Form):
-    LEVEL = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
+    LEVEL = (('1', '1'), ('2', '2'), ('3', '3'))
     level = forms.IntegerField(widget=forms.Select(choices=LEVEL))
 
 

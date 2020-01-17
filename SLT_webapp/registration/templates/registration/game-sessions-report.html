@@ -1,6 +1,21 @@
+
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+<h2>Game Sessions Report </h2>
+{% endblock %}
+{% block data %}
+<h1>Your son has played these games: </h1>
+{% for game in game_list %}
+<p>game start: {{ game.time_start }} game end: {{ game.time_stop}}  </p><br>
+{% endfor %}
+
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
+=======
 <h1>Your son has played these games: </h1>
 {% for game in game_list %}
 <p>game start: {{ game.time_start }} game end: {{ game.time_stop}} number of mistakes: {{ number_of_mistakes }} </p><br>
 {% endfor %}
 
  <a href="{% url 'registration:index' %}">Return to main menu</a><br>
+
