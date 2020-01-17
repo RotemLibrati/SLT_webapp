@@ -195,6 +195,14 @@ def profile(request):
     except (TypeError, Friend.DoesNotExist):
         friends = []
         # messages.add_message(request, messages.INFO, 'Hello world.')
+    try:
+        parent_profile = UserProfile.objects.get(son=u1)
+        parent_user = User.objects.get(username=parent_profile.user.username)
+        if parent_profile[0]:
+            alert = Notifications(receiver=parent_user[0], message='your son has won a new prize')
+            alert.save()
+    except (TypeError, UserProfile.DoesNotExist):
+        parent_user = []
     up1 = get_object_or_404(UserProfile, user=u1)
     messagesList = Notifications.objects.filter(receiver=request.user, seen=False)
     winningList = Winning.objects.filter(user=up1, seen=False)
@@ -357,6 +365,16 @@ def game(request):
     if not suspended:
         session = GameSession(user=context['profile'])
         session.save()
+        user4level = UserProfile.objects.get(user=request.user)
+        image = list(Card.objects.all())
+        if user4level.level == 1:
+            rand = random.sample(image, 6)
+        elif user4level.level == 2:
+            rand = random.sample(image, 8)
+        else:
+            rand = random.sample(image, 10)
+        context['image'] = rand
+        context['level'] = user4level.level
         image = list(Card.objects.all())
         rand = random.sample(image, 8)
         context['image'] = rand
@@ -713,7 +731,7 @@ def limit_son(request):
         return HttpResponseRedirect(reverse('registration:index'))
     else:
         form = LimitSon()
-    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile[0]})
+    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile})
 
 def game_sessions_report(request):
     user_profile = UserProfile.objects.get(user=request.user)
@@ -789,5 +807,10 @@ def personal_tournament(request):
     return render(request, 'registration/send-notification.html', {'user': user, 'user_profile': user_profile})
 
 
-
+def points_of_son(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=request.user)
+    son_user = user_profile.son
+    son_profile = UserProfile.objects.filter(user=son_user)
+    return render(request, 'registration/points-of-son.html', {'user': user, 'son_profile': son_profile[0]})
 

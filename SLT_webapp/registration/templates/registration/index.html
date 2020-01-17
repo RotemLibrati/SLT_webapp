@@ -51,6 +51,7 @@
             <li><a href="{% url 'registration:level-of-son' %}">Your son's level</a><br>
 			<li><a href="{% url 'registration:limit-son' %}">Limit Your Son</a><br>
 			<li><a href="{% url 'registration:game-sessions-report' %}">Son Game Sessions Report</a><br>
+			<li><a href="{% url 'registration:points-of-son' %}">The points of your son</a><br>
         {% endif %}
         {% if profile.is_admin %}
 			<li><a href="{% url 'registration:suspend-users' %}">Suspend Users</a><br>

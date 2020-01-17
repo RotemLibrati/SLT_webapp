@@ -59,4 +59,5 @@ urlpatterns = [
     path('success-invite/', views.success_invite, name='success-invite'),
     path('points-users/', views.points_users, name='points-users'),
     path('send-notification/', views.personal_tournament, name='send-notification'),
+    path('points-of-son/', views.points_of_son, name='points-of-son'),
 ]

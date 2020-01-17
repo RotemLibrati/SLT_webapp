@@ -1,0 +1,9 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+    <h2>Points of your son</h2>
+{% endblock %}
+{% block data %}
+<h>The points your son collected:  {{ son_profile.points }}</h><br>
+<br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
