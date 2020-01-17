@@ -30,17 +30,70 @@ class TestUserProfileModel(TestCase):
 
 
 class TestIndexView(TestCase):
-    def test_title(self):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='qwerty246')
+        self.user.save()
+        self.profile = UserProfile(user=self.user, is_admin=True)
+        self.profile.save()
+        self.client = Client()
+        self.client.login(username='testuser', password='qwerty246')
+
+    def test_with_student_login(self):
+        # self.profile.type = 'student'
+        # self.profile.save()
         response = self.client.get(reverse('registration:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sign Language Teacher")
+        self.assertContains(response, "Main menu")
+        self.assertContains(response, 'Play the game')
+        self.assertContains(response, 'Profile menu')
+        self.assertContains(response, 'Manage friends')
+        self.assertContains(response, 'Mail')
+        self.assertContains(response, 'Make a new card')
+        self.assertContains(response, 'Rank game')
 
-    def test_menu(self):
+    def test_with_admin_login(self):
+        # self.profile.is_admin = True
+        # self.profile.save()
+        u1 = User(username='testuser1')
+        u1.set_password('qwerty246')
+        u1.save()
+        up = UserProfile(user=u1, is_admin=True)
+        up.save()
+        # self.client.logout()
+        self.client.force_login(User.objects.get_or_create(username='testuser1')[0])
+        response = self.client.get(reverse('registration:index'))
+        print(response.context['profile'].is_admin)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Mail')
+        self.assertContains(response, "Reports Menu")
+
+    def test_with_parent_login(self):
+        self.profile.type = 'parent'
+        self.profile.save()
+        # self.client.login(username='testuser', password='qwerty246')
         response = self.client.get(reverse('registration:index'))
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Sign Language Teacher")
         self.assertContains(response, "Main menu")
+        self.assertContains(response, 'Play the game')
+        self.assertContains(response, 'Profile menu')
+        self.assertContains(response, 'Manage friends')
+        self.assertContains(response, 'Mail')
+        self.assertContains(response, 'Report total time of son')
+        self.assertContains(response, 'Rank game')
 
-    def test_game_links_without_login(self):
+
+    # def test_menu(self):
+    #     response = self.client.get(reverse('registration:index'))
+    #     self.assertEqual(response.status_code, 200)
+    #     self.client.login(username='testuser', password='12345')
+    #     response = self.client.get(reverse('registration:index'))
+    #     self.assertContains(response, "Main menu")
+    #     self.assertContains(response, 'Play the game')
+
+    def test_without_login(self):
+        self.client.logout()
         response = self.client.get(reverse("registration:index"))
         self.assertContains(response, 'Login with existing user')
         self.assertContains(response, 'Make a new user')

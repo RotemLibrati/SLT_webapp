@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/New folder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/New folder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_auto_20200108_1404.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_auto_20200108_1406.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200108_2202.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_userprofile_rank.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -251,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578949701949</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="added url tests">
+      <created>1579136709375</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1579136709375</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,7 +291,8 @@
     <MESSAGE value="added sending data from js frontend to django backend" />
     <MESSAGE value="added message popup test" />
     <MESSAGE value="added TODOS" />
-    <option name="LAST_COMMIT_MESSAGE" value="added TODOS" />
+    <MESSAGE value="added url tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="added url tests" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />
