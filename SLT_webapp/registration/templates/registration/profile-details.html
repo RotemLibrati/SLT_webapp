@@ -1,4 +1,14 @@
-
+<style>
+.bg-image {
+  background-image: url(../../static/registration/uploads/bg.jpg);
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 150%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -73,9 +83,10 @@
     {% endblock %}
 				</ul>
 			</nav>
-
+<br>
 				<!-- One -->
-			<div class="wrapper">
+        <div class="bg-image"></div>
+			<div class="wrapper1">
   <div class="container">
     <img src="{% static 'registration/uploads/rf.jpg' %}" alt="" class="profile-img">
 
@@ -112,20 +123,28 @@
           <span><i class="fa fa-users" aria-hidden="true"></i></span>
           <p>{{ friends|length }}</p>
         </div>
-        <div class="inner-data">
+          {% if profile.son %}
+           <div class="inner-data">
           <span><i class="fa fa-id-badge" aria-hidden="true"></i></span>
           <p>Parent</p>
         </div>
+          {% else %}
+          <div class="inner-data">
+          <span><i class="fa fa-id-badge" aria-hidden="true" style="color: #FFFFFF"></i></span>
+        </div>
+          {%endif%}
         <div class="inner-data">
-          <span><i class="fa fa-user-plus" aria-hidden="true"></i></span>
-          <p>80</p>
+          <span><i class="fa fa-trophy" aria-hidden="true"></i></span>
+          <p>{{profile.points}}</p>
         </div>
       </div>
 
-      <div class="btn" href="{% url 'registration:index' %}" role="button" >Main Page</div>
+<!--      <div class="btn" <ahref>="{% url 'registration:index' %}"</ahref> >Main Page</div>-->
+<!--        <a id="btn" href="Music.html">Music I Like</a>-->
     </div>
   </div>
 </div>
+        </div>
 
 		<!-- Scripts -->
 			<script src="{% static 'registration/sitestyle/assets/js/jquery.min.js' %}"></script>
