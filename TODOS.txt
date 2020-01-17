@@ -1,3 +1,3 @@
 # TODO: 14: prize winning system
-# TODO: 21: different difficulty levels
+
 
