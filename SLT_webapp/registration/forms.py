@@ -26,11 +26,11 @@ class ProfileForm(forms.ModelForm):
 
 
 class ParentForm(forms.Form):
-    #chosen_son = forms.CharField(max_length=25)
+    set = User.objects.all()
+    CHOICES=list(map(lambda x: (str(x.username), str(x.username)), set))
+    chosen_son = forms.CharField(label = "Choose Your Son", widget=forms.Select(choices=CHOICES))
 
-    class Meta:
-        model = UserProfile
-        fields = ('son',)
+
 
 
 class CompleteUserForm(UserCreationForm):
@@ -58,15 +58,20 @@ class CompleteUserForm(UserCreationForm):
 
 
 class FriendForm(forms.Form):
+    set = User.objects.all()
+    USERS=list(map(lambda x: (str(x.username), str(x.username)), set))
+    new_friend = forms.CharField( widget=forms.Select(choices=USERS))
     ACTIONS = (('Add', 'Add'), ('Remove', 'Remove'))
     new_friend = forms.CharField(max_length=25)
     action = forms.CharField(max_length=25, widget=forms.Select(choices=ACTIONS))
 
 
 class MessageForm(forms.Form):
-    receiver = forms.CharField(max_length=50, initial='user name')
+    set = User.objects.all()
+    USERS=list(map(lambda x: (str(x.username), str(x.username)), set))
+    receiver = forms.CharField( widget=forms.Select(choices=USERS))
     subject = forms.CharField(max_length=50, initial='message subject')
-    body = forms.CharField(max_length=250)
+    body = forms.CharField(max_length=5000, widget=forms.Textarea)
 
 class RankGameForm(forms.Form):
     RANK = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
@@ -82,10 +87,13 @@ class GameForm(forms.Form):
     mistakes = forms.IntegerField()
 
 
+class OnlineLimitForm(forms.Form):
+    minutes = forms.IntegerField(initial=0)
+
+
 class ChooseLevelSon(forms.Form):
     LEVEL = (('1', '1'), ('2', '2'), ('3', '3'))
     level = forms.IntegerField(widget=forms.Select(choices=LEVEL))
-
 
 class InviteFriend(forms.Form):
     chosen_friend = forms.CharField(max_length=25)
@@ -94,3 +102,8 @@ class InviteFriend(forms.Form):
 class SuspendUsers(forms.Form):
     chosen_suspend = forms.CharField(max_length=25)
 
+class LimitSon(forms.Form):
+    chosen_limited = forms.CharField(max_length=25)
+
+class InviteSon(forms.Form):
+    chosen_son_for_game = forms.CharField(max_length=25)

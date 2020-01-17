@@ -787,4 +787,39 @@ def points_users(request):
     user_profile = UserProfile.objects.all()
     return render(request, 'registration/points-users.html', {'user': user, 'user_profile': user_profile})
 
+def personal_tournament(request):
+    user = request.user
+    user_profile = list(UserProfile.objects.all())
+    i=0
+    while i<len(user_profile):
+        receiver_user = User.objects.get(username=user_profile[i])
+        alert = Notifications(receiver=receiver_user, message=f'You have 2 day to play in personal tournament')
+        alert.save()
+        i+=1
+    return render(request, 'registration/send-notification.html', {'user': user, 'user_profile': user_profile})
 
+
+def points_of_son(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=request.user)
+    son_user = user_profile.son
+    son_profile = UserProfile.objects.filter(user=son_user)
+    return render(request, 'registration/points-of-son.html', {'user': user, 'son_profile': son_profile[0]})
+
+def invite_son(request):
+    user = request.user
+    if request.method == 'POST':
+        form = InviteSon(request.POST)
+        if form.is_valid():
+            receiver = form.cleaned_data['chosen_son_for_game']
+            receiver_user = User.objects.get(username=receiver)
+            alert = Notifications(receiver=receiver_user, message=f'You have been invited to a game by {user.username}')
+            alert.save()
+        return HttpResponseRedirect(reverse('registration:success-invite'))
+    else:
+        form = InviteSon()
+        user = request.user
+        user_profile = UserProfile.objects.get(user=request.user)
+        son_user = user_profile.son
+        son_profile = UserProfile.objects.filter(user=son_user)
+    return render(request, 'registration/invite-son.html', {'form': form, 'son_profile': son_profile, 'user': user})
