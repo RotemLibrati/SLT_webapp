@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Notifications, UserReoprt, Winning
 from django.views import generic
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    RankGameForm, OnlineLimitForm, ReportUserForm, LimitSon, SuspendUsers
+    RankGameForm, OnlineLimitForm, ReportUserForm, LimitSon, SuspendUsers, InviteSon
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
     ReportUserForm, RankGameForm, ChooseLevelSon, InviteFriend, SuspendUsers, LimitSon
 from django.urls import reverse
@@ -814,3 +814,20 @@ def points_of_son(request):
     son_profile = UserProfile.objects.filter(user=son_user)
     return render(request, 'registration/points-of-son.html', {'user': user, 'son_profile': son_profile[0]})
 
+def invite_son(request):
+    user = request.user
+    if request.method == 'POST':
+        form = InviteSon(request.POST)
+        if form.is_valid():
+            receiver = form.cleaned_data['chosen_son_for_game']
+            receiver_user = User.objects.get(username=receiver)
+            alert = Notifications(receiver=receiver_user, message=f'You have been invited to a game by {user.username}')
+            alert.save()
+        return HttpResponseRedirect(reverse('registration:success-invite'))
+    else:
+        form = InviteSon()
+        user = request.user
+        user_profile = UserProfile.objects.get(user=request.user)
+        son_user = user_profile.son
+        son_profile = UserProfile.objects.filter(user=son_user)
+    return render(request, 'registration/invite-son.html', {'form': form, 'son_profile': son_profile, 'user': user})
