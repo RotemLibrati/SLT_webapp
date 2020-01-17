@@ -215,7 +215,7 @@ def profile(request):
         m.seen = True
         m.save()
     # Alerts.objects.filter(receiver=request.user).delete()
-    return render(request, 'registration/details.html', {'user': u1, 'profile': up1, 'friends': friends})
+    return render(request, 'registration/profile-details.html', {'user': u1, 'profile': up1, 'friends': friends})
 
 
 def add_friend(request):
