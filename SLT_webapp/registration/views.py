@@ -104,7 +104,7 @@ def delete_message(request, message_id):
             message.delete()
     except (TypeError, Message.DoesNotExist):
         error = "Message deletion failed."
-        render(request, 'registration/failure.html', {'error': error})
+        return render(request, 'registration/failure.html', {'error': error})
     return HttpResponseRedirect(reverse('registration:inbox'))
 
 
@@ -216,7 +216,6 @@ def new_profile_parent(request, username):
     if request.method == 'POST':
         form = ParentForm(request.POST)
         if form.is_valid():
-            form.save()
             user = get_object_or_404(User, username=username)
             userprofile = get_object_or_404(UserProfile, user=user)
             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_son'])

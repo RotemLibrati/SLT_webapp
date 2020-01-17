@@ -116,9 +116,9 @@ class TestInfoView(TestCase):
 class TestLoginView(TestCase):
     def setUp(self):
         self.credentials = {
-            'username': 'testuser',
+            'user_name': 'testuser',
             'password': 'qwerty246'}
-        self.user = User.objects.create_user(**self.credentials)
+        self.user = User.objects.create_user(username=self.credentials['user_name'], password=self.credentials['password'])
         self.user.save()
         self.profile = UserProfile(user=self.user)
         self.profile.save()
@@ -135,8 +135,7 @@ class TestLoginView(TestCase):
         self.client.logout()
         response = self.client.post(reverse('registration:login'), data=self.credentials, follow=True)
         self.assertTrue(self.user.is_authenticated)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'registration/login.html')
+        self.assertRedirects(response, reverse('registration:profile'))
 
 
 class TestInboxView(TestCase):
@@ -230,6 +229,151 @@ class TestViewMessage(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'registration/failure.html')
         self.assertContains(response, 'Message getting failed')
+
+
+class TestDeleteMessage(TestCase):
+
+    def test_delete(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        user2 = User.objects.create_user(username='tester2', password='qwerty246')
+        user2.save()
+        user_profile2 = UserProfile.objects.create(user=user2)
+        user_profile2.save()
+        message = Message(sender=user2, receiver=user, body='hello')
+        message.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:delete-message', args=[message.id]))
+        self.assertRedirects(response, reverse('registration:inbox'))
+        response = c.get(reverse('registration:inbox'))
+        self.assertEquals(len(response.context['messages_received']), 0)
+        self.assertEquals(len(response.context['messages_sent']), 0)
+
+
+class TestNewMessage(TestCase):
+
+    def test_new_message_template_content(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:new-message'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/new-message.html')
+        self.assertContains(response, 'New message')
+
+    def test_message_post(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        user2 = User.objects.create_user(username='tester2', password='qwerty246')
+        user2.save()
+        user_profile2 = UserProfile.objects.create(user=user2)
+        user_profile2.save()
+        message = {'receiver': user, 'subject': 'subject', 'body': 'body'}
+        c.force_login(user2)
+        response = c.post(reverse('registration:new-message'), data=message)
+        self.assertRedirects(response, reverse('registration:inbox'))
+        m = Message.objects.get(receiver=user, sender=user2)
+        self.assertIsNotNone(m)
+
+
+class TestProfile(TestCase):
+
+    def test_template_content(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:profile'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/details.html')
+        self.assertContains(response, 'Profile menu')
+
+    def test_without_login(self):
+        c = Client()
+        response = c.get(reverse('registration:profile'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Not logged in')
+
+
+class TestAddFriend(TestCase):
+
+    def test_template_content(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        user2 = User.objects.create_user(username='tester2', password='qwerty246')
+        user2.save()
+        user_profile2 = UserProfile.objects.create(user=user2)
+        user_profile2.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:add-friend'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/add-friend.html')
+        self.assertContains(response, 'Friend addition menu')
+
+    def test_post_add_friend(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        user2 = User.objects.create_user(username='tester2', password='qwerty246')
+        user2.save()
+        user_profile2 = UserProfile.objects.create(user=user2)
+        user_profile2.save()
+        c.force_login(user)
+        data = {'new_friend': str(user2.username), 'action': 'Add'}
+        response = c.post(reverse('registration:add-friend'), data=data)
+        self.assertRedirects(response, reverse('registration:index'))
+        response = c.get(reverse('registration:profile'))
+        self.assertContains(response, f'{str(user2.username)}')
+
+    def test_remove_friend(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        user2 = User.objects.create_user(username='tester2', password='qwerty246')
+        user2.save()
+        user_profile2 = UserProfile.objects.create(user=user2)
+        user_profile2.save()
+        c.force_login(user)
+        data = {'new_friend': str(user2.username), 'action': 'Remove'}
+        response = c.post(reverse('registration:add-friend'), data=data)
+        self.assertRedirects(response, reverse('registration:index'))
+        response = c.post(reverse('registration:add-friend'), data=data)
+        self.assertRedirects(response, reverse('registration:index'))
+        response = c.get(reverse('registration:profile'))
+        self.assertNotContains(response, f'{str(user2.username)}')
+
+
+class TestGame(TestCase):
+
+    def test_template_content(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:game'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/game.html')
+        self.assertContains(response, 'Exit game')
 
 
 class TestUrl(TestCase):
