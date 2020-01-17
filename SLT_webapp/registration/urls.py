@@ -58,4 +58,5 @@ urlpatterns = [
     path('invite-friend/', views.invite_friend, name='invite-friend'),
     path('success-invite/', views.success_invite, name='success-invite'),
     path('points-users/', views.points_users, name='points-users'),
+    path('send-notification/', views.personal_tournament, name='send-notification'),
 ]

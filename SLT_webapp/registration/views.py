@@ -776,4 +776,17 @@ def points_users(request):
     user_profile = UserProfile.objects.all()
     return render(request, 'registration/points-users.html', {'user': user, 'user_profile': user_profile})
 
+def personal_tournament(request):
+    user = request.user
+    user_profile = list(UserProfile.objects.all())
+    i=0
+    while i<len(user_profile):
+        receiver_user = User.objects.get(username=user_profile[i])
+        alert = Notifications(receiver=receiver_user, message=f'You have 2 day to play in personal tournament')
+        alert.save()
+        i+=1
+    return render(request, 'registration/send-notification.html', {'user': user, 'user_profile': user_profile})
+
+
+
 

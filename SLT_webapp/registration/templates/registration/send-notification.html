@@ -1,0 +1,10 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+<h>Personal tournament </h>
+{% endblock %}
+
+{% block data %}
+<h>Your notification about the personal tournament has been sent</h><br>
+<br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}
