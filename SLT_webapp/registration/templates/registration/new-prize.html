@@ -1,0 +1,14 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+<h2>Make New Prize Page</h2>
+{% endblock %}
+{% block data %}
+<form action="{% url 'registration:new-prize' %}" method="POST">
+    {% csrf_token %}
+    <h2>New prize</h2>
+    <h3>Users:</h3><br>
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+</form>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

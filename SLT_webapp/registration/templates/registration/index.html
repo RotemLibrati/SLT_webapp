@@ -61,7 +61,9 @@
             <li><a href="{% url 'registration:suspend-users' %}">Suspend users</a><br></li>
 			<li><a href="{% url 'registration:points-users' %}">Points users</a><br></li>
 			<li><a href="{% url 'registration:send-notification' %}">Start personal tournament</a><br></li>
+			<li><a href="{% url 'registration:new-prize' %}">New prize</a><br></li>
         {% endif %}
+		<li><a href="{% url 'registration:winnings' %}">Winnings</a><br></li>
         <li><a href="{% url 'registration:invite-friend' %}">Invite your friend</a><br></li>
         <li><a href="{% url 'registration:reports-menu-users' %}">Reports menu users</a><br>
         <li><a href="{% url 'registration:info' %}">Game instructions</a><br>

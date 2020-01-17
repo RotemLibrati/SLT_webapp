@@ -1,9 +1,8 @@
-from django.contrib.auth.models import User, AnonymousUser
-from django.contrib.auth import login
-from django.test import TestCase, Client, RequestFactory
+from django.contrib.auth.models import User
+from django.test import TestCase, Client
 from django.urls import reverse, resolve
 
-from .views import logout
+
 from . import views
 from .models import UserProfile, Message
 from datetime import datetime
@@ -46,7 +45,7 @@ class TestIndexView(TestCase):
         response = self.client.get(reverse('registration:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sign Language Teacher")
-        self.assertContains(response, "Main menu")
+        self.assertContains(response, "Main Menu")
         self.assertContains(response, 'Play the game')
         self.assertContains(response, 'Profile menu')
         self.assertContains(response, 'Manage friends')
@@ -75,7 +74,7 @@ class TestIndexView(TestCase):
         response = self.client.get(reverse('registration:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sign Language Teacher")
-        self.assertContains(response, "Main menu")
+        self.assertContains(response, "Main Menu")
         self.assertContains(response, 'Play the game')
         self.assertContains(response, 'Profile menu')
         self.assertContains(response, 'Manage friends')
@@ -102,7 +101,7 @@ class TestInfoView(TestCase):
         self.client.login(username='testuser', password='qwerty246')
         response = self.client.get(reverse('registration:info'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "THE RULES FOR PLAYING \"MEMORY\"")
+        self.assertContains(response, "Game Instructions")
         self.assertTemplateUsed(response, 'registration/info.html')
 
     def test_with_logout(self):
@@ -110,7 +109,7 @@ class TestInfoView(TestCase):
         self.client.logout()
         response = self.client.get(reverse('registration:info'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "THE RULES FOR PLAYING \"MEMORY\"")
+        self.assertContains(response, "Game Instructions")
 
 
 class TestLoginView(TestCase):
@@ -296,8 +295,8 @@ class TestProfile(TestCase):
         c.force_login(user)
         response = c.get(reverse('registration:profile'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'registration/details.html')
-        self.assertContains(response, 'Profile menu')
+        self.assertTemplateUsed(response, 'registration/profile-details.html')
+        # self.assertContains(response, 'Profile menu')
 
     def test_without_login(self):
         c = Client()
@@ -322,7 +321,7 @@ class TestAddFriend(TestCase):
         response = c.get(reverse('registration:add-friend'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'registration/add-friend.html')
-        self.assertContains(response, 'Friend addition menu')
+        self.assertContains(response, 'Friend Addition Menu')
 
     def test_post_add_friend(self):
         c = Client()
@@ -361,19 +360,36 @@ class TestAddFriend(TestCase):
         self.assertNotContains(response, f'{str(user2.username)}')
 
 
-class TestGame(TestCase):
+# class TestGame(TestCase):
+#
+#     def test_template_content(self):
+#         c = Client()
+#         user = User.objects.create_user(username='tester1', password='qwerty246')
+#         user.save()
+#         user_profile = UserProfile.objects.create(user=user)
+#         user_profile.save()
+#         c.force_login(user)
+#         response = c.get(reverse('registration:game'))
+#         self.assertEquals(response.status_code, 200)
+#         self.assertTemplateUsed(response, 'registration/game.html')
+#         self.assertContains(response, 'Exit game')
 
-    def test_template_content(self):
-        c = Client()
-        user = User.objects.create_user(username='tester1', password='qwerty246')
-        user.save()
-        user_profile = UserProfile.objects.create(user=user)
-        user_profile.save()
-        c.force_login(user)
-        response = c.get(reverse('registration:game'))
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'registration/game.html')
-        self.assertContains(response, 'Exit game')
+
+# class TestActiveGames(TestCase):
+#
+#     def test_template_content(self):
+#         c = Client()
+#         user = User.objects.create_user(username='tester1', password='qwerty246')
+#         user.save()
+#         user_profile = UserProfile.objects.create(user=user)
+#         user_profile.save()
+#         c.force_login(user)
+#         response = c.get(reverse('registration:game'))
+#         self.assertEquals(response.status_code, 200)
+#         response = c.get(reverse('registration:active-games'))
+#         self.assertEquals(response.status_code, 200)
+#         self.assertTemplateUsed(response, 'registration/active-games.html')
+#         self.assertGreaterEqual(len(response.context['games']), 1)
 
 
 class TestUrl(TestCase):
