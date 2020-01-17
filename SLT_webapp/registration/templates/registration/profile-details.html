@@ -1,0 +1,139 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+        {% load static %}
+		<title>Sign Language Teacher</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'registration/sitestyle/assets/css/main.css' %}" />
+        <link rel="stylesheet" href="{% static 'registration/sitestyle/assets/css/profilestyle.css' %}" />
+	</head>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <script>
+                    alert('{{message.message}}')
+                </script>
+<!--                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>-->
+            {% endfor %}
+        </ul>
+    {% endif %}
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="{% url 'registration:index' %}">Sign Language Teacher <span>by Group_22</span></a></div>
+				<a href="#menu">Main Menu</a>
+			</header>
+
+			<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+       {% block content %}
+    {% if user.is_authenticated %}
+                    <header class="align-center" >
+                        <a href="{% url 'registration:profile' %}" style="text-decoration: none; color: #F0F0F0">{{user.username}}</a>
+                    </header>
+                    <p></p>
+    {% endif %}
+{% endblock %}
+{% block links %}
+    {% if not user.is_authenticated %}
+        <li><a href="{% url 'registration:login' %}">Login with existing user</a></li><br>
+        <li><a href="{% url 'registration:new-user' %}">Make a new user</a><br>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'registration:game' %}">Play the game</a><br>
+        <li><a href="{% url 'registration:profile' %}">Profile menu</a><br>
+        <li><a href="{% url 'registration:add-friend' %}">Manage friends</a><br>
+        <li><a href="{% url 'registration:inbox' %}">Mail</a><br>
+        <li><a href="{% url 'registration:user_list' %}">Chat</a><br>
+        <li><a href="{% url 'registration:notifications' %}">Notifications</a><br>
+        {% if profile.type == 'student' %}
+            <li><a href="{% url 'registration:make-new-card' %}">Make a new card</a><br>
+            <li><a href="{% url 'registration:rank-game' %}">Rank game</a><br>
+        {% endif %}
+        {% if profile.type == 'parent' %}
+            <li><a href="{% url 'registration:total-time-son' %}">Report total time of son</a><br>
+            <li><a href="{% url 'registration:rank-game' %}">Rank game</a><br>
+            <li><a href="{% url 'registration:time-restriction' %}">Set limitation for son</a><br>
+            <li><a href="{% url 'registration:parent-list' %}">Parent list</a><br>
+            <li><a href="{% url 'registration:level-of-son' %}">Your son's level</a><br>
+        {% endif %}
+        {% if profile.is_admin %}
+            <li><a href="{% url 'registration:reports-menu' %}">Reports menu</a><br>
+            <li><a href="{% url 'registration:lottery' %}">Lottery for tournament</a><br>
+        {% endif %}
+        <li><a href="{% url 'registration:reports-menu-users' %}">Reports menu users</a><br>
+        <li><a href="{% url 'registration:info' %}">Game instructions</a><br>
+        <li><a href="{% url 'registration:logout' %}">Logout</a><br>
+    {% endif %}
+    {% endblock %}
+				</ul>
+			</nav>
+
+				<!-- One -->
+			<div class="wrapper">
+  <div class="container">
+    <img src="{% static 'registration/uploads/rf.jpg' %}" alt="" class="profile-img">
+
+    <div class="content">
+      <div class="sub-content">
+        <h1>{{user.username}}</h1>
+        <span class="location"><i class="fa fa-envelope" aria-hidden="true"></i> {{ user.email }}</span>
+        <span><b>Full Name: </b>{{ user.get_full_name }}</span><br>
+        <span><b>Age: </b>{{profile.age}}</span><br>
+        <span><b>Points: </b>{{profile.points}}</span><br>
+        <span><b>Level: </b>{{profile.level}}</span><br>
+        <span><b>Friends: </b></span><br>
+          {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %} >
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        <script>alert("{{ message }}") </script>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+        {% for f in friends %}
+        <span>{{f}} </span>
+        {% empty %}
+        <p>No friends</p>
+        {% endfor %}
+        <span class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>{{ profile.address }}</span>
+        <span><b>Rank: </b>{{profile.rank}}</span><br>
+      </div>
+
+      <div class="data">
+        <div class="inner-data">
+          <span><i class="fa fa-users" aria-hidden="true"></i></span>
+          <p>{{ friends|length }}</p>
+        </div>
+<!--        <div class="inner-data">-->
+<!--          <span><i class="fa fa-twitter-square" aria-hidden="true"></i></span>-->
+<!--          <p>1,470</p>-->
+<!--        </div>-->
+<!--        <div class="inner-data">-->
+<!--          <span><i class="fa fa-user-plus" aria-hidden="true"></i></span>-->
+<!--          <p>80</p>-->
+<!--        </div>-->
+      </div>
+
+      <div class="btn" href="{% url 'registration:index' %}" role="button" >Main Page</div>
+    </div>
+  </div>
+</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'registration/sitestyle/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'registration/sitestyle/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'registration/sitestyle/assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'registration/sitestyle/assets/js/util.js' %}"></script>
+			<script src="{% static 'registration/sitestyle/assets/js/main.js' %}"></script>
+	</body>
+</html>
+
+
+
