@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, UserProfile, Friend
+from .models import User, UserProfile, Friend, Prize
 
 
 class LoginForm(forms.Form):
@@ -64,6 +64,7 @@ class MessageForm(forms.Form):
     subject = forms.CharField(max_length=50, initial='message subject')
     body = forms.CharField(max_length=250)
 
+
 class RankGameForm(forms.Form):
     RANK = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
     rank = forms.IntegerField(widget=forms.Select(choices=RANK))
@@ -72,3 +73,9 @@ class RankGameForm(forms.Form):
 class GameForm(forms.Form):
     moves = forms.IntegerField()
     mistakes = forms.IntegerField()
+
+
+class PrizeForm(forms.ModelForm):
+    class Meta:
+        model = Prize
+        fields = ('name', 'condition_type', 'condition', 'points')
