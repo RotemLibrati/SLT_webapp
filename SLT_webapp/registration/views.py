@@ -94,7 +94,6 @@ def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
     td = timezone.now() - userprofile.last_login
     userprofile.total_minutes += (td.total_seconds()/60)
-    userprofile.daily_minutes += td.total_seconds() / 60
     userprofile.save()
     request.session.flush()
 
@@ -287,7 +286,6 @@ def new_profile_parent(request, username):
     if request.method == 'POST':
         form = ParentForm(request.POST)
         if form.is_valid():
-            form.save()
             user = get_object_or_404(User, username=username)
             userprofile = get_object_or_404(UserProfile, user=user)
             son_user = get_object_or_404(User, username=form.cleaned_data['chosen_son'])
