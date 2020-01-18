@@ -24,7 +24,7 @@ class Chat(models.Model):
 class UserProfile(models.Model):
     TYPES = (('parent', 'parent'), ('student', 'student'))
     user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
-    son = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='son')
+    son = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='dad')
     address = models.CharField(max_length=100, default='')
     age = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
@@ -35,6 +35,7 @@ class UserProfile(models.Model):
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
     rank = models.IntegerField(default=0)
     level = models.IntegerField(default=1)
+    limit = models.DateTimeField(default=timezone.now())
 
     def was_born_recently(self):
         if self.age <= 0:

@@ -10,9 +10,8 @@
 
 <form action="{% url 'registration:limit-son' %}" method="POST">
     {% csrf_token %}
-    {{form.as_p}}
-<button class="button">limit</button>
-    </form>
+    <button class="button">Limit by 2 hours</button>
+</form>
 
 <a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
 {% endblock %}

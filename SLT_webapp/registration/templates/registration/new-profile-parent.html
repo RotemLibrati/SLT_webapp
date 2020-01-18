@@ -4,6 +4,11 @@
 {% endblock %}
 
 {% block data %}
+<ul>
+{% for u in users %}
+  <li>{{ u.username }}</li>
+{% endfor %}
+</ul>
 <form action="{% url 'registration:new-profile-parent' username %}" method="POST">
   {% csrf_token %}
   {{ form.as_p }}

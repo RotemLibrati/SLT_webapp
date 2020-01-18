@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile, Card, User, Friend, Message, GameSession, Prize, Winning, Notifications, UserReoprt
 from .forms import CardForm, UserForm, ProfileForm, CompleteUserForm, LoginForm, ParentForm, FriendForm, MessageForm, \
-    RankGameForm, PrizeForm, SuspendUsers, LimitSon, OnlineLimitForm, InviteSon, InviteFriend, ChooseLevelSon, \
+    RankGameForm, PrizeForm, SuspendUsers, OnlineLimitForm, InviteSon, InviteFriend, ChooseLevelSon, \
     ReportUserForm
 from django.urls import reverse
 from django.contrib.auth.models import AnonymousUser
@@ -293,8 +293,9 @@ def new_profile_parent(request, username):
             userprofile.save()
             return HttpResponseRedirect(reverse('registration:index'))
     else:
+        users = User.objects.filter(type='student')
         form = ParentForm()
-    return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
+    return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form, 'users': users})
 
 # class DetailView(generic.DetailView):
 #     model = UserProfile
@@ -707,22 +708,22 @@ def suspend_users(request):
 #     return HttpResponse("hello")
 
 
-def time_restriction(request):
-    if request.user is None or not request.user.is_authenticated:
-        return HttpResponse("Not logged in")
-    user_profile = UserProfile.objects.get(user=request.user)
-    son_profile = UserProfile.objects.get(user=user_profile.son)
-    son_user = User.objects.get(username=son_profile.user.username)
-    if request.method == 'POST':
-        form = OnlineLimitForm(request.POST)
-        if form.is_valid():
-            minutes = form.cleaned_data.get('minutes')
-            son_profile.limitation = minutes
-            son_profile.save()
-            return HttpResponseRedirect(reverse('registration:index'))
-    else:
-        form = OnlineLimitForm()
-    return render(request, 'registration/time-restriction.html')
+# def time_restriction(request):
+#     if request.user is None or not request.user.is_authenticated:
+#         return HttpResponse("Not logged in")
+#     user_profile = UserProfile.objects.get(user=request.user)
+#     son_profile = UserProfile.objects.get(user=user_profile.son)
+#     son_user = User.objects.get(username=son_profile.user.username)
+#     if request.method == 'POST':
+#         form = OnlineLimitForm(request.POST)
+#         if form.is_valid():
+#             minutes = form.cleaned_data.get('minutes')
+#             son_profile.limitation = minutes
+#             son_profile.save()
+#             return HttpResponseRedirect(reverse('registration:index'))
+#     else:
+#         form = OnlineLimitForm()
+#     return render(request, 'registration/time-restriction.html')
 
 
 def exceeded_limitation(user):
@@ -734,18 +735,13 @@ def limit_son(request):
     son_user = user_profile.son
     son_profile = UserProfile.objects.filter(user=son_user)
     if request.method == 'POST':
-        form = LimitSon(request.POST)
-        if form.is_valid():
-            receiver = form.cleaned_data['chosen_limited']
-            receiver_user = User.objects.get(username=receiver)
-            receiver_user.limit = timezone.now()+timedelta(hours=2)
-            receiver_user.save()
-            alert = Notifications(receiver=receiver_user, message=f'You are passes the limit. by your dad')
-            alert.save()
+        receiver_user = user_profile.son
+        receiver_user.limit = timezone.now()+timedelta(hours=2)
+        receiver_user.save()
+        alert = Notifications(receiver=receiver_user, message=f'You have passed the limit set by your dad')
+        alert.save()
         return HttpResponseRedirect(reverse('registration:index'))
-    else:
-        form = LimitSon()
-    return render(request, 'registration/limit-son.html', {'form': form, 'son': son_profile[0]})
+    return render(request, 'registration/limit-son.html', {'son': son_profile[0]})
 
 def game_sessions_report(request):
     user_profile = UserProfile.objects.get(user=request.user)

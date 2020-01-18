@@ -26,11 +26,7 @@ class ProfileForm(forms.ModelForm):
 
 
 class ParentForm(forms.Form):
-    set = User.objects.all()
-    CHOICES=list(map(lambda x: (str(x.username), str(x.username)), set))
-    chosen_son = forms.CharField(label = "Choose Your Son", widget=forms.Select(choices=CHOICES))
-
-
+    chosen_son = forms.CharField(max_length=30, label="Choose Your Son")
 
 
 class CompleteUserForm(UserCreationForm):
@@ -101,9 +97,6 @@ class InviteFriend(forms.Form):
 
 class SuspendUsers(forms.Form):
     chosen_suspend = forms.CharField(max_length=25)
-
-class LimitSon(forms.Form):
-    chosen_limited = forms.CharField(max_length=25)
 
 class InviteSon(forms.Form):
     chosen_son_for_game = forms.CharField(max_length=25)

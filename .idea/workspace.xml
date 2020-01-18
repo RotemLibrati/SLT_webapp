@@ -2,11 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="chat template designed&#10;messages users template designed&#10;new message form bug&#10;remove warnings makers from urls">
-      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0008_auto_20200118_2028.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/New folder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/New folder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200118_2120.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_auto_20200118_2123.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_userprofile_level.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200115_1134.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_auto_20200115_1135.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_auto_20200115_1209.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0006_auto_20200117_0235.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0008_auto_20200118_2028.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_auto_20200118_2055.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/limit-son.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/limit-son.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile-parent.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/new-profile-parent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/profile-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/profile-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -300,7 +313,13 @@
       <option name="presentableId" value="LOCAL‎00033" />
       <updated>1579046877495</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL‎00034" summary="bug fixes">
+      <created>1579372790880</created>
+      <option name="number" value="LOCAL‎00034" />
+      <option name="presentableId" value="LOCAL‎00034" />
+      <updated>1579372790881</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -322,7 +341,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="1234445" />
     <MESSAGE value="555" />
     <MESSAGE value="game addition" />
     <MESSAGE value="fixed django messages localy by adding django.contrib.sites into installed apps and site_id=1 below it" />
@@ -347,7 +365,8 @@
     <MESSAGE value="notifications template designed&#10;add_message template designed" />
     <MESSAGE value="active games template designed&#10;active users template designed&#10;avg points template designed&#10;details of users template designed&#10;lottery template designed&#10;make new card template designed&#10;rank for admin template designed&#10;rank game template designed&#10;reports menu template designed&#10;reports menu admin template designed" />
     <MESSAGE value="chat template designed&#10;messages users template designed&#10;new message form bug&#10;remove warnings makers from urls" />
-    <option name="LAST_COMMIT_MESSAGE" value="chat template designed&#10;messages users template designed&#10;new message form bug&#10;remove warnings makers from urls" />
+    <MESSAGE value="bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="0" key="CommitChangelistDialog2" />
