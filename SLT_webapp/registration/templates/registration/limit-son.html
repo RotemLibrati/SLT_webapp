@@ -4,14 +4,11 @@
     <h2>Ranking Game Menu</h2>
 {% endblock %}
 {% block data %}
-<h>Your son: </h>
-{{ son }} played {{ son.total_minutes }} minutes <br>
-<p>send notification to you son </p>
-
-<form action="{% url 'registration:limit-son' %}" method="POST">
-    {% csrf_token %}
-    <button class="button">Limit by 2 hours</button>
-</form>
-
-<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+    <h>Your son: </h>{{ son }} played {{ son.total_minutes }} minutes <br>
+    <p>send notification to you son </p>
+    <form action="{% url 'registration:limit-son' %}" method="POST">
+        {% csrf_token %}
+        <button class="button">Limit by 2 hours</button>
+    </form>
+    <a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
 {% endblock %}

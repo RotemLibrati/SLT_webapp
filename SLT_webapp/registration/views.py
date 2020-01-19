@@ -293,7 +293,7 @@ def new_profile_parent(request, username):
             userprofile.save()
             return HttpResponseRedirect(reverse('registration:index'))
     else:
-        users = User.objects.filter(type='student')
+        users = UserProfile.objects.filter(type='student')
         form = ParentForm()
     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form, 'users': users})
 
@@ -428,7 +428,7 @@ def exit_game(request):
     for i in session:
         i.time_stop = timezone.now()
         i.save()
-    game_session = list(GameSession.objects.all())[-1]
+    game_session = list(session)[-1]
     if game_session.finished:
         game_time = game_session.get_time_in_seconds()
         game_moves = game_session.number_of_moves
@@ -555,7 +555,7 @@ def level_of_son(request):
     son_user = User.objects.get(username=current_user_profile.son.username)
     son_profile = UserProfile.objects.get(user=son_user)
     context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile, 'form':form}
-    return render(request, 'registration/level-of-son.html', context)
+    return render(request, 'registration/level-of-son.html', context)  # TODO: add design to template
 
 
 def lottery_for_tournament(request):
@@ -733,15 +733,14 @@ def exceeded_limitation(user):
 def limit_son(request):
     user_profile = UserProfile.objects.get(user=request.user)
     son_user = user_profile.son
-    son_profile = UserProfile.objects.filter(user=son_user)
+    son_profile = UserProfile.objects.get(user=son_user)
     if request.method == 'POST':
-        receiver_user = user_profile.son
-        receiver_user.limit = timezone.now()+timedelta(hours=2)
-        receiver_user.save()
-        alert = Notifications(receiver=receiver_user, message=f'You have passed the limit set by your dad')
+        son_profile.limit = timezone.now() + timedelta(hours=2)
+        son_profile.save()
+        alert = Notifications(receiver=son_user, message=f'You have passed the limit set by your dad')
         alert.save()
         return HttpResponseRedirect(reverse('registration:index'))
-    return render(request, 'registration/limit-son.html', {'son': son_profile[0]})
+    return render(request, 'registration/limit-son.html', {'son': son_profile})
 
 def game_sessions_report(request):
     user_profile = UserProfile.objects.get(user=request.user)

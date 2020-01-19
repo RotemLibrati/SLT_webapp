@@ -30,12 +30,12 @@ class UserProfile(models.Model):
     points = models.IntegerField(default=0)
     type = models.CharField(max_length=10, choices=TYPES, default='student')
     is_admin = models.BooleanField(default=False)
-    suspention_time = models.DateTimeField(default=timezone.now())
+    suspention_time = models.DateTimeField(default=datetime(2000, 1, 1))
     total_minutes = models.FloatField(default=0)
     last_login = models.DateTimeField(default=datetime(2000, 1, 1))
     rank = models.IntegerField(default=0)
     level = models.IntegerField(default=1)
-    limit = models.DateTimeField(default=timezone.now())
+    limit = models.DateTimeField(default=datetime(2000, 1, 1))
 
     def was_born_recently(self):
         if self.age <= 0:
@@ -99,8 +99,13 @@ class Prize(models.Model):
 class Winning(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, default=1)
-    win_date = models.DateTimeField(default=timezone.now())
+    win_date = models.DateTimeField()
     seen = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.win_date = timezone.now()
+        return super(Winning, self).save(*args, **kwargs)
 
 
 class Card(models.Model):
@@ -117,10 +122,15 @@ class GameSession(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     number_of_mistakes = models.IntegerField(default=0)
     number_of_moves = models.IntegerField(default=0)
-    time_start = models.DateTimeField(default=timezone.now())
+    time_start = models.DateTimeField()
     time_stop = models.DateTimeField(null=True, blank=True)
     difficulty = models.IntegerField(default=0)
     finished = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.time_start = timezone.now()
+        return super(GameSession, self).save(*args, **kwargs)
 
     def get_time_in_seconds(self):
         td = self.time_stop - self.time_start

@@ -6,7 +6,7 @@
 {% block data %}
 <ul>
 {% for u in users %}
-  <li>{{ u.username }}</li>
+  <li>{{ u.user.username }}</li>
 {% endfor %}
 </ul>
 <form action="{% url 'registration:new-profile-parent' username %}" method="POST">
