@@ -46,14 +46,25 @@
         {% if profile.type == 'parent' %}
             <li><a href="{% url 'registration:total-time-son' %}">Report total time of son</a><br>
             <li><a href="{% url 'registration:rank-game' %}">Rank game</a><br>
-            <li><a href="{% url 'registration:time-restriction' %}">Set limitation for son</a><br>
             <li><a href="{% url 'registration:parent-list' %}">Parent list</a><br>
             <li><a href="{% url 'registration:level-of-son' %}">Your son's level</a><br>
+			<li><a href="{% url 'registration:limit-son' %}">Limit Your Son</a><br>
+			<li><a href="{% url 'registration:game-sessions-report' %}">Son Game Sessions Report</a><br>
+			<li><a href="{% url 'registration:points-of-son' %}">The points of your son</a><br>
+			<li><a href="{% url 'registration:invite-son' %}">Invite your son to play</a><br>
         {% endif %}
         {% if profile.is_admin %}
+            <li><a href="{% url 'registration:pending-cards' %}">Pending Cards</a><br>
+			<li><a href="{% url 'registration:suspend-users' %}">Suspend Users</a><br>
             <li><a href="{% url 'registration:reports-menu' %}">Reports menu</a><br>
             <li><a href="{% url 'registration:lottery' %}">Lottery for tournament</a><br>
+            <li><a href="{% url 'registration:suspend-users' %}">Suspend users</a><br></li>
+			<li><a href="{% url 'registration:points-users' %}">Points users</a><br></li>
+			<li><a href="{% url 'registration:send-notification' %}">Start personal tournament</a><br></li>
+			<li><a href="{% url 'registration:new-prize' %}">New prize</a><br></li>
         {% endif %}
+        <li><a href="{% url 'registration:winnings' %}">Winnings</a><br></li>
+        <li><a href="{% url 'registration:invite-friend' %}">Invite your friend</a><br></li>
         <li><a href="{% url 'registration:reports-menu-users' %}">Reports menu users</a><br>
         <li><a href="{% url 'registration:info' %}">Game instructions</a><br>
         <li><a href="{% url 'registration:logout' %}">Logout</a><br>

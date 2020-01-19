@@ -33,7 +33,6 @@
     {% endif %}
     {% if user.is_authenticated %}
         <li><a href="{% url 'registration:game' %}">Play the game</a><br>
-		<li><a href="{% url 'registration:pending-cards' %}">Pending Cards</a><br>
         <li><a href="{% url 'registration:profile' %}">Profile menu</a><br>
         <li><a href="{% url 'registration:add-friend' %}">Manage friends</a><br>
         <li><a href="{% url 'registration:inbox' %}">Mail</a><br>
@@ -54,6 +53,7 @@
 			<li><a href="{% url 'registration:invite-son' %}">Invite your son to play</a><br>
         {% endif %}
         {% if profile.is_admin %}
+			<li><a href="{% url 'registration:pending-cards' %}">Pending Cards</a><br>
 			<li><a href="{% url 'registration:suspend-users' %}">Suspend Users</a><br>
             <li><a href="{% url 'registration:reports-menu' %}">Reports menu</a><br>
             <li><a href="{% url 'registration:lottery' %}">Lottery for tournament</a><br>

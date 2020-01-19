@@ -19,6 +19,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.sessions.models import Session
 
+
 def delete_notification(request, notification_id):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
@@ -30,7 +31,8 @@ def delete_notification(request, notification_id):
         render(request, 'registration/failure.html', {'error': error})
     return HttpResponseRedirect(reverse('registration:notifications'))
 
-def notifications(request):
+
+def notifications(request):  # TODO: fix links menu in template
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     # try:
@@ -41,7 +43,7 @@ def notifications(request):
     return render(request, 'registration/notifications.html', {'notifications': notifications})
 
 
-class UserListView(LoginRequiredMixin, generic.ListView):
+class UserListView(LoginRequiredMixin, generic.ListView):  # TODO: fix links menu in template
     model = get_user_model()
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
@@ -93,7 +95,7 @@ def login_view(request):
 def logout(request):
     userprofile = UserProfile.objects.get(user=request.user)
     td = timezone.now() - userprofile.last_login
-    userprofile.total_minutes += (td.total_seconds()/60)
+    userprofile.total_minutes += (td.total_seconds() / 60)
     userprofile.save()
     request.session.flush()
 
@@ -102,7 +104,7 @@ def logout(request):
     return HttpResponseRedirect(reverse('registration:index'))
 
 
-def inbox(request):
+def inbox(request):  # TODO: fix links menu in template
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     current_user = request.user
@@ -178,7 +180,7 @@ def new_message(request, **kwargs):
             if kwargs['reply']:
                 form = MessageForm({'receiver': kwargs['reply']})
     return render(request, 'registration/new-message.html', {
-        'form': form, 'users': user_list, 'user': request.user, 'user_profile':user_profile, 'profiles':profile_list
+        'form': form, 'users': user_list, 'user': request.user, 'user_profile': user_profile, 'profiles': profile_list
     })
 
 
@@ -215,7 +217,7 @@ def profile(request):
     return render(request, 'registration/profile-details.html', {'user': u1, 'profile': up1, 'friends': friends})
 
 
-def add_friend(request):
+def add_friend(request):  # TODO: fix links menu in template
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     if request.method == 'POST':
@@ -267,6 +269,7 @@ def new_profile(request, username):
         userprofile.user = user
         post_save.disconnect(attach_user, sender=UserProfile)
         userprofile.save()
+
     if request.method == 'POST':
         user = User.objects.get(username=username)
         form = ProfileForm(request.POST)
@@ -297,10 +300,10 @@ def new_profile_parent(request, username):
         form = ParentForm()
     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form, 'users': users})
 
+
 # class DetailView(generic.DetailView):
 #     model = UserProfile
 #     template_name = 'registration/details.html'
-
 
 
 def make_new_card(request):
@@ -376,32 +379,36 @@ def game(request):
 #     games = GameSession.objects.filter(time_stop__isnull=True)
 #     game_list = list(games)
 #     return render(request, 'registration/active-games.html', {'games': game_list})
-def active_games(request):
+def active_games(request):  # TODO: fix links menu in template
     user = request.user
     up1 = get_object_or_404(UserProfile, user=user)
     games = GameSession.objects.filter(time_stop__isnull=True)
     game_list = list(games)
     return render(request, 'registration/active-games.html', {'games': game_list, 'up': up1})
 
-def reports_menu(request):
+
+def reports_menu(request):  # TODO: fix links menu in template
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
     return render(request, 'registration/reports-menu.html', {'user': user_profile, 'user_list': user_list})
 
-def reports_menu_users(request):
+
+def reports_menu_users(request):  # TODO: fix links menu in template
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
-    return render(request, 'registration/reports-menu-users.html', {'user': user_profile, 'user_list' : user_list})
+    return render(request, 'registration/reports-menu-users.html', {'user': user_profile, 'user_list': user_list})
 
-def reports_users(request):
+
+def reports_users(request):  # TODO: fix links menu in template
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
     return render(request, 'registration/details-of-users.html', {'user': user_profile, 'user_list': user_list})
 
-def parent_list(request):
+
+def parent_list(request):  # TODO: fix links menu in template
     user = request.user
     user_profile = UserProfile.objects.all()
     user_list = list(user_profile)
@@ -452,7 +459,8 @@ def exit_game(request):
                 user_profile.save()
     return HttpResponseRedirect(reverse('registration:index'))
 
-def total_time_son(request):
+
+def total_time_son(request):  # TODO: fix links menu in template
     current_user_profile = UserProfile.objects.get(user=request.user)
     son_user = User.objects.get(username=current_user_profile.son.username)
     son_profile = UserProfile.objects.get(user=son_user)
@@ -461,7 +469,8 @@ def total_time_son(request):
         return render(request, 'registration/total-time-son.html', context)
     return HttpResponseRedirect(reverse('registration:index'))
 
-def rank_game(request):
+
+def rank_game(request):  # TODO: fix links menu in template
     if request.method == 'POST':
         form = RankGameForm(request.POST)
         if form.is_valid():
@@ -471,22 +480,27 @@ def rank_game(request):
             up1.rank = rank_val
             up1.save()
         return HttpResponseRedirect(reverse('registration:rank-success'))
-    else :
+    else:
         form = RankGameForm()
 
     return render(request, 'registration/rank-game.html', {'form': form})
 
+
 def rank_success(request):
     return render(request, 'registration/rank-success.html')
+
 
 def success_message(request):
     return render(request, 'registration/success-message.html')
 
+
 def success_level(request):
     return render(request, 'registration/success-level.html')
 
+
 def success_invite(request):
     return render(request, 'registration/success-invite.html')
+
 
 def rank_for_admin(request):
     user = request.user
@@ -496,7 +510,9 @@ def rank_for_admin(request):
     for p in user_list:
         sum += p.rank
     avg = sum / len(user_list)
-    return render(request, 'registration/rank-for-admin.html', {'user': user_profile, 'user_list': user_list, 'avg' : avg})
+    return render(request, 'registration/rank-for-admin.html',
+                  {'user': user_profile, 'user_list': user_list, 'avg': avg})
+
 
 def active_users():
     active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
@@ -515,7 +531,8 @@ def active_users_page(request):
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     user = request.user
-    return render(request, 'registration/active-users.html', {'current_user': user, 'users': users, 'up' : up1})
+    return render(request, 'registration/active-users.html', {'current_user': user, 'users': users, 'up': up1})
+
 
 def report_user(request):
     if request.user is None or not request.user.is_authenticated:
@@ -527,7 +544,7 @@ def report_user(request):
             reported_s = form.cleaned_data.get('user_name')
             reported = User.objects.get(username=reported_s)
             reason = form.cleaned_data.get('reason')
-            user_report = UserReoprt(reporter=reporter,reported=reported, reason=reason)
+            user_report = UserReoprt(reporter=reporter, reported=reported, reason=reason)
             user_report.save()
             return HttpResponseRedirect(reverse('registration:index'))
     else:
@@ -536,7 +553,7 @@ def report_user(request):
     return render(request, 'registration/report-user.html', {'form': form, 'users': users})
 
 
-def level_of_son(request):
+def level_of_son(request):  # TODO: add design to template and fix links menu
     if request.method == 'POST':
         form = ChooseLevelSon(request.POST)
         if form.is_valid():
@@ -549,66 +566,40 @@ def level_of_son(request):
             son_profile.level = level_val
             son_profile.save()
         return HttpResponseRedirect(reverse('registration:success-level'))
-    else :
+    else:
         form = ChooseLevelSon()
     current_user_profile = UserProfile.objects.get(user=request.user)
     son_user = User.objects.get(username=current_user_profile.son.username)
     son_profile = UserProfile.objects.get(user=son_user)
-    context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile, 'form':form}
-    return render(request, 'registration/level-of-son.html', context)  # TODO: add design to template
+    context = {'user': current_user_profile, 'son_user': son_user, 'son_profile': son_profile, 'form': form}
+    return render(request, 'registration/level-of-son.html', context)
 
 
-def lottery_for_tournament(request):
+def lottery_for_tournament(request):  # TODO: fix links menu in template
     user = request.user
-    user_profile = UserProfile.objects.all()
-    user_list = list(user_profile)
+    user_names = map(lambda x: x.user.username, UserProfile.objects.all())
+    user_name_list = list(user_names)
     listof2 = []
     lastlist = []
-    templist = user_list
+    templist = user_name_list
     i = len(templist) // 2
     for _ in range(i):
         listof2 = random.choices(templist, k=2)
-        while (listof2[0] == listof2[1]):
+        while listof2[0] == listof2[1]:
             listof2 = random.choices(templist, k=2)
-        tuple1 = [listof2[0], listof2[1]]
+        tuple1 = (listof2[0], listof2[1])
         lastlist.append(tuple1)
         templist.remove(listof2[0])
         templist.remove(listof2[1])
-    list1 = lastlist[0][0]
-    list2 = lastlist[0][1]
-    list3 = lastlist[1][0]
-    list4 = lastlist[2][1]
-    list5 = lastlist[3][0]
-    list6 = lastlist[1][1]
-    list7 = lastlist[2][0]
-    list8 = lastlist[3][1]
-    receiver_user1 = User.objects.get(username=list1)
-    receiver_user2 = User.objects.get(username=list2)
-    receiver_user3 = User.objects.get(username=list3)
-    receiver_user4 = User.objects.get(username=list4)
-    receiver_user5 = User.objects.get(username=list5)
-    receiver_user6 = User.objects.get(username=list6)
-    receiver_user7 = User.objects.get(username=list7)
-    receiver_user8 = User.objects.get(username=list8)
-    alert = Notifications(receiver=receiver_user1, message=f'You have 2 day to play against {user.username}')
-    alert.save()
-    alert = Notifications(receiver=receiver_user2, message=f'You have 2 day to play against {user.username}')
-    alert.save()
-    alert = Notifications(receiver=receiver_user3, message=f'You have 2 day to play against {user.username}')
-    alert.save()
-    alert = Notifications(receiver=receiver_user4, message=f'You have 2 day to play against {user.username}')
-    alert.save()
-    alert = Notifications(receiver=receiver_user5, message=f'You have 2 day to play against {user.username}')
-    alert.save()
-    alert = Notifications(receiver=receiver_user6, message=f'You have 2 day to play against {user.username}')
-    alert.save()
-    alert = Notifications(receiver=receiver_user7, message=f'You have 2 day to play against {user.username}')
-    alert.save()
-    alert = Notifications(receiver=receiver_user8, message=f'You have 2 day to play against {user.username}')
-    alert.save()
+    j = 0
+    while j < i:
+        alert = Notifications(receiver=User.objects.get(username=lastlist[j][0]), message=f'You have 2 day to play against {lastlist[j][1]}')
+        alert.save()
+        alert = Notifications(receiver=User.objects.get(username=lastlist[j][1]), message=f'You have 2 day to play against {lastlist[j][0]}')
+        alert.save()
+        j = j + 2
+    return render(request, 'registration/lottery.html', {'pairs_list': lastlist})
 
-    return render(request, 'registration/lottery.html', { 'last':lastlist,'list1':list1, 'list2':list2, 'list3':list3, 'list4':list4,
-                                                          'list5':list5, 'list6':list6, 'list7':list7, 'list8':list8})
 
 def send_game(request):
     data = request.body.decode('utf-8')
@@ -616,19 +607,23 @@ def send_game(request):
     moves = received_json_data['moves']
     mistakes = received_json_data['mistakes']
     finished = received_json_data['finished']
-    print(moves, mistakes)
     try:
         user_profile = UserProfile.objects.get(user=request.user)
-        gs = GameSession.objects.get(user=user_profile, time_stop__isnull=True)
+        sessions = list(GameSession.objects.filter(user=user_profile, time_stop__isnull=True))
+        gs = sessions[-1]
         gs.number_of_mistakes = mistakes
         gs.number_of_moves = moves
         gs.finished = finished
         gs.save()
+        for i in sessions:
+            i.time_stop = timezone.now()
+            i.save()
     except (TypeError, GameSession.DoesNotExist):
         pass
     return HttpResponse("hello")
 
-def invite_friend(request):
+
+def invite_friend(request):  # TODO: fix links menu in template
     user = request.user
     if request.method == 'POST':
         form = InviteFriend(request.POST)
@@ -640,11 +635,13 @@ def invite_friend(request):
         return HttpResponseRedirect(reverse('registration:success-invite'))
     else:
         form = InviteFriend()
-        friend = Friend.objects.filter(current_user=user)[0]
+        friend, created = Friend.objects.get_or_create(current_user=user)
         friend_list = list(map(lambda x: x.username, friend.users.all()))
-    return render(request, 'registration/invite-friend.html', {'form': form, 'friend': friend, 'friend_list':friend_list})
+    return render(request, 'registration/invite-friend.html',
+                  {'form': form, 'friend': friend, 'friend_list': friend_list})
 
-def suspend_users(request):
+
+def suspend_users(request):  # TODO: fix links menu in template
     user = request.user
     if request.method == 'POST':
         form = SuspendUsers(request.POST)
@@ -654,14 +651,15 @@ def suspend_users(request):
             alert = Notifications(receiver=receiver_user, message=f'You are suspended fot 5 hours by {user.username}')
             alert.save()
             user_profile = UserProfile.objects.get(user=receiver_user)
-            user_profile.suspention_time = timezone.now()+timedelta(hours=5)
+            user_profile.suspention_time = timezone.now() + timedelta(hours=5)
             user_profile.save()
         return HttpResponseRedirect(reverse('registration:index'))
     else:
         form = SuspendUsers()
         users = User.objects.all()
 
-    return render(request, 'registration/suspend-users.html',{'form': form, 'users': users})
+    return render(request, 'registration/suspend-users.html', {'form': form, 'users': users})
+
 
 # def invite_friend(request, username):
 #     if request.method == 'POST':
@@ -677,28 +675,28 @@ def suspend_users(request):
 #     else:
 #         form = ParentForm()
 #     return render(request, 'registration/new-profile-parent.html', {'username': username, 'form': form})
-    #
-    # def send_game(request):
-    #     data = request.body.decode('utf-8')
-    #     received_json_data = json.loads(data)
-    #     moves = received_json_data['moves']
-    #     mistakes = received_json_data['mistakes']
-    #     user = request.user
-    #     up1 = get_object_or_404(UserProfile, user=user)
-    #     up1.points += 100 - mistakes
-    #     up1.save()
-    #     print(up1.points)
-    #     return HttpResponse("hello")
-        # def logout(request):
-        #     userprofile = UserProfile.objects.get(user=request.user)
-        #     td = datetime.now() - userprofile.last_login
-        #     userprofile.total_minutes += (td.total_seconds() / 60)
-        #     userprofile.save()
-        #     request.session.flush()
-        #
-        #     if hasattr(request, 'user'):
-        #         request.user = AnonymousUser()
-        #     return HttpResponseRedirect(reverse('registration:index'))
+#
+# def send_game(request):
+#     data = request.body.decode('utf-8')
+#     received_json_data = json.loads(data)
+#     moves = received_json_data['moves']
+#     mistakes = received_json_data['mistakes']
+#     user = request.user
+#     up1 = get_object_or_404(UserProfile, user=user)
+#     up1.points += 100 - mistakes
+#     up1.save()
+#     print(up1.points)
+#     return HttpResponse("hello")
+# def logout(request):
+#     userprofile = UserProfile.objects.get(user=request.user)
+#     td = datetime.now() - userprofile.last_login
+#     userprofile.total_minutes += (td.total_seconds() / 60)
+#     userprofile.save()
+#     request.session.flush()
+#
+#     if hasattr(request, 'user'):
+#         request.user = AnonymousUser()
+#     return HttpResponseRedirect(reverse('registration:index'))
 # def send_game(request):
 #     data = request.body.decode('utf-8')
 #     received_json_data = json.loads(data)
@@ -730,7 +728,8 @@ def exceeded_limitation(user):
     profile = UserProfile.objects.get(user=user)
     return profile.daily_limitation > profile.limitation
 
-def limit_son(request):
+
+def limit_son(request):  # TODO: fix links menu in template
     user_profile = UserProfile.objects.get(user=request.user)
     son_user = user_profile.son
     son_profile = UserProfile.objects.get(user=son_user)
@@ -742,12 +741,14 @@ def limit_son(request):
         return HttpResponseRedirect(reverse('registration:index'))
     return render(request, 'registration/limit-son.html', {'son': son_profile})
 
-def game_sessions_report(request):
+
+def game_sessions_report(request):  # TODO: fix links menu in template
     user_profile = UserProfile.objects.get(user=request.user)
     son_user = user_profile.son
     son_profile = UserProfile.objects.get(user=son_user)
     game_list = GameSession.objects.filter(user=son_profile)
-    return render(request, 'registration/game-sessions-report.html', {'game_list':game_list})
+    return render(request, 'registration/game-sessions-report.html', {'game_list': game_list})
+
 
 # def invite_friend(request):
 #     user = request.user
@@ -775,16 +776,17 @@ def suspend_users(request):
             alert = Notifications(receiver=receiver_user, message=f'You are suspended fot 5 hours by {user.username}')
             alert.save()
             user_profile = UserProfile.objects.get(user=receiver_user)
-            user_profile.suspention_time = timezone.now()+timedelta(hours=5)
+            user_profile.suspention_time = timezone.now() + timedelta(hours=5)
             user_profile.save()
         return HttpResponseRedirect(reverse('registration:index'))
     else:
         form = SuspendUsers()
         users = User.objects.all()
 
-    return render(request, 'registration/suspend-users.html',{'form': form, 'users': users})
+    return render(request, 'registration/suspend-users.html', {'form': form, 'users': users})
 
-def pending_cards(request):
+
+def pending_cards(request):  # TODO: fix links menu in template
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     cardtoaccept = Card.objects.filter(authorized=False)
@@ -799,31 +801,34 @@ def pending_cards(request):
     else:
         return render(request, 'registration/pending-cards.html', {'image': cardtoaccept})
 
-def points_users(request):
+
+def points_users(request):  # TODO: fix links menu in template
     user = request.user
     user_profile = UserProfile.objects.all()
     return render(request, 'registration/points-users.html', {'user': user, 'user_profile': user_profile})
 
-def personal_tournament(request):
+
+def personal_tournament(request):  # TODO: fix links menu in template
     user = request.user
     user_profile = list(UserProfile.objects.all())
-    i=0
-    while i<len(user_profile):
+    i = 0
+    while i < len(user_profile):
         receiver_user = User.objects.get(username=user_profile[i])
         alert = Notifications(receiver=receiver_user, message=f'You have 2 day to play in personal tournament')
         alert.save()
-        i+=1
+        i += 1
     return render(request, 'registration/send-notification.html', {'user': user, 'user_profile': user_profile})
 
 
-def points_of_son(request):
+def points_of_son(request):  # TODO: fix links menu in template
     user = request.user
     user_profile = UserProfile.objects.get(user=request.user)
     son_user = user_profile.son
     son_profile = UserProfile.objects.filter(user=son_user)
     return render(request, 'registration/points-of-son.html', {'user': user, 'son_profile': son_profile[0]})
 
-def invite_son(request):
+
+def invite_son(request):  # TODO: fix links menu in template
     user = request.user
     if request.method == 'POST':
         form = InviteSon(request.POST)
@@ -841,7 +846,8 @@ def invite_son(request):
         son_profile = UserProfile.objects.filter(user=son_user)
     return render(request, 'registration/invite-son.html', {'form': form, 'son_profile': son_profile, 'user': user})
 
-def new_prize(request):
+
+def new_prize(request):  # TODO: fix links menu in template
     if request.user is None or not request.user.is_authenticated:
         return HttpResponse("Not logged in")
     if request.method == 'POST':
@@ -856,6 +862,6 @@ def new_prize(request):
     })
 
 
-def winnings(request):
+def winnings(request):  # TODO: fix links menu in template
     winnings_list = Winning.objects.filter(user=UserProfile.objects.get(user=request.user))
     return render(request, 'registration/winnings.html', {'winnings': winnings_list})
