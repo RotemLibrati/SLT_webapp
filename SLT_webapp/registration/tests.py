@@ -376,6 +376,23 @@ class TestGame(TestCase):
         self.assertContains(response, 'Exit game')
 
 
+class TestActiveGames(TestCase):
+
+    def test_template_content(self):
+        c = Client()
+        user = User.objects.create_user(username='tester1', password='qwerty246')
+        user.save()
+        user_profile = UserProfile.objects.create(user=user)
+        user_profile.save()
+        c.force_login(user)
+        response = c.get(reverse('registration:game'))
+        self.assertEquals(response.status_code, 200)
+        response = c.get(reverse('registration:active-games'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/active-games.html')
+        self.assertGreaterEqual(len(response.context['games']), 1)
+
+
 class TestUrl(TestCase):
     def setUp(self):
         self.client.force_login(User.objects.get_or_create(username='testuser')[0])

@@ -252,10 +252,15 @@ for (var i = 0; i < cards.length; i++){
 };
 
 // send game data to backend
+var finished = false;
 function stuff(){
+    if (matchedCard.length == 16){
+        finished = true;
+    }
     let data = {
         'moves': moves,
         'mistakes': mistakes,
+        'finished': finished
     };
     let csrftoken = getCookie('csrftoken');
     let response = fetch("http://127.0.0.1:8000/sign-language-teacher/send-game/", {
@@ -263,6 +268,8 @@ function stuff(){
         body: JSON.stringify(data),
         headers: { "X-CSRFToken": csrftoken },
     })
+
+    window.location.assign("http://127.0.0.1:8000/sign-language-teacher/exit/")
 
     // The following function are copying from
     // https://docs.djangoproject.com/en/dev/ref/csrf/#ajax

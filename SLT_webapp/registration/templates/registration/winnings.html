@@ -1,0 +1,10 @@
+<h2>Winnings</h2>
+    <ol>
+        {% for win in winnings %}
+            <li>
+                Prize: {{win.prize.name}}. Time: {{ win.win_date }}
+            </li>
+        {% endfor %}
+    </ol>
+
+<a href="{% url 'registration:index' %}">Return to main menu</a><br>
