@@ -1,3 +1,8 @@
+{% extends 'registration/SubPage.html' %}
+{% block title %}
+  <h2>Level Of Son Page</h2>
+{% endblock %}
+{% block data %}
 <h style="font-size:20px;"; >The level of your son </h>
 <h style="font-size:20px;";>{{son_profile}}</h>
 <h style="font-size:20px;";>is : </h>
@@ -8,4 +13,5 @@
     {{form.as_p}}
     <button type="submit">Submit</button>
 </form>
-<a href="{% url 'registration:index' %}">Go to main menu</a><br>
+<a href="{% url 'registration:index' %}"class="button alt">Return to main menu</a><br>
+{% endblock %}

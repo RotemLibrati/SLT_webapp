@@ -2,15 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1f0c485-70f5-48ef-b0fa-5fc18c4b15e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_userprofile_level.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200115_1134.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_auto_20200115_1135.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_auto_20200115_1209.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0006_auto_20200117_0235.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/SubPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/SubPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/add-friend.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/add-friend.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/game.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/lottery.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/lottery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/profile-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/profile-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0002_auto_20200118_2055.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0003_auto_20200118_2120.py" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0007_auto_20200119_0931.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0004_auto_20200118_2123.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0005_auto_20200119_0402.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/migrations/0006_auto_20200119_0433.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/level-of-son.html" beforeDir="false" afterPath="$PROJECT_DIR$/SLT_webapp/registration/templates/registration/level-of-son.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
