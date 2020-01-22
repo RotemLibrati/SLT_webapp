@@ -252,9 +252,9 @@ for (var i = 0; i < cards.length; i++){
 };
 
 // send game data to backend
-var finished = false;
 function stuff(){
-    if (matchedCard.length == 16){
+    let finished = false;
+    if (matchedCard.length == (numberOfCards * 2)){
         finished = true;
     }
     let data = {

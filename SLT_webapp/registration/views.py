@@ -435,6 +435,7 @@ def exit_game(request):
     for i in session:
         i.time_stop = timezone.now()
         i.save()
+    session = GameSession.objects.filter(user=user_profile)
     game_session = list(session)[-1]
     if game_session.finished:
         game_time = game_session.get_time_in_seconds()
